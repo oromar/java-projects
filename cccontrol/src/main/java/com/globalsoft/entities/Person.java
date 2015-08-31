@@ -118,7 +118,6 @@ public abstract class Person implements  com.globalsoft.entities.Entity, Seriali
 		this.removeUser = removeUser;
 	}
 	
-	@Override
 	public Boolean validate() throws Exception {
 		if (cpf == null || cpf.isEmpty() || cpf.length() != 11 || !cpf.matches(Constants.CPF_REGEX) ) {
 			throw new Exception(Messages.INVALID_CPF);
