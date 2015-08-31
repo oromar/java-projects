@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- 
+ Em : 04/07/2015 - 00:58:30
+-->
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="./Menu.xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="Conteudo">
+
+		<h:panelGrid style="margin-left:10px;width:70%">
+
+			<h1>Listagem de Introducao</h1>
+			<br />
+			<br />
+
+			<h:form id="form_"
+				styleClass="form-horizontal">
+
+				<p:growl showDetail="true" autoUpdate="true" globalOnly="true" />
+
+				<h:commandButton type="button" styleClass="btn btn-primary"
+					value="Novo" immediate="true">
+					<p:ajax event="click"
+						oncomplete="dialogCadastroIntroducao.show();"
+						listener="#{introducaoMB.novoListener}" process="@this"
+						update=":form_cadastro" />
+				</h:commandButton>
+
+				<h:panelGrid style="float:right;" columns="5" id="panel_filter">
+
+					<h:inputText id="input__filter_nome_introducao"
+						style="float:right;width:200%;" styleClass="form-control"
+						value="#{introducaoMB.filterValue}">
+						<f:ajax event="keyup" execute="@this"
+							listener="#{introducaoMB.filterDataTable}"
+							render="table_" />
+					</h:inputText>
+					
+							&nbsp;&nbsp;
+							
+						<h:commandButton style="float:right;" styleClass="btn btn-primary"
+						type="button"
+						onclick="dialog.show();"
+						value="Pesquisar" immediate="true" />
+						
+						&nbsp;&nbsp;
+						
+					<h:commandButton style="float:right;" styleClass="btn btn-primary"
+						type="button" value="Limpar Filtro" immediate="true">
+						<p:ajax listener="#{introducaoMB.clearFilterListener}" process="@this"
+							update=":form_:table_, :form_busca_" />
+					</h:commandButton>
+
+				</h:panelGrid>
+
+				<br />
+				<br />
+
+				<h:dataTable id="table_"
+					value="#{introducaoMB.listaBeans}"
+					styleClass="table table-bordered table-hover"
+					var="introducao"
+					style="width:100%;cellspacing:10; cellpadding:10;">
+
+					<h:column id="column_id_introducao">
+						<f:facet name="header">
+							<h:outputLabel value="#" />
+						</f:facet>
+						<h:outputLabel value="#{introducao.id}" />
+					</h:column>
+
+					<h:column id="column_nome_introducao">
+						<f:facet name="header">
+							<h:outputLabel value="Nome" />
+						</f:facet>
+						<h:outputLabel value="#{introducao.nome}" />
+					</h:column>
+
+					<h:column id="column_livro_introducao">
+						<f:facet name="header">
+							<h:outputLabel value="Livro"/>
+						</f:facet>
+						<h:outputLabel value="#{introducao.livro}"/>
+					</h:column>
+
+					<h:column id="column_texto_introducao">
+						<f:facet name="header">
+							<h:outputLabel value="Texto"/>
+						</f:facet>
+						<h:outputLabel value="#{introducao.texto}"/>
+					</h:column>
+
+
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputLabel value="Ação" />
+						</f:facet>
+						<h:commandLink>
+							<span class="glyphicon glyphicon-pencil" />
+							<p:ajax event="click" listener="#{introducaoMB.updateListener}"
+								process="@this" oncomplete="dialogCadastroIntroducao.show();"
+								update=":form_cadastro" />
+							<f:attribute name="beanToUpdate"
+								value="#{introducao}" />
+						</h:commandLink>
+						
+						&nbsp;&nbsp;
+						
+						<h:commandLink immediate="true">
+							<span class="glyphicon glyphicon-remove" />
+							<p:ajax event="click" listener="#{introducaoMB.removeListener}"
+								update=":form_" process="@this" />
+							<f:attribute name="beanToRemove"
+								value="#{introducao}" />
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</h:panelGrid>
+
+		<p:dialog id="dialog_busca_avancada_"
+			styleClass="panel panel-primary"
+			widgetVar="dialog" modal="true"
+			showEffect="fade" showHeader="true" width="800" hideEffect="fade"
+			resizable="false">
+
+			<f:facet name="header">
+				<h:outputLabel value="Pesquisa de Introducao" />
+			</f:facet>
+
+			<h:form id="form_busca_"
+				styleClass="form-horizontal">
+
+				<h:panelGrid styleClass="form-group" style="margin-left:10px;">
+
+					<h:outputLabel value="Nome" />
+					<h:inputText value="#{introducaoMB.beanFiltro.nome}"
+						styleClass="form-control" size="80" />
+						
+					<h:outputLabel value="Livro" /> 
+					<h:inputText id="input_filtro_livro_introducao" value="#{introducaoMB.beanFiltro.livro}" styleClass="form-control"/>
+
+					<h:outputLabel value="Texto" /> 
+					<h:inputText id="input_filtro_texto_introducao" value="#{introducaoMB.beanFiltro.texto}" styleClass="form-control"/>
+
+
+
+				</h:panelGrid>
+				<br />
+
+				<h:panelGrid columns="4" style="float:right;">
+
+					<h:commandButton styleClass="btn btn-primary" value="Pesquisar">
+						<p:ajax event="click" listener="#{introducaoMB.filterDataTable}"
+							update="@form, :form_:table_"
+							process="@form"
+							oncomplete="dialog.hide();" />
+					</h:commandButton>
+
+					<br />
+
+					<h:commandButton type="button" styleClass="btn btn-primary"
+						value="Cancelar"
+						onclick="dialog.hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="dialogCadastroIntroducao_"
+			styleClass="panel panel-default"
+			widgetVar="dialogCadastroIntroducao" modal="true"
+			showEffect="fade" showHeader="true" width="800" resizable="false"
+			hideEffect="fade">
+
+			<f:facet name="header" widgetVar="dialogCadastroIntroducao">
+				<h:outputLabel value="Cadastro de Introducao" />
+			</f:facet>
+
+			<h:form id="form_cadastro" styleClass="form-horizontal">
+
+				<h:panelGrid styleClass="form-group"
+					style="width:80%;margin-left:10px;">
+
+					<h:outputLabel value="Nome" />
+					<h:inputText id="input_nome_introducao" styleClass="form-control" value="#{introducaoMB.beanSelecionado.nome}" />
+
+					<h:outputLabel value="Livro" /> 
+					<h:inputText id="input_livro_introducao" value="#{introducaoMB.beanSelecionado.livro}" styleClass="form-control"/>
+
+					<h:outputLabel value="Texto" /> 
+					<h:inputText id="input_texto_introducao" value="#{introducaoMB.beanSelecionado.texto}" styleClass="form-control"/>
+
+
+
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="5">
+
+					<h:commandButton styleClass="btn btn-primary" value="Salvar">
+						<p:ajax event="click" listener="#{introducaoMB.saveListener}"
+							update=":form_, :form_cadastro"
+							process="@form" />
+						<f:attribute name="beanToSave" value="#{introducaoMB.beanSelecionado}" />
+					</h:commandButton>
+					
+						&nbsp;&nbsp;
+						
+						<h:commandButton id="btn_limpar" styleClass="btn btn-primary"
+						value="Limpar">
+						<f:ajax event="click" listener="#{introducaoMB.limparListener}"
+							render="@form" execute="@this" immediate="true" />
+					</h:commandButton>
+					
+						&nbsp;&nbsp;
+						
+							<h:commandButton styleClass="btn btn-primary" value="Cancelar"
+						type="button" onclick="dialogCadastroIntroducao.hide();">
+					</h:commandButton>
+
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

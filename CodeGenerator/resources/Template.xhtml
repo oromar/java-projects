@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- 
+ Em : DATA_CRIACAO_ARQUIVO
+-->
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="./Menu.xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="Conteudo">
+
+		<h:panelGrid style="margin-left:10px;width:70%">
+
+			<h1>Listagem de LABEL_NOME_ENTIDADE</h1>
+			<br />
+			<br />
+
+			<h:form id="form_NOME_ENTIDADE_PLURAL_LOWER_CASE"
+				styleClass="form-horizontal">
+
+				<p:growl showDetail="true" autoUpdate="true" globalOnly="true" />
+
+				<h:commandButton type="button" styleClass="btn btn-COR_PADRAO"
+					value="Novo" immediate="true">
+					<p:ajax event="click"
+						oncomplete="dialogCadastroNOME_ENTIDADE.show();"
+						listener="#{NOME_MB.novoListener}" process="@this"
+						update=":form_cadastro" />
+				</h:commandButton>
+
+				<h:panelGrid style="float:right;" columns="5" id="panel_filter">
+
+					<h:inputText id="input__filter_nome_NOME_ENTIDADE_LOWER_CASE"
+						style="float:right;width:200%;" styleClass="form-control"
+						value="#{NOME_MB.filterValue}">
+						<f:ajax event="keyup" execute="@this"
+							listener="#{NOME_MB.filterDataTable}"
+							render="table_NOME_ENTIDADE_PLURAL_LOWER_CASE" />
+					</h:inputText>
+					
+							&nbsp;&nbsp;
+							
+						<h:commandButton style="float:right;" styleClass="btn btn-COR_PADRAO"
+						type="button"
+						onclick="dialogNOME_ENTIDADE_PLURAL_LOWER_CASE.show();"
+						value="Pesquisar" immediate="true" />
+						
+						&nbsp;&nbsp;
+						
+					<h:commandButton style="float:right;" styleClass="btn btn-COR_PADRAO"
+						type="button" value="Limpar Filtro" immediate="true">
+						<p:ajax listener="#{NOME_MB.clearFilterListener}" process="@this"
+							update=":form_NOME_ENTIDADE_PLURAL_LOWER_CASE:table_NOME_ENTIDADE_PLURAL_LOWER_CASE, :form_busca_NOME_ENTIDADE_PLURAL_LOWER_CASE" />
+					</h:commandButton>
+
+				</h:panelGrid>
+
+				<br />
+				<br />
+
+				<h:dataTable id="table_NOME_ENTIDADE_PLURAL_LOWER_CASE"
+					value="#{NOME_MB.listaBeans}"
+					styleClass="table table-bordered table-hover"
+					var="NOME_ENTIDADE_LOWER_CASE"
+					style="width:100%;cellspacing:10; cellpadding:10;">
+
+					<h:column id="column_id_NOME_ENTIDADE_LOWER_CASE">
+						<f:facet name="header">
+							<h:outputLabel value="#" />
+						</f:facet>
+						<h:outputLabel value="#{NOME_ENTIDADE_LOWER_CASE.id}" />
+					</h:column>
+
+					<h:column id="column_nome_NOME_ENTIDADE_LOWER_CASE">
+						<f:facet name="header">
+							<h:outputLabel value="Nome" />
+						</f:facet>
+						<h:outputLabel value="#{NOME_ENTIDADE_LOWER_CASE.nome}" />
+					</h:column>
+
+COLUMNS_DATA_TABLE
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputLabel value="Ação" />
+						</f:facet>
+						<h:commandLink>
+							<span class="glyphicon glyphicon-pencil" />
+							<p:ajax event="click" listener="#{NOME_MB.updateListener}"
+								process="@this" oncomplete="dialogCadastroNOME_ENTIDADE.show();"
+								update=":form_cadastro" />
+							<f:attribute name="beanToUpdate"
+								value="#{NOME_ENTIDADE_LOWER_CASE}" />
+						</h:commandLink>
+						
+						&nbsp;&nbsp;
+						
+						<h:commandLink immediate="true">
+							<span class="glyphicon glyphicon-remove" />
+							<p:ajax event="click" listener="#{NOME_MB.removeListener}"
+								update=":form_NOME_ENTIDADE_PLURAL_LOWER_CASE" process="@this" />
+							<f:attribute name="beanToRemove"
+								value="#{NOME_ENTIDADE_LOWER_CASE}" />
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</h:panelGrid>
+
+		<p:dialog id="dialog_busca_avancada_NOME_ENTIDADE_PLURAL_LOWER_CASE"
+			styleClass="panel panel-COR_PADRAO"
+			widgetVar="dialogNOME_ENTIDADE_PLURAL_LOWER_CASE" modal="true"
+			showEffect="fade" showHeader="true" width="800" hideEffect="fade"
+			resizable="false">
+
+			<f:facet name="header">
+				<h:outputLabel value="Pesquisa de LABEL_NOME_ENTIDADE" />
+			</f:facet>
+
+			<h:form id="form_busca_NOME_ENTIDADE_PLURAL_LOWER_CASE"
+				styleClass="form-horizontal">
+
+				<h:panelGrid styleClass="form-group" style="margin-left:10px;">
+
+					<h:outputLabel value="Nome" />
+					<h:inputText value="#{NOME_MB.beanFiltro.nome}"
+						styleClass="form-control" size="80" />
+						
+INPUTS_FILTROS_XHTML
+
+				</h:panelGrid>
+				<br />
+
+				<h:panelGrid columns="4" style="float:right;">
+
+					<h:commandButton styleClass="btn btn-COR_PADRAO" value="Pesquisar">
+						<p:ajax event="click" listener="#{NOME_MB.filterDataTable}"
+							update="@form, :form_NOME_ENTIDADE_PLURAL_LOWER_CASE:table_NOME_ENTIDADE_PLURAL_LOWER_CASE"
+							process="@form"
+							oncomplete="dialogNOME_ENTIDADE_PLURAL_LOWER_CASE.hide();" />
+					</h:commandButton>
+
+					<br />
+
+					<h:commandButton type="button" styleClass="btn btn-COR_PADRAO"
+						value="Cancelar"
+						onclick="dialogNOME_ENTIDADE_PLURAL_LOWER_CASE.hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="dialogCadastroNOME_ENTIDADE_"
+			styleClass="panel panel-default"
+			widgetVar="dialogCadastroNOME_ENTIDADE" modal="true"
+			showEffect="fade" showHeader="true" width="800" resizable="false"
+			hideEffect="fade">
+
+			<f:facet name="header" widgetVar="dialogCadastroNOME_ENTIDADE">
+				<h:outputLabel value="Cadastro de LABEL_NOME_ENTIDADE" />
+			</f:facet>
+
+			<h:form id="form_cadastro" styleClass="form-horizontal">
+
+				<h:panelGrid styleClass="form-group"
+					style="width:80%;margin-left:10px;">
+
+					<h:outputLabel value="Nome" />
+					<h:inputText id="input_nome_NOME_ENTIDADE_LOWER_CASE" styleClass="form-control" value="#{NOME_MB.beanSelecionado.nome}" />
+
+INPUTS_XHTML
+
+				</h:panelGrid>
+
+				<br />
+
+				<h:panelGrid columns="5">
+
+					<h:commandButton styleClass="btn btn-COR_PADRAO" value="Salvar">
+						<p:ajax event="click" listener="#{NOME_MB.saveListener}"
+							update=":form_NOME_ENTIDADE_PLURAL_LOWER_CASE, :form_cadastro"
+							process="@form" />
+						<f:attribute name="beanToSave" value="#{NOME_MB.beanSelecionado}" />
+					</h:commandButton>
+					
+						&nbsp;&nbsp;
+						
+						<h:commandButton id="btn_limpar" styleClass="btn btn-COR_PADRAO"
+						value="Limpar">
+						<f:ajax event="click" listener="#{NOME_MB.limparListener}"
+							render="@form" execute="@this" immediate="true" />
+					</h:commandButton>
+					
+						&nbsp;&nbsp;
+						
+							<h:commandButton styleClass="btn btn-COR_PADRAO" value="Cancelar"
+						type="button" onclick="dialogCadastroNOME_ENTIDADE.hide();">
+					</h:commandButton>
+
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
