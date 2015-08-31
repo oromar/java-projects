@@ -10,8 +10,6 @@ import BASE_PACKAGE.entidades.EntidadeBasica;
 
 
 /*
- *Arquivo criado automaticamente pelo JSFCRUDGeneratorTabajaraParaPreguiçosos, favor não 
- *apague este comentário.
  *
  * Em : DATA_CRIACAO_ARQUIVO
  * 
