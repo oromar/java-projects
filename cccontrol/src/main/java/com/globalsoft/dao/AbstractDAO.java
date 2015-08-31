@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,7 @@ public class AbstractDAO<T extends Entity> implements DAO<T>{
 	public void create(T entity) throws Exception {
 		try{
 			entity.setRemoved(Boolean.FALSE);
+			entity.setCreateDate(new Date());
 			manager.getTransaction().begin();
 			manager.persist(entity);
 			manager.getTransaction().commit();
@@ -49,6 +51,7 @@ public class AbstractDAO<T extends Entity> implements DAO<T>{
 
 	public void update(T entity) throws Exception {
 		try{
+			entity.setUpdateDate(new Date());
 			manager.getTransaction().begin();
 			manager.merge(entity);
 			manager.getTransaction().commit();
@@ -61,6 +64,7 @@ public class AbstractDAO<T extends Entity> implements DAO<T>{
 		try {
 			T entity = find(key);
 			entity.setRemoved(Boolean.TRUE);
+			entity.setRemoveDate(new Date());
 			manager.getTransaction().begin();
 			manager.merge(entity);
 			manager.getTransaction().commit();
