@@ -22,7 +22,7 @@ import com.globalsoft.util.Messages;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="person_type", discriminatorType=DiscriminatorType.STRING)
-public class Person implements  com.globalsoft.entities.Entity, Serializable {
+public abstract class Person implements  com.globalsoft.entities.Entity, Serializable {
 
 	private static final long serialVersionUID = -3842576486170252907L;
 	
