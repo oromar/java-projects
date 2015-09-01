@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
+import com.globalsoft.dao.ClientDAO;
 import com.globalsoft.dao.UserDAO;
+import com.globalsoft.entities.Client;
 import com.globalsoft.entities.User;
 
 public class Facade {
 	
 	private static Facade instance;
 	private UserBO userBO; 
+	private ClientBO clientBO; 
 	
 	private Facade(){
 		init();
@@ -25,6 +28,7 @@ public class Facade {
 	
 	private void init() {
 		userBO = new UserBO(new UserDAO());
+		clientBO = new ClientBO(new ClientDAO());
 	}
 
 	public boolean exists(Serializable key) throws Exception {
@@ -43,11 +47,11 @@ public class Facade {
 		userBO.remove(key);
 	}
 
-	public User find(Serializable key) throws Exception {
+	public User findUser(Serializable key) throws Exception {
 		return userBO.find(key);
 	}
 
-	public User[] findAll() throws Exception {
+	public User[] findAllUsers() throws Exception {
 		return userBO.findAll();
 	}
 
@@ -55,12 +59,42 @@ public class Facade {
 		return userBO.filter(entity);
 	}
 
-	public Collection<User> findCollectionByHQL(String hql,
+	public Collection<User> findUserCollectionByHQL(String hql,
 			Map<String, Object> parameters) {
 		return userBO.findCollectionByHQL(hql, parameters);
 	}
 
-	public User findUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public User findUserUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return userBO.findUniqueByHQL(hql, parameters);
 	}
+
+	public void create(Client entity) throws Exception {
+		clientBO.create(entity);
+	}
+
+	public void update(Client entity) throws Exception {
+		clientBO.update(entity);
+	}
+
+	public Client findClient(Serializable key) throws Exception {
+		return clientBO.find(key);
+	}
+
+	public Client[] findAllClients() throws Exception {
+		return clientBO.findAll();
+	}
+
+	public Collection<Client> filter(Client entity) {
+		return clientBO.filter(entity);
+	}
+
+	public Client findClientUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return clientBO.findUniqueByHQL(hql, parameters);
+	}
+	
+	public Collection<Client> findClientCollectionByHQL(String hql, Map<String, Object> parameters) {
+		return clientBO.findCollectionByHQL(hql, parameters);
+	}
+	
+	
 }
