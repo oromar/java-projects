@@ -36,7 +36,7 @@ public class Client extends Person implements Entity, Serializable {
 		if (phone == null || phone.isEmpty()) {
 			throw new Exception(Messages.INVALID_NAME);
 		}
-		if (observations== null || observations.isEmpty()) {
+		if (observations == null || observations.isEmpty()) {
 			throw new Exception(Messages.INVALID_NAME);
 		}
 		return Boolean.TRUE;

@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import com.globalsoft.util.Messages;
 
 @Entity
-@DiscriminatorValue(value="client")
+@DiscriminatorValue(value="user")
 public class User extends Person implements com.globalsoft.entities.Entity, Serializable {
 
 	private static final long serialVersionUID = -741285610096169743L;
