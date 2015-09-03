@@ -47,7 +47,7 @@ public class Util {
             throw new IllegalArgumentException(Messages.CANNOT_PASS_NULL_OBJECT);
         }
         Class clazz = object.getClass();
-        List<Field> fields = new ArrayList<>();
+        List<Field> fields = new ArrayList<Field>();
         while (clazz != null) {
             fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
             clazz = clazz.getSuperclass();
