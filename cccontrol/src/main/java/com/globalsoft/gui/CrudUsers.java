@@ -15,6 +15,14 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.border.EtchedBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class CrudUsers extends JFrame {
 
@@ -23,6 +31,7 @@ public class CrudUsers extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -47,73 +56,101 @@ public class CrudUsers extends JFrame {
 	 */
 	public CrudUsers() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 562, 727);
+		setBounds(100, 100, 787, 531);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnArquivo = new JMenu("Arquivo");
+		menuBar.add(mnArquivo);
+		
+		JMenuItem mntmPesquisar = new JMenuItem("Pesquisar");
+		mnArquivo.add(mntmPesquisar);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		mnArquivo.add(mntmSair);
+		
+		JMenu mnAjuda = new JMenu("Ajuda");
+		menuBar.add(mnAjuda);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setBounds(10, 11, 526, 83);
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panel.setBounds(10, 11, 746, 83);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JButton btnNew = new JButton("");
+		btnNew.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\8440_32x32.png"));
 		btnNew.setBounds(10, 11, 57, 50);
 		panel.add(btnNew);
 		
-		JButton btnPesquisa = new JButton("");
-		btnPesquisa.setBounds(77, 11, 57, 50);
-		panel.add(btnPesquisa);
-		
-		JButton BtnEditar = new JButton("");
-		BtnEditar.setBounds(144, 11, 57, 50);
-		panel.add(BtnEditar);
-		
 		JButton BtnExcluir = new JButton("");
-		BtnExcluir.setBounds(459, 11, 57, 50);
+		BtnExcluir.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\Delete.png"));
+		BtnExcluir.setBounds(144, 11, 57, 50);
 		panel.add(BtnExcluir);
 		
 		JLabel lblNovo = new JLabel("Novo");
+		lblNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNovo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNovo.setBounds(10, 58, 57, 25);
 		panel.add(lblNovo);
 		
-		JLabel lblEditar = new JLabel("Editar");
-		lblEditar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEditar.setBounds(77, 58, 57, 25);
-		panel.add(lblEditar);
-		
-		JLabel lblPesquisar = new JLabel("Pesquisar");
-		lblPesquisar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPesquisar.setBounds(144, 58, 57, 25);
-		panel.add(lblPesquisar);
-		
 		JLabel lblExcluir = new JLabel("Excluir");
+		lblExcluir.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblExcluir.setHorizontalAlignment(SwingConstants.CENTER);
-		lblExcluir.setBounds(459, 58, 57, 25);
+		lblExcluir.setBounds(144, 58, 57, 25);
 		panel.add(lblExcluir);
 		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\exit.png"));
+		button.setBounds(679, 11, 57, 50);
+		panel.add(button);
+		
+		JLabel lblSair = new JLabel("Sair");
+		lblSair.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSair.setBounds(679, 58, 57, 25);
+		panel.add(lblSair);
+		lblSair.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblSalvar = new JLabel("Salvar");
+		lblSalvar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSalvar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSalvar.setBounds(77, 58, 57, 25);
+		panel.add(lblSalvar);
+		
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\8439_32x32.png"));
+		button_1.setBounds(77, 11, 57, 50);
+		panel.add(button_1);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Dados Cadastrais", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
-		panel_1.setBounds(10, 105, 526, 157);
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Dados Cadastrais", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
+		panel_1.setBounds(10, 105, 746, 93);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(130, 24, 386, 20);
+		textField.setBounds(130, 24, 236, 20);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(130, 55, 386, 20);
+		textField_1.setBounds(130, 55, 236, 20);
 		panel_1.add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(130, 86, 386, 20);
+		textField_2.setBounds(499, 24, 236, 20);
 		panel_1.add(textField_2);
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -125,29 +162,24 @@ public class CrudUsers extends JFrame {
 		panel_1.add(lblCpf);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data De Nascimento");
-		lblDataDeNascimento.setBounds(10, 89, 119, 14);
+		lblDataDeNascimento.setBounds(379, 27, 119, 14);
 		panel_1.add(lblDataDeNascimento);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(10, 120, 119, 14);
+		lblSenha.setBounds(379, 58, 119, 14);
 		panel_1.add(lblSenha);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(130, 117, 386, 20);
+		textField_3.setBounds(499, 55, 236, 20);
 		panel_1.add(textField_3);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 273, 526, 330);
+		scrollPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		scrollPane.setBounds(10, 209, 746, 254);
 		contentPane.add(scrollPane);
 		
-		JButton button = new JButton("");
-		button.setBounds(10, 614, 57, 50);
-		contentPane.add(button);
-		
-		JLabel lblSair = new JLabel("Sair");
-		lblSair.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSair.setBounds(10, 663, 57, 25);
-		contentPane.add(lblSair);
+		table = new JTable();
+		scrollPane.setViewportView(table);
 	}
 }

@@ -23,8 +23,11 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Component;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class RegisterClient extends JFrame {
+public class SearchClient extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfNameClient;
@@ -39,6 +42,9 @@ public class RegisterClient extends JFrame {
 	private JTextField tfRealizado2;
 	private JTextField tdDataPag;
 	private JTextField tfAcao;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -47,7 +53,7 @@ public class RegisterClient extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterClient frame = new RegisterClient();
+					SearchClient frame = new SearchClient();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				
@@ -61,9 +67,9 @@ public class RegisterClient extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegisterClient() {
+	public SearchClient() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 867, 573);
+		setBounds(100, 100, 867, 560);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -80,29 +86,33 @@ public class RegisterClient extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBounds(10, 11, 830, 70);
+		panel.setBounds(10, 54, 830, 70);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		tfNameClient = new JTextField();
+		tfNameClient.setEnabled(false);
 		tfNameClient.setHorizontalAlignment(SwingConstants.CENTER);
 		tfNameClient.setBounds(166, 11, 233, 20);
 		panel.add(tfNameClient);
 		tfNameClient.setColumns(10);
 		
 		tfCpfClient = new JTextField();
+		tfCpfClient.setEnabled(false);
 		tfCpfClient.setHorizontalAlignment(SwingConstants.CENTER);
 		tfCpfClient.setColumns(10);
 		tfCpfClient.setBounds(572, 11, 233, 20);
 		panel.add(tfCpfClient);
 		
 		tfMatriClient = new JTextField();
+		tfMatriClient.setEnabled(false);
 		tfMatriClient.setHorizontalAlignment(SwingConstants.CENTER);
 		tfMatriClient.setColumns(10);
 		tfMatriClient.setBounds(166, 41, 233, 20);
 		panel.add(tfMatriClient);
 		
 		tfGerClient = new JTextField();
+		tfGerClient.setEnabled(false);
 		tfGerClient.setHorizontalAlignment(SwingConstants.CENTER);
 		tfGerClient.setColumns(10);
 		tfGerClient.setBounds(572, 41, 233, 20);
@@ -134,14 +144,9 @@ public class RegisterClient extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setBounds(10, 92, 830, 183);
+		panel_1.setBounds(10, 135, 830, 183);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JComboBox cbFormaNego = new JComboBox();
-		cbFormaNego.setModel(new DefaultComboBoxModel(new String[] {"", "\u00C1 VISTA", "PARCELADO"}));
-		cbFormaNego.setBounds(173, 24, 227, 20);
-		panel_1.add(cbFormaNego);
 		
 		JLabel lblFormaDeNegociao = new JLabel("FORMA DE NEGOCIA\u00C7\u00C3O");
 		lblFormaDeNegociao.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -154,6 +159,7 @@ public class RegisterClient extends JFrame {
 		panel_1.add(lblValorDeEntrada);
 		
 		tfValorNego = new JTextField();
+		tfValorNego.setEnabled(false);
 		tfValorNego.setHorizontalAlignment(SwingConstants.CENTER);
 		tfValorNego.setColumns(10);
 		tfValorNego.setBounds(173, 55, 227, 20);
@@ -165,6 +171,7 @@ public class RegisterClient extends JFrame {
 		panel_1.add(label);
 		
 		tfValorEntra = new JTextField();
+		tfValorEntra.setEnabled(false);
 		tfValorEntra.setHorizontalAlignment(SwingConstants.CENTER);
 		tfValorEntra.setColumns(10);
 		tfValorEntra.setBounds(575, 24, 227, 20);
@@ -176,6 +183,7 @@ public class RegisterClient extends JFrame {
 		panel_1.add(lblQuantidadeDeEntrega);
 		
 		tfQuatParc = new JTextField();
+		tfQuatParc.setEnabled(false);
 		tfQuatParc.setHorizontalAlignment(SwingConstants.CENTER);
 		tfQuatParc.setColumns(10);
 		tfQuatParc.setBounds(575, 55, 227, 20);
@@ -187,15 +195,11 @@ public class RegisterClient extends JFrame {
 		panel_1.add(lblValorDasParcelas);
 		
 		tfValParcela = new JTextField();
+		tfValParcela.setEnabled(false);
 		tfValParcela.setHorizontalAlignment(SwingConstants.CENTER);
 		tfValParcela.setColumns(10);
 		tfValParcela.setBounds(173, 86, 227, 20);
 		panel_1.add(tfValParcela);
-		
-		JComboBox cbFaixaFatura = new JComboBox();
-		cbFaixaFatura.setModel(new DefaultComboBoxModel(new String[] {"", "3 \u00C1 6", "7 \u00C1 24", "A PARTIR DE 25"}));
-		cbFaixaFatura.setBounds(575, 117, 227, 20);
-		panel_1.add(cbFaixaFatura);
 		
 		JLabel lblFaixaFatura = new JLabel("FAIXA FATURA");
 		lblFaixaFatura.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -203,6 +207,7 @@ public class RegisterClient extends JFrame {
 		panel_1.add(lblFaixaFatura);
 		
 		tfRealizado1 = new JTextField();
+		tfRealizado1.setEnabled(false);
 		tfRealizado1.setHorizontalAlignment(SwingConstants.CENTER);
 		tfRealizado1.setColumns(10);
 		tfRealizado1.setBounds(173, 117, 227, 20);
@@ -214,6 +219,7 @@ public class RegisterClient extends JFrame {
 		panel_1.add(lblServioRealizadoI);
 		
 		tfRealizado2 = new JTextField();
+		tfRealizado2.setEnabled(false);
 		tfRealizado2.setHorizontalAlignment(SwingConstants.CENTER);
 		tfRealizado2.setColumns(10);
 		tfRealizado2.setBounds(575, 86, 227, 20);
@@ -225,6 +231,7 @@ public class RegisterClient extends JFrame {
 		panel_1.add(lblServioRealizadoIi);
 		
 		tdDataPag = new JTextField();
+		tdDataPag.setEnabled(false);
 		tdDataPag.setHorizontalAlignment(SwingConstants.CENTER);
 		tdDataPag.setColumns(10);
 		tdDataPag.setBounds(173, 148, 227, 20);
@@ -241,14 +248,29 @@ public class RegisterClient extends JFrame {
 		lblAo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		tfAcao = new JTextField();
+		tfAcao.setEnabled(false);
 		tfAcao.setBounds(575, 148, 227, 20);
 		panel_1.add(tfAcao);
 		tfAcao.setHorizontalAlignment(SwingConstants.CENTER);
 		tfAcao.setColumns(10);
 		
+		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setEnabled(false);
+		textField.setColumns(10);
+		textField.setBounds(173, 24, 227, 20);
+		panel_1.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setEnabled(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(575, 117, 227, 20);
+		panel_1.add(textField_1);
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_2.setBounds(10, 286, 830, 154);
+		panel_2.setBounds(10, 329, 830, 154);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -257,15 +279,13 @@ public class RegisterClient extends JFrame {
 		panel_2.add(scrollPane);
 		
 		JTextArea taObs = new JTextArea();
+		taObs.setEnabled(false);
 		taObs.setBorder(new TitledBorder(null, "Observa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
 		scrollPane.setViewportView(taObs);
 		
-		JButton btnSave = new JButton("");
-		btnSave.setBounds(759, 451, 81, 48);
-		contentPane.add(btnSave);
-		
-		JButton btnExit = new JButton("");
-		btnExit.setBounds(10, 451, 81, 48);
-		contentPane.add(btnExit);
+		textField_2 = new JTextField();
+		textField_2.setBounds(10, 11, 226, 22);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
 	}
 }
