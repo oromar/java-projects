@@ -10,40 +10,37 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+
 import java.awt.Font;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Component;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JMenuItem;
 
 public class SearchClient extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tfNameClient;
-	private JTextField tfCpfClient;
-	private JTextField tfMatriClient;
-	private JTextField tfGerClient;
-	private JTextField tfValorNego;
-	private JTextField tfValorEntra;
-	private JTextField tfQuatParc;
-	private JTextField tfValParcela;
-	private JTextField tfRealizado1;
-	private JTextField tfRealizado2;
-	private JTextField tdDataPag;
-	private JTextField tfAcao;
-	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 
 	/**
@@ -68,7 +65,7 @@ public class SearchClient extends JFrame {
 	 * Create the frame.
 	 */
 	public SearchClient() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 867, 560);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -77,6 +74,18 @@ public class SearchClient extends JFrame {
 		JMenu mnNewMenu = new JMenu("Arquivo");
 		menuBar.add(mnNewMenu);
 		
+		JMenuItem mntmPesquisaAvanada = new JMenuItem("Pesquisa Avan\u00E7ada");
+		mnNewMenu.add(mntmPesquisaAvanada);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		mntmSair.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		mnNewMenu.add(mntmSair);
+		
 		JMenu mnNewMenu_1 = new JMenu("Ajuda");
 		menuBar.add(mnNewMenu_1);
 		contentPane = new JPanel();
@@ -84,208 +93,50 @@ public class SearchClient extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBounds(10, 54, 830, 70);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		tfNameClient = new JTextField();
-		tfNameClient.setEnabled(false);
-		tfNameClient.setHorizontalAlignment(SwingConstants.CENTER);
-		tfNameClient.setBounds(166, 11, 233, 20);
-		panel.add(tfNameClient);
-		tfNameClient.setColumns(10);
-		
-		tfCpfClient = new JTextField();
-		tfCpfClient.setEnabled(false);
-		tfCpfClient.setHorizontalAlignment(SwingConstants.CENTER);
-		tfCpfClient.setColumns(10);
-		tfCpfClient.setBounds(572, 11, 233, 20);
-		panel.add(tfCpfClient);
-		
-		tfMatriClient = new JTextField();
-		tfMatriClient.setEnabled(false);
-		tfMatriClient.setHorizontalAlignment(SwingConstants.CENTER);
-		tfMatriClient.setColumns(10);
-		tfMatriClient.setBounds(166, 41, 233, 20);
-		panel.add(tfMatriClient);
-		
-		tfGerClient = new JTextField();
-		tfGerClient.setEnabled(false);
-		tfGerClient.setHorizontalAlignment(SwingConstants.CENTER);
-		tfGerClient.setColumns(10);
-		tfGerClient.setBounds(572, 41, 233, 20);
-		panel.add(tfGerClient);
-		
-		JLabel lblNome = new JLabel("NOME");
-		lblNome.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNome.setBounds(10, 13, 122, 17);
-		panel.add(lblNome);
-		
-		JLabel lblCpfcnpj = new JLabel("CPF/CNPJ");
-		lblCpfcnpj.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblCpfcnpj.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCpfcnpj.setBounds(425, 13, 122, 17);
-		panel.add(lblCpfcnpj);
-		
-		JLabel lblMatrcula = new JLabel("MATR\u00CDCULA");
-		lblMatrcula.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblMatrcula.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMatrcula.setBounds(10, 41, 122, 20);
-		panel.add(lblMatrcula);
-		
-		JLabel lblGerncia = new JLabel("GER\u00CANCIA");
-		lblGerncia.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblGerncia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGerncia.setBounds(425, 41, 122, 20);
-		panel.add(lblGerncia);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setBounds(10, 135, 830, 183);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblFormaDeNegociao = new JLabel("FORMA DE NEGOCIA\u00C7\u00C3O");
-		lblFormaDeNegociao.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblFormaDeNegociao.setBounds(10, 24, 135, 20);
-		panel_1.add(lblFormaDeNegociao);
-		
-		JLabel lblValorDeEntrada = new JLabel("VALOR NEGOCIADO");
-		lblValorDeEntrada.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblValorDeEntrada.setBounds(10, 55, 135, 20);
-		panel_1.add(lblValorDeEntrada);
-		
-		tfValorNego = new JTextField();
-		tfValorNego.setEnabled(false);
-		tfValorNego.setHorizontalAlignment(SwingConstants.CENTER);
-		tfValorNego.setColumns(10);
-		tfValorNego.setBounds(173, 55, 227, 20);
-		panel_1.add(tfValorNego);
-		
-		JLabel label = new JLabel("VALOR DE ENTRADA");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label.setBounds(426, 24, 135, 20);
-		panel_1.add(label);
-		
-		tfValorEntra = new JTextField();
-		tfValorEntra.setEnabled(false);
-		tfValorEntra.setHorizontalAlignment(SwingConstants.CENTER);
-		tfValorEntra.setColumns(10);
-		tfValorEntra.setBounds(575, 24, 227, 20);
-		panel_1.add(tfValorEntra);
-		
-		JLabel lblQuantidadeDeEntrega = new JLabel("QUANTIDADE DE PARCELAS");
-		lblQuantidadeDeEntrega.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblQuantidadeDeEntrega.setBounds(426, 55, 153, 20);
-		panel_1.add(lblQuantidadeDeEntrega);
-		
-		tfQuatParc = new JTextField();
-		tfQuatParc.setEnabled(false);
-		tfQuatParc.setHorizontalAlignment(SwingConstants.CENTER);
-		tfQuatParc.setColumns(10);
-		tfQuatParc.setBounds(575, 55, 227, 20);
-		panel_1.add(tfQuatParc);
-		
-		JLabel lblValorDasParcelas = new JLabel("VALOR DA PARCELA");
-		lblValorDasParcelas.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblValorDasParcelas.setBounds(10, 86, 153, 20);
-		panel_1.add(lblValorDasParcelas);
-		
-		tfValParcela = new JTextField();
-		tfValParcela.setEnabled(false);
-		tfValParcela.setHorizontalAlignment(SwingConstants.CENTER);
-		tfValParcela.setColumns(10);
-		tfValParcela.setBounds(173, 86, 227, 20);
-		panel_1.add(tfValParcela);
-		
-		JLabel lblFaixaFatura = new JLabel("FAIXA FATURA");
-		lblFaixaFatura.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblFaixaFatura.setBounds(426, 117, 135, 20);
-		panel_1.add(lblFaixaFatura);
-		
-		tfRealizado1 = new JTextField();
-		tfRealizado1.setEnabled(false);
-		tfRealizado1.setHorizontalAlignment(SwingConstants.CENTER);
-		tfRealizado1.setColumns(10);
-		tfRealizado1.setBounds(173, 117, 227, 20);
-		panel_1.add(tfRealizado1);
-		
-		JLabel lblServioRealizadoI = new JLabel("SERVI\u00C7O REALIZADO I");
-		lblServioRealizadoI.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblServioRealizadoI.setBounds(10, 117, 153, 20);
-		panel_1.add(lblServioRealizadoI);
-		
-		tfRealizado2 = new JTextField();
-		tfRealizado2.setEnabled(false);
-		tfRealizado2.setHorizontalAlignment(SwingConstants.CENTER);
-		tfRealizado2.setColumns(10);
-		tfRealizado2.setBounds(575, 86, 227, 20);
-		panel_1.add(tfRealizado2);
-		
-		JLabel lblServioRealizadoIi = new JLabel("SERVI\u00C7O REALIZADO II");
-		lblServioRealizadoIi.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblServioRealizadoIi.setBounds(426, 86, 153, 20);
-		panel_1.add(lblServioRealizadoIi);
-		
-		tdDataPag = new JTextField();
-		tdDataPag.setEnabled(false);
-		tdDataPag.setHorizontalAlignment(SwingConstants.CENTER);
-		tdDataPag.setColumns(10);
-		tdDataPag.setBounds(173, 148, 227, 20);
-		panel_1.add(tdDataPag);
-		
-		JLabel lblDataDoPagamento = new JLabel("DATA DO PAGAMENTO");
-		lblDataDoPagamento.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDataDoPagamento.setBounds(10, 148, 153, 20);
-		panel_1.add(lblDataDoPagamento);
-		
-		JLabel lblAo = new JLabel("A\u00C7\u00C3O");
-		lblAo.setBounds(426, 148, 124, 20);
-		panel_1.add(lblAo);
-		lblAo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
-		tfAcao = new JTextField();
-		tfAcao.setEnabled(false);
-		tfAcao.setBounds(575, 148, 227, 20);
-		panel_1.add(tfAcao);
-		tfAcao.setHorizontalAlignment(SwingConstants.CENTER);
-		tfAcao.setColumns(10);
-		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setEnabled(false);
-		textField.setColumns(10);
-		textField.setBounds(173, 24, 227, 20);
-		panel_1.add(textField);
-		
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(575, 117, 227, 20);
-		panel_1.add(textField_1);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_2.setBounds(10, 329, 830, 154);
-		contentPane.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 23, 810, 120);
-		panel_2.add(scrollPane);
-		
-		JTextArea taObs = new JTextArea();
-		taObs.setEnabled(false);
-		taObs.setBorder(new TitledBorder(null, "Observa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
-		scrollPane.setViewportView(taObs);
-		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 11, 226, 22);
+		textField_2.setBounds(552, 11, 226, 25);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
+		
+		JButton btnExit = new JButton("");
+		btnExit.setBounds(76, 11, 56, 48);
+		contentPane.add(btnExit);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\LUPA_22x22.png"));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setBounds(778, 11, 44, 25);
+		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();  
+        scrollPane.setBounds(10, 76, 831, 413);  
+        contentPane.add(scrollPane);  
+          
+        //Criando a JTable tabela e adicionando no JScrollPane  
+        JTable tabela = new JTable();  
+        scrollPane.setViewportView(tabela);  
+		tabela.setModel(new DefaultTableModel(new Object[][]{{"elias barreto", "10577990411", "corte"},},
+
+		 new String[] { "Nome", "CPF", "Ação" }));
+		
+		JButton btnSave = new JButton("");
+		btnSave.setBounds(10, 11, 56, 48);
+		contentPane.add(btnSave);
+		
+		JLabel lblSalvar = new JLabel("Salvar");
+		lblSalvar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSalvar.setBounds(10, 58, 56, 14);
+		contentPane.add(lblSalvar);
+		
+		JLabel lblSair = new JLabel("Sair");
+		lblSair.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSair.setBounds(76, 58, 56, 14);
+		contentPane.add(lblSair);
+		
+		
+		
 	}
 }

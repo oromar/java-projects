@@ -23,6 +23,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Component;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class RegisterClient extends JFrame {
 
@@ -71,6 +72,12 @@ public class RegisterClient extends JFrame {
 		JMenu mnNewMenu = new JMenu("Arquivo");
 		menuBar.add(mnNewMenu);
 		
+		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mnNewMenu.add(mntmSair);
+		
 		JMenu mnNewMenu_1 = new JMenu("Ajuda");
 		menuBar.add(mnNewMenu_1);
 		contentPane = new JPanel();
@@ -80,7 +87,7 @@ public class RegisterClient extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBounds(10, 11, 830, 70);
+		panel.setBounds(10, 73, 830, 70);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -134,7 +141,7 @@ public class RegisterClient extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setBounds(10, 92, 830, 183);
+		panel_1.setBounds(10, 154, 830, 183);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -248,7 +255,7 @@ public class RegisterClient extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_2.setBounds(10, 286, 830, 154);
+		panel_2.setBounds(10, 348, 830, 154);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -259,13 +266,5 @@ public class RegisterClient extends JFrame {
 		JTextArea taObs = new JTextArea();
 		taObs.setBorder(new TitledBorder(null, "Observa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
 		scrollPane.setViewportView(taObs);
-		
-		JButton btnSave = new JButton("");
-		btnSave.setBounds(759, 451, 81, 48);
-		contentPane.add(btnSave);
-		
-		JButton btnExit = new JButton("");
-		btnExit.setBounds(10, 451, 81, 48);
-		contentPane.add(btnExit);
 	}
 }
