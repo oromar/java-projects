@@ -23,6 +23,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class CrudUsers extends JFrame {
 
@@ -32,6 +34,7 @@ public class CrudUsers extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTable table;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -55,8 +58,9 @@ public class CrudUsers extends JFrame {
 	 * Create the frame.
 	 */
 	public CrudUsers() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 787, 531);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 787, 581);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -129,12 +133,13 @@ public class CrudUsers extends JFrame {
 		panel.add(button_1);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Dados Cadastrais", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
-		panel_1.setBounds(10, 105, 746, 93);
+		panel_1.setBounds(10, 105, 746, 120);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -166,17 +171,35 @@ public class CrudUsers extends JFrame {
 		panel_1.add(lblDataDeNascimento);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(379, 58, 119, 14);
+		lblSenha.setBounds(379, 89, 119, 17);
 		panel_1.add(lblSenha);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(499, 55, 236, 20);
+		textField_3.setBounds(499, 87, 236, 20);
 		panel_1.add(textField_3);
+		
+		JLabel lblPer = new JLabel("Permiss\u00E3o");
+		lblPer.setBounds(10, 83, 119, 26);
+		panel_1.add(lblPer);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Administrador", "Usu\u00E1rio-Financeiro", "Usu\u00E1rio-Estoque"}));
+		comboBox.setBounds(130, 86, 236, 20);
+		panel_1.add(comboBox);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(499, 55, 236, 20);
+		panel_1.add(textField_4);
+		
+		JLabel lblTelefone = new JLabel("Telefone");
+		lblTelefone.setBounds(376, 58, 119, 14);
+		panel_1.add(lblTelefone);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		scrollPane.setBounds(10, 209, 746, 254);
+		scrollPane.setBounds(10, 236, 746, 274);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();

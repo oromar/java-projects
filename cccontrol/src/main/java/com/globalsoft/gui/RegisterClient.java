@@ -252,7 +252,7 @@ public class RegisterClient extends JFrame {
 		JLabel lblSituaogua = new JLabel("Sit. \u00C1GUA");
 		lblSituaogua.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblSituaogua.setAlignmentX(0.5f);
-		lblSituaogua.setBounds(370, 104, 107, 20);
+		lblSituaogua.setBounds(375, 104, 107, 20);
 		panel.add(lblSituaogua);
 		
 		tfSituAg = new JTextField();
