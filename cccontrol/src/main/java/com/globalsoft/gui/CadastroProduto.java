@@ -1,16 +1,13 @@
 package com.globalsoft.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JInternalFrame;
-import javax.swing.JTabbedPane;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -24,6 +21,7 @@ import java.awt.event.ActionEvent;
 
 public class CadastroProduto extends JFrame {
 
+	private static final long serialVersionUID = -5862683290614642467L;
 	private JPanel contentPane;
 	private JTextField Tfcod;
 	private JTextField TfDesc;
@@ -62,6 +60,7 @@ public class CadastroProduto extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 712, 594);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

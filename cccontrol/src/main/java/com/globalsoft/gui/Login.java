@@ -6,9 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.globalsoft.util.Messages;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -45,6 +49,9 @@ public class Login extends JFrame {
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 312, 303);
+		setLocationRelativeTo(null);
+		setTitle("Controle de Almoxarifado");
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -86,6 +93,13 @@ public class Login extends JFrame {
 		});
 		btnSair.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\cancel.png"));
 		btnSair.setBounds(10, 230, 109, 23);
+		btnSair.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, Messages.ARE_YOU_SURE_TO_EXIT) == JOptionPane.YES_OPTION){
+					System.exit(0);
+				}
+			}
+		});
 		contentPane.add(btnSair);
 		
 		JLabel lblBemVindo = new JLabel("Bem - Vindo");
