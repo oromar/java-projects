@@ -1,44 +1,21 @@
 package com.globalsoft.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue(value="product")
-public abstract class Product implements com.globalsoft.entities.Entity, Serializable {
+@Table(name="product")
+public class Product extends BasicEntity {
 
 	private static final long serialVersionUID = 870276501623387372L;
-	
-	@Id
-	@GeneratedValue
-	private Long id;
 	
 	@Column(name="nome")
 	private String nome;
 	
 	@Column(name="NotaFiscal")
-	private String NotaFiscal;
+	private String notaFiscal;
 	
-	@Column(name="CentroDeCusto")
-	private Long CentroDeCusto;
-	
-	
-	
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
 	public String getNome() {
 		return nome;
 	}
@@ -50,22 +27,18 @@ public abstract class Product implements com.globalsoft.entities.Entity, Seriali
 
 
 	public String getNotaFiscal() {
-		return NotaFiscal;
+		return notaFiscal;
 	}
 
 
 	public void setNotaFiscal(String notaFiscal) {
-		NotaFiscal = notaFiscal;
+		this.notaFiscal = notaFiscal;
 	}
+	
 
-
-	public Long getCentroDeCusto() {
-		return CentroDeCusto;
-	}
-
-
-	public void setCentroDeCusto(Long centroDeCusto) {
-		CentroDeCusto = centroDeCusto;
+	public Boolean validate() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

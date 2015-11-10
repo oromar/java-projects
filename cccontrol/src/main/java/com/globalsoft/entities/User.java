@@ -3,13 +3,13 @@ package com.globalsoft.entities;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.globalsoft.util.Messages;
 
 @Entity
-@DiscriminatorValue(value="user")
+@Table(name="users")
 public class User extends Person implements com.globalsoft.entities.Entity, Serializable {
 
 	private static final long serialVersionUID = -741285610096169743L;

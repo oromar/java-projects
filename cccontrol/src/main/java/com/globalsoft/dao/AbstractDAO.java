@@ -29,7 +29,7 @@ public class AbstractDAO<T extends Entity> implements DAO<T>{
 	
 	@SuppressWarnings("unchecked")
 	public AbstractDAO() {            
-		manager = Persistence.createEntityManagerFactory(Constants.PERSISTENCE_XML_NAME).createEntityManager();
+		manager = Persistence.createEntityManagerFactory("cccontrol").createEntityManager();
 		this.clazz =  (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];;
 	}
 

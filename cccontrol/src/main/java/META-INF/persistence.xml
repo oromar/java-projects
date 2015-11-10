@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0"
-	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="cccontrol">
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="cccontrol" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.globalsoft.entities.BasicEntity</class>
+		<class>com.globalsoft.entities.Category</class>
+		<class>com.globalsoft.entities.CentroCusto</class>
 		
 		<class>com.globalsoft.entities.Client</class>
+		<class>com.globalsoft.entities.Supplier</class>
+		<class>com.globalsoft.entities.InputMaterials</class>
+		<class>com.globalsoft.entities.OutputMaterials</class>
 		<class>com.globalsoft.entities.Person</class>
-		<class>com.globalsoft.entities.User</class>
-		<class>com.globalsoft.entities.Category</class>
-		<class>com.globalsoft.entities.Subcategory</class>
-		<class>com.globalsoft.entities.Input_materials</class>
-		<class>com.globalsoft.entities.Output_materials</class>
 		<class>com.globalsoft.entities.Product</class>
+		<class>com.globalsoft.entities.Subcategory</class>
+		<class>com.globalsoft.entities.User</class>
 		
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="085471"/>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 		</properties>
 	</persistence-unit>
 

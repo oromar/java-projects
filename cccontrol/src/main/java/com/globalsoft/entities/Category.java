@@ -1,36 +1,38 @@
 package com.globalsoft.entities;
 
-import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue(value="category")
-public abstract class Category  implements  com.globalsoft.entities.Entity, Serializable {
+@Table(name="category")
+public class Category extends BasicEntity {
 
 	private static final long serialVersionUID = 167222140605537025L;
-	
-	@Id
-	@GeneratedValue
-	private Long id;
 	
 	@Column(name = "nome")
 	private String nome;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@OneToMany()
+	private List<Subcategory> subcategories;
+	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}	
+	}
+	public List<Subcategory> getSubcategory() {
+		return subcategories;
+	}
+	public void setSubcategory(List<Subcategory> subcategories) {
+		this.subcategories = subcategories;
+	}
+	public Boolean validate() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}		
 }

@@ -8,5 +8,4 @@ public class ClientBO extends AbstractBO<Client>{
 	public ClientBO(DAO<Client> repository) {
 		super(repository);
 	}
-
 }

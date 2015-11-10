@@ -1,15 +1,13 @@
 package com.globalsoft.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.Table;
 
 import com.globalsoft.util.Messages;
 
 @javax.persistence.Entity
-@DiscriminatorValue(value="client")
-public class Client extends Person implements Entity, Serializable {
+@Table(name="client")
+public class Client extends BasicEntity {
 	
 	private static final long serialVersionUID = 4369234874072181751L;
 	@Column(name="phone")
@@ -30,9 +28,7 @@ public class Client extends Person implements Entity, Serializable {
 		this.observations = observations;
 	}
 	
-	@Override
 	public Boolean validate() throws Exception {
-		super.validate();
 		if (phone == null || phone.isEmpty()) {
 			throw new Exception(Messages.INVALID_NAME);
 		}

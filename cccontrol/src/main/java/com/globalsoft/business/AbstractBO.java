@@ -58,4 +58,12 @@ public abstract class AbstractBO<T extends Entity> implements BusinessObject<T> 
 		entity.validate();
 		Util.toUpperCaseAllStrings(entity);
 	}
+
+	public DAO<T> getRepository() {
+		return repository;
+	}
+
+	public void setRepository(DAO<T> repository) {
+		this.repository = repository;
+	}
 }
