@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 
-public class Produtos extends JFrame {
+public class Fornecedores extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -34,7 +34,7 @@ public class Produtos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Produtos frame = new Produtos();
+					Fornecedores frame = new Fornecedores();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -47,7 +47,7 @@ public class Produtos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Produtos() {
+	public Fornecedores() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1318, 706);
 		
@@ -128,10 +128,9 @@ public class Produtos extends JFrame {
 		button_3.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\8440_32x32.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CadastroProduto view = new CadastroProduto();
+				CadastroFornecedor view = new CadastroFornecedor();
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
-				
 			}
 		});
 		button_3.setBounds(10, 11, 56, 48);
@@ -142,12 +141,6 @@ public class Produtos extends JFrame {
 		lblNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNovo.setBounds(10, 56, 56, 25);
 		panel.add(lblNovo);
-		
-		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
-		button_4.setToolTipText("Cadastrar Fornecedor");
-		button_4.setBounds(738, 25, 28, 28);
-		panel.add(button_4);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 99, 1282, 536);
