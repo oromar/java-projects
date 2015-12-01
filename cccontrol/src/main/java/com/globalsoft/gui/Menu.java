@@ -169,7 +169,7 @@ public class Menu extends JFrame {
 		btEntrada.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\Down.png"));
 		btEntrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EntradaMateriais view = new EntradaMateriais();
+				Input view = new Input();
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
 			}
@@ -188,7 +188,7 @@ public class Menu extends JFrame {
 		btSaida.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\Raise.png"));
 		btSaida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SaidaMateriais view = new SaidaMateriais();
+				Output view = new Output();
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
 

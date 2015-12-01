@@ -11,14 +11,20 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
+
 import java.awt.Font;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-public class EntradaMateriais extends JFrame {
+import com.globalsoft.entities.Fornecedor;
+
+public class Input extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -46,7 +52,7 @@ public class EntradaMateriais extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EntradaMateriais frame = new EntradaMateriais();
+					Input frame = new Input();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +64,7 @@ public class EntradaMateriais extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EntradaMateriais() {
+	public Input() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 771, 513);
 		contentPane = new JPanel();
@@ -81,13 +87,13 @@ public class EntradaMateriais extends JFrame {
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
 		textField_1.setColumns(10);
-		textField_1.setBounds(99, 27, 460, 20);
+		textField_1.setBounds(99, 27, 497, 20);
 		panel.add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
-		textField_2.setBounds(569, 27, 79, 20);
+		textField_2.setBounds(606, 27, 79, 20);
 		panel.add(textField_2);
 		
 		JLabel lblNewLabel = new JLabel("C\u00F3digo");
@@ -101,7 +107,7 @@ public class EntradaMateriais extends JFrame {
 		panel.add(lblDescrio);
 		
 		JLabel lblUnd = new JLabel("Unidade");
-		lblUnd.setBounds(569, 11, 79, 14);
+		lblUnd.setBounds(606, 11, 79, 14);
 		panel.add(lblUnd);
 		
 		JButton button = new JButton("");
@@ -116,19 +122,6 @@ public class EntradaMateriais extends JFrame {
 		button.setToolTipText("Buscar Produto");
 		button.setBounds(695, 19, 28, 28);
 		panel.add(button);
-		
-		JButton button_1 = new JButton("");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CadastroProduto view = new CadastroProduto();
-				view.setLocationRelativeTo(null);
-				view.setVisible(true);
-			}
-		});
-		button_1.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\add.png"));
-		button_1.setToolTipText("Cadastrar Produto");
-		button_1.setBounds(658, 19, 28, 28);
-		panel.add(button_1);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
@@ -239,20 +232,14 @@ public class EntradaMateriais extends JFrame {
 		textField_7.setEditable(false);
 		textField_7.setColumns(10);
 		
-		JButton button_2 = new JButton("");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		button_2.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\add.png"));
-		button_2.setToolTipText("Cadastrar Fornecedor");
-		button_2.setBounds(658, 64, 28, 28);
-		panel_1.add(button_2);
-		
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
+				Fornecedores view = new Fornecedores();
+				view.setLocationRelativeTo(null);
+				view.setVisible(true);	
 			}
 		});
 		button_3.setToolTipText("Buscar Fornecedor");
@@ -272,33 +259,33 @@ public class EntradaMateriais extends JFrame {
 		textField_13 = new JTextField();
 		textField_13.setEditable(false);
 		textField_13.setColumns(10);
-		textField_13.setBounds(10, 72, 127, 20);
+		textField_13.setBounds(10, 72, 148, 20);
 		panel_1.add(textField_13);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTelefone.setBounds(10, 56, 127, 14);
+		lblTelefone.setBounds(10, 56, 148, 14);
 		panel_1.add(lblTelefone);
 		
 		textField_14 = new JTextField();
 		textField_14.setEditable(false);
 		textField_14.setColumns(10);
-		textField_14.setBounds(142, 72, 127, 20);
+		textField_14.setBounds(168, 74, 139, 20);
 		panel_1.add(textField_14);
 		
 		JLabel lblFax = new JLabel("Fax");
 		lblFax.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblFax.setBounds(142, 56, 127, 14);
+		lblFax.setBounds(168, 58, 139, 14);
 		panel_1.add(lblFax);
 		
 		textField_15 = new JTextField();
 		textField_15.setColumns(10);
-		textField_15.setBounds(279, 72, 369, 20);
+		textField_15.setBounds(317, 72, 369, 20);
 		panel_1.add(textField_15);
 		
 		JLabel lblEmailContato = new JLabel("Email Contato");
 		lblEmailContato.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEmailContato.setBounds(279, 56, 127, 14);
+		lblEmailContato.setBounds(317, 56, 127, 14);
 		panel_1.add(lblEmailContato);
 		
 		JLabel lblEntradaDeProduto = new JLabel("Entrada de Produto");

@@ -18,7 +18,7 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-public class SaidaMateriais extends JFrame {
+public class Output extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -44,7 +44,7 @@ public class SaidaMateriais extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SaidaMateriais frame = new SaidaMateriais();
+					Output frame = new Output();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class SaidaMateriais extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SaidaMateriais() {
+	public Output() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 771, 464);
 		contentPane = new JPanel();
@@ -85,7 +85,7 @@ public class SaidaMateriais extends JFrame {
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
 		textField_2.setColumns(10);
-		textField_2.setBounds(569, 27, 79, 20);
+		textField_2.setBounds(569, 27, 116, 20);
 		panel.add(textField_2);
 		
 		JLabel lblNewLabel = new JLabel("C\u00F3digo");
@@ -115,19 +115,6 @@ public class SaidaMateriais extends JFrame {
 		button.setToolTipText("Buscar Produto");
 		button.setBounds(695, 19, 28, 28);
 		panel.add(button);
-		
-		JButton button_1 = new JButton("");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CadastroProduto view = new CadastroProduto();
-				view.setLocationRelativeTo(null);
-				view.setVisible(true);
-			}
-		});
-		button_1.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\add.png"));
-		button_1.setToolTipText("Cadastrar Produto");
-		button_1.setBounds(658, 19, 28, 28);
-		panel.add(button_1);
 		
 		textField_4 = new JTextField();
 		textField_4.setEditable(false);
@@ -185,12 +172,6 @@ public class SaidaMateriais extends JFrame {
 		panel_1.setBounds(10, 167, 738, 103);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\add.png"));
-		button_2.setToolTipText("Cadastrar Fornecedor");
-		button_2.setBounds(662, 64, 28, 28);
-		panel_1.add(button_2);
 		
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
@@ -254,7 +235,7 @@ public class SaidaMateriais extends JFrame {
 		
 		textField_13 = new JTextField();
 		textField_13.setColumns(10);
-		textField_13.setBounds(308, 72, 137, 20);
+		textField_13.setBounds(308, 72, 151, 20);
 		panel_1.add(textField_13);
 		
 		JLabel lblAutorizaosupervisor = new JLabel("Autoriza\u00E7\u00E3o/Supervisor");
@@ -264,12 +245,12 @@ public class SaidaMateriais extends JFrame {
 		
 		textField_14 = new JTextField();
 		textField_14.setColumns(10);
-		textField_14.setBounds(455, 72, 197, 20);
+		textField_14.setBounds(465, 72, 225, 20);
 		panel_1.add(textField_14);
 		
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEmail.setBounds(455, 56, 170, 14);
+		lblEmail.setBounds(465, 56, 225, 14);
 		panel_1.add(lblEmail);
 		
 		JLabel lblEntradaDeProduto = new JLabel("Saida Produto");
