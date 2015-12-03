@@ -37,9 +37,11 @@ public class CrudUsers extends JFrame {
 	private JTextField txtUserName;
 	private JTextField txtCpf;
 	private JTextField txtBornDate;
+	private JTable usersTable;
+	private JTextField txtLogin;
 	private JTextField txtPhone;
-	private JTable table;
 	private JPasswordField txtPassword;
+	private JPasswordField txtConfirmPassword;
 
 	/**
 	 * Launch the application.
@@ -85,7 +87,7 @@ public class CrudUsers extends JFrame {
 	 */
 	public CrudUsers() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 787, 581);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -115,11 +117,25 @@ public class CrudUsers extends JFrame {
 		panel.setLayout(null);
 
 		JButton btnNew = new JButton("");
+		btnNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtBornDate.setText("");
+				txtConfirmPassword.setText("");
+				txtUserName.setText("");
+				txtCpf.setText("");
+				txtLogin.setText("");
+				txtPhone.setText("");				
+			}
+		});
 		btnNew.setIcon(new ImageIcon("Icones\\8440_32x32.png"));
 		btnNew.setBounds(10, 11, 57, 50);
 		panel.add(btnNew);
 
 		JButton btnRemove = new JButton("");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnRemove.setIcon(new ImageIcon("Icones\\Delete.png"));
 		btnRemove.setBounds(144, 11, 57, 50);
 		panel.add(btnRemove);
@@ -167,8 +183,7 @@ public class CrudUsers extends JFrame {
 				}				
 			}
 		});
-		
-		
+				
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -177,7 +192,7 @@ public class CrudUsers extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Dados Cadastrais", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
-		panel_1.setBounds(10, 105, 746, 120);
+		panel_1.setBounds(10, 105, 746, 154);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -212,35 +227,51 @@ public class CrudUsers extends JFrame {
 		lblSenha.setBounds(379, 89, 119, 17);
 		panel_1.add(lblSenha);
 
-		txtPhone = new JTextField();
-		txtPhone.setColumns(10);
-		txtPhone.setBounds(499, 87, 236, 20);
-		panel_1.add(txtPhone);
-
-		JLabel lblPer = new JLabel("Permiss\u00E3o");
-		lblPer.setBounds(10, 83, 119, 26);
+		JLabel lblPer = new JLabel("Tipo Usu\u00E1rio");
+		lblPer.setBounds(10, 118, 119, 26);
 		panel_1.add(lblPer);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Administrador", "Usu\u00E1rio-Financeiro", "Usu\u00E1rio-Estoque"}));
-		comboBox.setBounds(130, 86, 236, 20);
-		panel_1.add(comboBox);
-
-		txtPassword = new JPasswordField();
-		txtPassword.setColumns(10);
-		txtPassword.setBounds(499, 55, 236, 20);
-		panel_1.add(txtPassword);
+		JComboBox cmbUserRole = new JComboBox();
+		cmbUserRole.setModel(new DefaultComboBoxModel(new String[] {"", "Administrador", "Usu\u00E1rio-Financeiro", "Usu\u00E1rio-Estoque"}));
+		cmbUserRole.setBounds(130, 121, 236, 20);
+		panel_1.add(cmbUserRole);
 
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setBounds(376, 58, 119, 14);
 		panel_1.add(lblTelefone);
+		
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setBounds(10, 83, 46, 14);
+		panel_1.add(lblLogin);
+		
+		txtLogin = new JTextField();
+		txtLogin.setBounds(130, 86, 238, 20);
+		panel_1.add(txtLogin);
+		txtLogin.setColumns(10);
+		
+		JLabel lblConfirmarSenha = new JLabel("Confirmar Senha");
+		lblConfirmarSenha.setBounds(379, 123, 119, 17);
+		panel_1.add(lblConfirmarSenha);
+		
+		txtPhone = new JTextField();
+		txtPhone.setBounds(499, 55, 236, 20);
+		panel_1.add(txtPhone);
+		txtPhone.setColumns(10);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(499, 87, 236, 20);
+		panel_1.add(txtPassword);
+		
+		txtConfirmPassword = new JPasswordField();
+		txtConfirmPassword.setBounds(499, 117, 236, 20);
+		panel_1.add(txtConfirmPassword);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		scrollPane.setBounds(10, 236, 746, 274);
+		scrollPane.setBounds(10, 270, 746, 240);
 		contentPane.add(scrollPane);
 
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		usersTable = new JTable();
+		scrollPane.setViewportView(usersTable);
 	}
 }
