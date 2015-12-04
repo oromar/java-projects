@@ -342,6 +342,7 @@ public class CadastroFornecedor extends JFrame {
 		contentPane.add(btnNovo);
 		
 		JLabel lblCadastroProduto = new JLabel("Cadastro Fornecedores");
+		lblCadastroProduto.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCadastroProduto.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastroProduto.setBounds(10, 11, 676, 45);
 		contentPane.add(lblCadastroProduto);
