@@ -5,6 +5,11 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Optional;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -25,6 +30,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.globalsoft.business.Facade;
 import com.globalsoft.entities.User;
@@ -51,8 +57,6 @@ public class CrudUsers extends JFrame {
 			public void run() {
 				try {
 					CrudUsers frame = new CrudUsers();
-					Facade.getInstance();
-
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -64,10 +68,15 @@ public class CrudUsers extends JFrame {
 
 	private User getScreenData() {
 		User result = new User();
-		result.setCpf(txtCpf.getText());
-		result.setName(txtUserName.getText());
-		result.setLogin(result.getName());
-		result.setPassword(String.valueOf(txtPassword.getPassword()));		
+		try {
+			result.setCpf(txtCpf.getText());
+			result.setName(txtUserName.getText());
+			result.setLogin(result.getName());		
+			result.setPassword(String.valueOf(txtPassword.getPassword()));	
+			result.setBornDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtBornDate.getText()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return result;		
 	}
 
@@ -80,6 +89,29 @@ public class CrudUsers extends JFrame {
 				txtCpf.setText(user.getCpf());
 			}			
 		}		
+	}
+
+	private void createTableModel(User[] users) {
+
+		if (users == null || users.length == 0) return;
+
+		String[] columnNames = {"User Name", "Login", "Role"};
+		DefaultTableModel model = new DefaultTableModel(columnNames, 0){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		String[] line = null;
+		for (User u : users) {
+			line = new String[3];
+			line[0] = u.getName();
+			line[1] = u.getLogin();
+			line[2] = "";
+			model.addRow(line);
+		}
+		usersTable.setModel(model);
+		usersTable.createDefaultColumnsFromModel();
 	}
 
 	/**
@@ -135,6 +167,20 @@ public class CrudUsers extends JFrame {
 		JButton btnRemove = new JButton("");
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String login = txtLogin.getText();
+				User u = new User();
+				u.setLogin(login);
+				Optional<User> result = Facade.getInstance().filter(u).stream().findFirst();
+				if (result.isPresent()){
+					if (JOptionPane.showConfirmDialog(CrudUsers.this, "Tem certeza ?") == JOptionPane.YES_OPTION){
+						try {
+							Facade.getInstance().remove(result.get().getId());
+							createTableModel(Facade.getInstance().findAllUsers());
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(CrudUsers.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}					
+				}
 			}
 		});
 		btnRemove.setIcon(new ImageIcon("Icones\\Delete.png"));
@@ -175,16 +221,17 @@ public class CrudUsers extends JFrame {
 		btnSave.setBounds(77, 11, 57, 50);
 		panel.add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Facade.getInstance().create(getScreenData());
+					createTableModel(Facade.getInstance().findAllUsers());
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(CrudUsers.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}				
 			}
 		});
-				
+
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -240,29 +287,29 @@ public class CrudUsers extends JFrame {
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setBounds(376, 58, 119, 14);
 		panel_1.add(lblTelefone);
-		
+
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setBounds(10, 83, 46, 14);
 		panel_1.add(lblLogin);
-		
+
 		txtLogin = new JTextField();
 		txtLogin.setBounds(130, 86, 238, 20);
 		panel_1.add(txtLogin);
 		txtLogin.setColumns(10);
-		
+
 		JLabel lblConfirmarSenha = new JLabel("Confirmar Senha");
 		lblConfirmarSenha.setBounds(379, 123, 119, 17);
 		panel_1.add(lblConfirmarSenha);
-		
+
 		txtPhone = new JTextField();
 		txtPhone.setBounds(499, 55, 236, 20);
 		panel_1.add(txtPhone);
 		txtPhone.setColumns(10);
-		
+
 		txtPassword = new JPasswordField();
 		txtPassword.setBounds(499, 87, 236, 20);
 		panel_1.add(txtPassword);
-		
+
 		txtConfirmPassword = new JPasswordField();
 		txtConfirmPassword.setBounds(499, 117, 236, 20);
 		panel_1.add(txtConfirmPassword);
@@ -273,6 +320,29 @@ public class CrudUsers extends JFrame {
 		contentPane.add(scrollPane);
 
 		usersTable = new JTable();
+		usersTable.setDragEnabled(false);
+		usersTable.setAutoCreateColumnsFromModel(false);
+		usersTable.setAutoCreateRowSorter(true);
+		usersTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int index = usersTable.getSelectedRow();
+				if (index > -1) {
+					String login = String.valueOf(usersTable.getValueAt(index, 1));
+					User u = new User();
+					u.setLogin(login);
+					Optional<User> result = Facade.getInstance().filter(u).stream().findFirst();
+					if (result.isPresent()) {
+						setScreenData(result.get());
+					}
+				}
+			}
+		});
 		scrollPane.setViewportView(usersTable);
+		try {
+			createTableModel(Facade.getInstance().findAllUsers());
+		} catch (Exception e1) {			
+			JOptionPane.showMessageDialog(CrudUsers.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

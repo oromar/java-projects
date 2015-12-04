@@ -1,9 +1,11 @@
 package com.globalsoft.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.globalsoft.util.Messages;
@@ -18,6 +20,10 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 	private String login;
 	@Column(name = "password")
 	private String password;
+	@Column(name="born_date")
+	private Date bornDate;
+	@OneToOne
+	private Role role;
 
 	public String getLogin() {
 		return login;
@@ -30,6 +36,18 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Date getBornDate() {
+		return bornDate;
+	}
+	public void setBornDate(Date bornDate) {
+		this.bornDate = bornDate;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	@Override
 	public Boolean validate() throws Exception {
