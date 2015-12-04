@@ -73,7 +73,8 @@ public class CrudUsers extends JFrame {
 			result.setName(txtUserName.getText());
 			result.setLogin(result.getName());		
 			result.setPassword(String.valueOf(txtPassword.getPassword()));	
-			result.setBornDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtBornDate.getText()));
+			if (txtBornDate.getText() != null && !txtBornDate.getText().isEmpty())
+				result.setBornDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtBornDate.getText()));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -87,13 +88,14 @@ public class CrudUsers extends JFrame {
 			}
 			if (!Util.isNullOrEmpty(user.getCpf())){
 				txtCpf.setText(user.getCpf());
-			}			
+			}
+			if (user.getBornDate() != null) {
+				txtBornDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getBornDate()));
+			}
 		}		
 	}
 
 	private void createTableModel(User[] users) {
-
-		if (users == null || users.length == 0) return;
 
 		String[] columnNames = {"User Name", "Login", "Role"};
 		DefaultTableModel model = new DefaultTableModel(columnNames, 0){
@@ -102,16 +104,29 @@ public class CrudUsers extends JFrame {
 				return false;
 			}
 		};
-		String[] line = null;
-		for (User u : users) {
-			line = new String[3];
-			line[0] = u.getName();
-			line[1] = u.getLogin();
-			line[2] = "";
-			model.addRow(line);
+
+		if (users != null && users.length > 0){
+			String[] line = null;
+			for (User u : users) {
+				line = new String[3];
+				line[0] = u.getName();
+				line[1] = u.getLogin();
+				line[2] = "";
+				model.addRow(line);
+			}
 		}
 		usersTable.setModel(model);
 		usersTable.createDefaultColumnsFromModel();
+	}
+
+	private void clearScreen(){
+		txtBornDate.setText("");
+		txtPassword.setText("");
+		txtConfirmPassword.setText("");
+		txtUserName.setText("");
+		txtCpf.setText("");
+		txtLogin.setText("");
+		txtPhone.setText("");	
 	}
 
 	/**
@@ -152,12 +167,7 @@ public class CrudUsers extends JFrame {
 		JButton btnNew = new JButton("");
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtBornDate.setText("");
-				txtConfirmPassword.setText("");
-				txtUserName.setText("");
-				txtCpf.setText("");
-				txtLogin.setText("");
-				txtPhone.setText("");				
+				clearScreen();		
 			}
 		});
 		btnNew.setIcon(new ImageIcon("Icones\\8440_32x32.png"));
@@ -176,6 +186,7 @@ public class CrudUsers extends JFrame {
 						try {
 							Facade.getInstance().remove(result.get().getId());
 							createTableModel(Facade.getInstance().findAllUsers());
+							clearScreen();
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(CrudUsers.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						}
@@ -226,6 +237,7 @@ public class CrudUsers extends JFrame {
 				try {
 					Facade.getInstance().create(getScreenData());
 					createTableModel(Facade.getInstance().findAllUsers());
+					clearScreen();
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(CrudUsers.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}				

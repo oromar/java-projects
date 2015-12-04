@@ -58,6 +58,10 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 		if (password == null || password.isEmpty()) {
 			throw new Exception(Messages.INVALID_PASSWORD);
 		}
+		if (bornDate == null) {
+			throw new Exception(Messages.INVALID_DATE);
+		}
+		
 		return Boolean.TRUE;
 	}
 }
