@@ -99,6 +99,8 @@ public class CrudUsers extends JFrame {
 
 		String[] columnNames = {"User Name", "Login", "Role"};
 		DefaultTableModel model = new DefaultTableModel(columnNames, 0){
+			private static final long serialVersionUID = -6314077983354763441L;
+
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
