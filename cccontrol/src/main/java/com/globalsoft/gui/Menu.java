@@ -6,19 +6,27 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Window.Type;
 import java.awt.Frame;
+
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+
 import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JMenuItem;
+
+import com.globalsoft.business.Facade;
 
 public class Menu extends JFrame {
 
@@ -31,8 +39,10 @@ public class Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu frame = new Menu();
+					Facade.getInstance();
+					Menu frame = new Menu();					
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,7 +55,7 @@ public class Menu extends JFrame {
 	 */
 	public Menu() {
 		setExtendedState(Frame.MAXIMIZED_BOTH);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
 		JMenuBar menuBar = new JMenuBar();

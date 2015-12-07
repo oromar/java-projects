@@ -49,23 +49,6 @@ public class CrudUsers extends JFrame {
 	private JPasswordField txtPassword;
 	private JPasswordField txtConfirmPassword;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrudUsers frame = new CrudUsers();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	private User getScreenData() {
 		User result = new User();
 		try {
@@ -137,7 +120,7 @@ public class CrudUsers extends JFrame {
 	public CrudUsers() {
 		setTitle("Cadastro de Usu\u00E1rios");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 787, 581);
 
 		JMenuBar menuBar = new JMenuBar();

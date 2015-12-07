@@ -48,7 +48,7 @@ public class Fornecedores extends JFrame {
 	 * Create the frame.
 	 */
 	public Fornecedores() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1318, 706);
 		
 		JMenuBar menuBar = new JMenuBar();
