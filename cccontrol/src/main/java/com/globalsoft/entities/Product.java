@@ -2,6 +2,8 @@ package com.globalsoft.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -46,14 +48,16 @@ public class Product extends BasicEntity {
 	@Column(name="LocalEstoque")
 	private String localEstoque;
 	
-	@Column(name="Fornecedor")
-	private String fornecedor;
+	@OneToOne
+	@JoinColumn(name="supplier")
+	private Supplier supplier;
 	
 	@Column(name="ObsComments")
 	private String obsComments;
 	
-	@Column(name="SubCategory")
-	private String subCategory;
+	@OneToOne
+	@JoinColumn(name="sub_category")
+	private Subcategory subCategory;
 	
 	
 	public String getObsComments() {
@@ -66,22 +70,22 @@ public class Product extends BasicEntity {
 	}
 
 
-	public String getFornecedor() {
-		return fornecedor;
+	public Supplier getSupplier() {
+		return supplier;
 	}
 
 
-	public void setFornecedor(String fornecedor) {
-		this.fornecedor = fornecedor;
+	public void setFornecedor(Supplier supplier) {
+		this.supplier = supplier;
 	}
 
 
-	public String getSubCategory() {
+	public Subcategory getSubCategory() {
 		return subCategory;
 	}
 
 
-	public void setSubCategory(String subCategory) {
+	public void setSubCategory(Subcategory subCategory) {
 		this.subCategory = subCategory;
 	}
 

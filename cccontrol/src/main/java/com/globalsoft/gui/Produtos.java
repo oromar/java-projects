@@ -9,40 +9,31 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
+
+import com.globalsoft.business.Facade;
+import com.globalsoft.entities.Product;
 
 public class Produtos extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Produtos frame = new Produtos();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -155,5 +146,17 @@ public class Produtos extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		try {
+			createTableOfProducts(Facade.getInstance().findAllProducts());
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(Produtos.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);			
+		}
+		
+	}
+
+	private void createTableOfProducts(Product[] findAllProducts) {
+		String[] columnNames = {"Descricao", "Estoque"};		
+		
 	}
 }

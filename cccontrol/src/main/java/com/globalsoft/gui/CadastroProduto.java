@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -17,12 +18,19 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import com.globalsoft.business.Facade;
+import com.globalsoft.entities.Category;
 import com.globalsoft.entities.Product;
+import com.globalsoft.entities.Subcategory;
+import com.globalsoft.entities.Supplier;
 
 public class CadastroProduto extends JFrame {
 
 	private static final long serialVersionUID = -5862683290614642467L;
 	private JPanel contentPane;
+	private JComboBox<Category> cbCatego;
+	private JComboBox<Subcategory> cbSubcat;
+	private JComboBox<Supplier> cmbFornecedor;
 	private JTextField txtCod;
 	private JTextField txtDescription;
 	private JTextField txtValUnit;
@@ -53,9 +61,22 @@ public class CadastroProduto extends JFrame {
 		txtReferencia.setText("");
 	}
 	
-	private Product getScreenData(){
+	private Product getScreenData() {
 		Product result = new Product();
 		result.setNome(txtDescription.getText());
+		result.setEstoqueMin(txtEstoqueMinimo.getText());
+		result.setEstoqueMax(txtEstoqueMaximo.getText());
+		result.setFabricante(txtFabricante.getText());
+		result.setCor(txtCor.getText());	
+		result.setFornecedor((Supplier) cmbFornecedor.getSelectedItem());
+		result.setMarca(txtMarca.getText());
+		result.setLocalEstoque(txtLoca.getText());
+		result.setNotaFiscal(txtNotaFiscal.getText());
+		result.setValorUnit(txtValUnit.getText());
+		result.setSerie(txtSerie.getText());	
+		result.setSubCategory((Subcategory) cbSubcat.getSelectedItem());
+		result.setUnidadeMedida(txtUnidadeMedida.getText());
+		result.setReferencia(txtReferencia.getText());		
 		return result;
 	}
 	
@@ -76,11 +97,22 @@ public class CadastroProduto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btsalve = new JButton("Salvar");
-		btsalve.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btsalve.setIcon(new ImageIcon("Icones\\page_save.png"));
-		btsalve.setBounds(498, 531, 89, 23);
-		contentPane.add(btsalve);
+		JButton btnSave = new JButton("Salvar");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Facade.getInstance().create(getScreenData());
+					JOptionPane.showMessageDialog(CadastroProduto.this, "Registro criado com sucesso !");
+					clearScreen();
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(CadastroProduto.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}				
+			}
+		});
+		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnSave.setIcon(new ImageIcon("Icones\\page_save.png"));
+		btnSave.setBounds(498, 531, 89, 23);
+		contentPane.add(btnSave);
 
 		JButton btExit = new JButton("Sair");
 		btExit.addActionListener(new ActionListener() {
@@ -200,9 +232,9 @@ public class CadastroProduto extends JFrame {
 		txtUnidadeMedida.setBounds(473, 72, 193, 20);
 		panel.add(txtUnidadeMedida);
 
-		JComboBox cbFornece = new JComboBox();
-		cbFornece.setBounds(325, 165, 277, 20);
-		panel.add(cbFornece);
+		cmbFornecedor = new JComboBox<Supplier>();
+		cmbFornecedor.setBounds(325, 165, 277, 20);
+		panel.add(cmbFornecedor);
 
 		JLabel lblFornecedor = new JLabel("Fornecedor");
 		lblFornecedor.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -269,11 +301,11 @@ public class CadastroProduto extends JFrame {
 		panel_1.setBounds(10, 288, 676, 59);
 		contentPane.add(panel_1);
 
-		JComboBox cbCatego = new JComboBox();
+		cbCatego = new JComboBox<Category>();
 		cbCatego.setBounds(10, 26, 247, 20);
 		panel_1.add(cbCatego);
 
-		JComboBox cbSubcat = new JComboBox();
+		cbSubcat = new JComboBox<Subcategory>();
 		cbSubcat.setBounds(334, 26, 264, 20);
 		panel_1.add(cbSubcat);
 

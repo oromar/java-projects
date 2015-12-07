@@ -56,7 +56,10 @@ public class Util {
 		for (Field f : fields) {
 			f.setAccessible(true);
 			if (f.getType().equals(String.class) 
-					&& (!f.get(object).equals(Constants.PASSWORD_FIELD_NAME) && !f.get(object).equals(Constants.LOGIN_FIELD_NAME))) {
+					&& (f != null && 
+							f.get(object) != null && 
+							!f.get(object).equals(Constants.PASSWORD_FIELD_NAME) && 
+							!f.get(object).equals(Constants.LOGIN_FIELD_NAME))) {
 				try {
 					f.set(object, String.valueOf(f.get(object)).trim().toUpperCase());
 				} catch (IllegalArgumentException ex) {

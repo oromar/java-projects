@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.globalsoft.dao.ClientDAO;
+import com.globalsoft.dao.ProductDAO;
 import com.globalsoft.dao.UserDAO;
 import com.globalsoft.entities.Client;
+import com.globalsoft.entities.Product;
 import com.globalsoft.entities.User;
 
 public class Facade {
@@ -14,6 +16,7 @@ public class Facade {
 	private static Facade instance;
 	private UserBO userBO; 
 	private ClientBO clientBO; 
+	private ProductBO productBO;
 	
 	private Facade(){
 		init();
@@ -29,6 +32,7 @@ public class Facade {
 	private void init() {
 		userBO = new UserBO(new UserDAO());
 		clientBO = new ClientBO(new ClientDAO());
+		productBO = new ProductBO(new ProductDAO());
 	}
 
 	public boolean exists(Serializable key) throws Exception {
@@ -95,6 +99,32 @@ public class Facade {
 	public Collection<Client> findClientCollectionByHQL(String hql, Map<String, Object> parameters) {
 		return clientBO.findCollectionByHQL(hql, parameters);
 	}
+
+	public void create(Product entity) throws Exception {
+		productBO.create(entity);
+	}
 	
+	public void update(Product entity) throws Exception {
+		productBO.update(entity);
+	}
+
+	public Product findProduct(Serializable key) throws Exception {
+		return productBO.find(key);
+	}
+
+	public Product[] findAllProducts() throws Exception {
+		return productBO.findAll();
+	}
+
+	public Collection<Product> filter(Product entity) {
+		return productBO.filter(entity);
+	}
+
+	public Product findProductUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return productBO.findUniqueByHQL(hql, parameters);
+	}
 	
+	public Collection<Product> findProductCollectionByHQL(String hql, Map<String, Object> parameters) {
+		return productBO.findCollectionByHQL(hql, parameters);
+	}
 }

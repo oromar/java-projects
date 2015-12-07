@@ -2,6 +2,8 @@ package com.globalsoft.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,13 +15,14 @@ public class OutputMaterials extends BasicEntity {
 	@Column(name="name")
 	private String nome;
 	
-	@Column(name="person")
+	@OneToOne
+	@JoinColumn(name="person")
 	private Person usuario;
 
 	@Column(name="ObsComments")
 	private String obsComments;
 	
-	@Column(name="person")
+	@Column(name="unidade_medida")
 	private String unidade;
 	
 	@Column(name="QtdAtual")
@@ -54,8 +57,7 @@ public class OutputMaterials extends BasicEntity {
 	
 	@Column(name="Tel")
 	private String tel1;
-	
-	
+		
 	
 	public String getObsComments() {
 		return obsComments;
