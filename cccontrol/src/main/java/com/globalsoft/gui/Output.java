@@ -188,6 +188,7 @@ public class Output extends JFrame {
 		panel_1.add(button_3);
 		
 		textField_11 = new JTextField();
+		textField_11.setEditable(false);
 		textField_11.setBounds(10, 27, 435, 20);
 		panel_1.add(textField_11);
 		textField_11.setColumns(10);
@@ -203,6 +204,7 @@ public class Output extends JFrame {
 		panel_1.add(lblCpf);
 		
 		textField_3 = new JTextField();
+		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(455, 27, 141, 20);
 		panel_1.add(textField_3);
@@ -213,11 +215,13 @@ public class Output extends JFrame {
 		panel_1.add(lblRg);
 		
 		textField_9 = new JTextField();
+		textField_9.setEditable(false);
 		textField_9.setColumns(10);
 		textField_9.setBounds(606, 27, 122, 20);
 		panel_1.add(textField_9);
 		
 		textField_10 = new JTextField();
+		textField_10.setEditable(false);
 		textField_10.setColumns(10);
 		textField_10.setBounds(10, 72, 141, 20);
 		panel_1.add(textField_10);
@@ -228,11 +232,12 @@ public class Output extends JFrame {
 		panel_1.add(lblTelefone);
 		
 		textField_12 = new JTextField();
+		textField_12.setEditable(false);
 		textField_12.setColumns(10);
 		textField_12.setBounds(157, 72, 141, 20);
 		panel_1.add(textField_12);
 		
-		JLabel lblTelefone_1 = new JLabel("Telefone 2");
+		JLabel lblTelefone_1 = new JLabel("Matr\u00EDcula");
 		lblTelefone_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTelefone_1.setBounds(157, 58, 122, 14);
 		panel_1.add(lblTelefone_1);
@@ -248,6 +253,7 @@ public class Output extends JFrame {
 		panel_1.add(lblAutorizaosupervisor);
 		
 		textField_14 = new JTextField();
+		textField_14.setEditable(false);
 		textField_14.setColumns(10);
 		textField_14.setBounds(465, 72, 225, 20);
 		panel_1.add(textField_14);
