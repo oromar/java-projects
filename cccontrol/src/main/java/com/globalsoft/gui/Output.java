@@ -104,7 +104,7 @@ public class Output extends JFrame {
 		panel.add(lblUnd);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
+		button.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Produtos view = new Produtos();
@@ -174,9 +174,13 @@ public class Output extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
+		button_3.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Solicitante view = new Solicitante();
+				view.setLocationRelativeTo(null);
+				view.setVisible(true);
+				
 			}
 		});
 		button_3.setToolTipText("Buscar Fornecedor");
@@ -266,13 +270,13 @@ public class Output extends JFrame {
 			}
 		});
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnExit.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\door_in.png"));
+		btnExit.setIcon(new ImageIcon("Icones\\door_in.png"));
 		btnExit.setBounds(659, 395, 89, 23);
 		contentPane.add(btnExit);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_save.png"));
+		btnSalvar.setIcon(new ImageIcon("Icones\\page_save.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -282,7 +286,7 @@ public class Output extends JFrame {
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnNovo.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_white_horizontal.png"));
+		btnNovo.setIcon(new ImageIcon("Icones\\page_white_horizontal.png"));
 		btnNovo.setBounds(10, 395, 89, 23);
 		contentPane.add(btnNovo);
 		

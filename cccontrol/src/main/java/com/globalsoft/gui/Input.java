@@ -111,7 +111,7 @@ public class Input extends JFrame {
 		panel.add(lblUnd);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
+		button.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Produtos view = new Produtos();
@@ -233,7 +233,7 @@ public class Input extends JFrame {
 		textField_7.setColumns(10);
 		
 		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
+		button_3.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -301,13 +301,13 @@ public class Input extends JFrame {
 			}
 		});
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnExit.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\door_in.png"));
+		btnExit.setIcon(new ImageIcon("Icones\\door_in.png"));
 		btnExit.setBounds(659, 440, 89, 23);
 		contentPane.add(btnExit);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_save.png"));
+		btnSalvar.setIcon(new ImageIcon("Icones\\page_save.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -317,7 +317,7 @@ public class Input extends JFrame {
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnNovo.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_white_horizontal.png"));
+		btnNovo.setIcon(new ImageIcon("Icones\\page_white_horizontal.png"));
 		btnNovo.setBounds(10, 440, 89, 23);
 		contentPane.add(btnNovo);
 		

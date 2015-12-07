@@ -77,12 +77,12 @@ public class CadastroFornecedor extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btsalve = new JButton("Salvar");
-		btsalve.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_save.png"));
+		btsalve.setIcon(new ImageIcon("Icones\\page_save.png"));
 		btsalve.setBounds(498, 560, 89, 23);
 		contentPane.add(btsalve);
 		
 		JButton btExit = new JButton("Sair");
-		btExit.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\door_in.png"));
+		btExit.setIcon(new ImageIcon("Icones\\door_in.png"));
 		btExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -337,7 +337,7 @@ public class CadastroFornecedor extends JFrame {
 		scrollPane.setViewportView(textPane);
 		
 		JButton btnNovo = new JButton("Novo");
-		btnNovo.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_white_horizontal.png"));
+		btnNovo.setIcon(new ImageIcon("Icones\\page_white_horizontal.png"));
 		btnNovo.setBounds(10, 560, 89, 23);
 		contentPane.add(btnNovo);
 		

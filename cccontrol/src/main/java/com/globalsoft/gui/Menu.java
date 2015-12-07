@@ -92,12 +92,12 @@ public class Menu extends JFrame {
 
 			
 		});
-		btProduto.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\1448763544_deliverables.png"));
+		btProduto.setIcon(new ImageIcon("Icones\\1448763544_deliverables.png"));
 		btProduto.setBounds(10, 11, 56, 48);
 		panel.add(btProduto);
 		
 		JButton btRelatorio = new JButton("");
-		btRelatorio.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\280_32x32.png"));
+		btRelatorio.setIcon(new ImageIcon("Icones\\280_32x32.png"));
 		btRelatorio.setBounds(1201, 11, 56, 48);
 		panel.add(btRelatorio);
 		
@@ -107,7 +107,7 @@ public class Menu extends JFrame {
 				dispose();
 			}
 		});
-		button_3.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\1448763830_xfce-system-exit.png"));
+		button_3.setIcon(new ImageIcon("Icones\\1448763830_xfce-system-exit.png"));
 		button_3.setBounds(1267, 11, 65, 48);
 		panel.add(button_3);
 		
@@ -132,22 +132,22 @@ public class Menu extends JFrame {
 		JLabel lblClientes = new JLabel("Solicitantes");
 		lblClientes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblClientes.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblClientes.setBounds(340, 56, 56, 25);
+		lblClientes.setBounds(177, 56, 56, 25);
 		panel.add(lblClientes);
 		
 		JButton btCliente = new JButton("");
-		btCliente.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\User group.png"));
-		btCliente.setBounds(340, 11, 56, 48);
+		btCliente.setIcon(new ImageIcon("Icones\\User group.png"));
+		btCliente.setBounds(177, 11, 56, 48);
 		panel.add(btCliente);
 		
 		JLabel lblFornecedores = new JLabel("Fornecedores");
 		lblFornecedores.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFornecedores.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblFornecedores.setBounds(86, 56, 86, 25);
+		lblFornecedores.setBounds(76, 56, 91, 25);
 		panel.add(lblFornecedores);
 		
 		JButton btfornecedor = new JButton("");
-		btfornecedor.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\1448763387_Supervisor.png"));
+		btfornecedor.setIcon(new ImageIcon("Icones\\1448763387_Supervisor.png"));
 		btfornecedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Fornecedores view = new Fornecedores();
@@ -155,18 +155,18 @@ public class Menu extends JFrame {
 				view.setVisible(true);
 			}
 		});
-		btfornecedor.setBounds(101, 11, 56, 48);
+		btfornecedor.setBounds(93, 11, 56, 48);
 		panel.add(btfornecedor);
 		
 		JLabel lblEntrada = new JLabel("Entrada");
 		lblEntrada.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEntrada.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEntrada.setBounds(182, 56, 56, 25);
+		lblEntrada.setBounds(260, 56, 56, 25);
 		panel.add(lblEntrada);
 		
 		JButton btEntrada = new JButton("");
 		btEntrada.setToolTipText("Entrada de Materiais");
-		btEntrada.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\Down.png"));
+		btEntrada.setIcon(new ImageIcon("Icones\\Down.png"));
 		btEntrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Input view = new Input();
@@ -174,18 +174,18 @@ public class Menu extends JFrame {
 				view.setVisible(true);
 			}
 		});
-		btEntrada.setBounds(182, 11, 56, 48);
+		btEntrada.setBounds(260, 11, 56, 48);
 		panel.add(btEntrada);
 		
 		JLabel lblSaida = new JLabel("Saida");
 		lblSaida.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSaida.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblSaida.setBounds(263, 56, 56, 25);
+		lblSaida.setBounds(341, 56, 56, 25);
 		panel.add(lblSaida);
 		
 		JButton btSaida = new JButton("");
 		btSaida.setToolTipText("Saida de Materiais");
-		btSaida.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\Raise.png"));
+		btSaida.setIcon(new ImageIcon("Icones\\Raise.png"));
 		btSaida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Output view = new Output();
@@ -194,13 +194,13 @@ public class Menu extends JFrame {
 
 			}
 		});
-		btSaida.setBounds(263, 11, 56, 48);
+		btSaida.setBounds(341, 11, 56, 48);
 		panel.add(btSaida);
 		
 		JLabel lblOcompra = new JLabel("Ordem De Compra");
 		lblOcompra.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOcompra.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblOcompra.setBounds(399, 56, 109, 25);
+		lblOcompra.setBounds(407, 56, 109, 25);
 		panel.add(lblOcompra);
 		
 		JButton button = new JButton("");
@@ -208,7 +208,7 @@ public class Menu extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		button.setBounds(425, 11, 56, 48);
+		button.setBounds(433, 11, 56, 48);
 		panel.add(button);
 	}
 }

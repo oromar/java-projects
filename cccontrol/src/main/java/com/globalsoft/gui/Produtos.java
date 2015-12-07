@@ -78,12 +78,12 @@ public class Produtos extends JFrame {
 		contentPane.add(panel);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\11425_32x32.png"));
+		button.setIcon(new ImageIcon("Icones\\11425_32x32.png"));
 		button.setBounds(76, 11, 56, 48);
 		panel.add(button);
 		
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\1448763830_xfce-system-exit.png"));
+		button_2.setIcon(new ImageIcon("Icones\\1448763830_xfce-system-exit.png"));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -111,7 +111,7 @@ public class Produtos extends JFrame {
 		panel.add(lblExcluir);
 		
 		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\Delete.png"));
+		button_1.setIcon(new ImageIcon("Icones\\Delete.png"));
 		button_1.setBounds(142, 11, 56, 48);
 		panel.add(button_1);
 		
@@ -125,7 +125,7 @@ public class Produtos extends JFrame {
 		panel.add(lblProcurar);
 		
 		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\8440_32x32.png"));
+		button_3.setIcon(new ImageIcon("Icones\\8440_32x32.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CadastroProduto view = new CadastroProduto();
@@ -144,7 +144,7 @@ public class Produtos extends JFrame {
 		panel.add(lblNovo);
 		
 		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
+		button_4.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_4.setToolTipText("Cadastrar Fornecedor");
 		button_4.setBounds(738, 25, 28, 28);
 		panel.add(button_4);

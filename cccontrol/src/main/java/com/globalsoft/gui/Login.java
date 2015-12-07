@@ -77,7 +77,7 @@ public class Login extends JFrame {
 		contentPane.add(lblSenha);
 		
 		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\accept.png"));
+		btnNewButton.setIcon(new ImageIcon("Icones\\accept.png"));
 		btnNewButton.setBounds(175, 230, 110, 23);
 		contentPane.add(btnNewButton);
 		
@@ -86,17 +86,15 @@ public class Login extends JFrame {
 		contentPane.add(btnEsqueceuSuaSenha);
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnSair.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\cancel.png"));
+		
+		btnSair.setIcon(new ImageIcon("Icones\\cancel.png"));
 		btnSair.setBounds(10, 230, 109, 23);
 		btnSair.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(null, Messages.ARE_YOU_SURE_TO_EXIT) == JOptionPane.YES_OPTION){
 					System.exit(0);
+				}else{
+					
 				}
 			}
 		});

@@ -68,7 +68,7 @@ public class CadastroProduto extends JFrame {
 		
 		JButton btsalve = new JButton("Salvar");
 		btsalve.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btsalve.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_save.png"));
+		btsalve.setIcon(new ImageIcon("Icones\\page_save.png"));
 		btsalve.setBounds(498, 531, 89, 23);
 		contentPane.add(btsalve);
 		
@@ -79,7 +79,7 @@ public class CadastroProduto extends JFrame {
 			}
 		});
 		btExit.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btExit.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\door_in.png"));
+		btExit.setIcon(new ImageIcon("Icones\\door_in.png"));
 		btExit.setBounds(597, 531, 89, 23);
 		contentPane.add(btExit);
 		
@@ -235,7 +235,7 @@ public class CadastroProduto extends JFrame {
 				
 			}
 		});
-		btNewFornec.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\arrow_refresh.png"));
+		btNewFornec.setIcon(new ImageIcon("Icones\\arrow_refresh.png"));
 		btNewFornec.setToolTipText("Cadastrar Fornecedor");
 		btNewFornec.setBounds(638, 157, 28, 28);
 		panel.add(btNewFornec);
@@ -248,7 +248,7 @@ public class CadastroProduto extends JFrame {
 				view.setVisible(true);
 			}
 		});
-		button.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\add.png"));
+		button.setIcon(new ImageIcon("Icones\\add.png"));
 		button.setToolTipText("Cadastrar Fornecedor");
 		button.setBounds(607, 157, 28, 28);
 		panel.add(button);
@@ -268,7 +268,7 @@ public class CadastroProduto extends JFrame {
 		panel_1.add(cbSubcat);
 		
 		JButton btnNewCatego = new JButton("");
-		btnNewCatego.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\arrow_refresh.png"));
+		btnNewCatego.setIcon(new ImageIcon("Icones\\arrow_refresh.png"));
 		btnNewCatego.setToolTipText("Cadastar Categoria");
 		btnNewCatego.setBounds(296, 18, 28, 28);
 		panel_1.add(btnNewCatego);
@@ -284,19 +284,19 @@ public class CadastroProduto extends JFrame {
 		panel_1.add(lblCategoria);
 		
 		JButton btnNewSubcat = new JButton("");
-		btnNewSubcat.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\arrow_refresh.png"));
+		btnNewSubcat.setIcon(new ImageIcon("Icones\\arrow_refresh.png"));
 		btnNewSubcat.setToolTipText("Cadastar Subcategoria");
 		btnNewSubcat.setBounds(638, 18, 28, 28);
 		panel_1.add(btnNewSubcat);
 		
 		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\add.png"));
+		button_1.setIcon(new ImageIcon("Icones\\add.png"));
 		button_1.setToolTipText("Cadastrar Fornecedor");
 		button_1.setBounds(262, 18, 28, 28);
 		panel_1.add(button_1);
 		
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\add.png"));
+		button_2.setIcon(new ImageIcon("Icones\\add.png"));
 		button_2.setToolTipText("Cadastrar Fornecedor");
 		button_2.setBounds(608, 18, 28, 28);
 		panel_1.add(button_2);
@@ -321,7 +321,7 @@ public class CadastroProduto extends JFrame {
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnNovo.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\page_white_horizontal.png"));
+		btnNovo.setIcon(new ImageIcon("Icones\\page_white_horizontal.png"));
 		btnNovo.setBounds(10, 531, 89, 23);
 		contentPane.add(btnNovo);
 		

@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 
-public class Fornecedores extends JFrame {
+public class Solicitante extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -34,7 +34,7 @@ public class Fornecedores extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fornecedores frame = new Fornecedores();
+					Solicitante frame = new Solicitante();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -47,7 +47,7 @@ public class Fornecedores extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fornecedores() {
+	public Solicitante() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1318, 706);
 		
@@ -116,21 +116,22 @@ public class Fornecedores extends JFrame {
 		panel.add(button_1);
 		
 		textField = new JTextField();
-		textField.setBounds(339, 27, 393, 25);
+		textField.setBounds(770, 27, 393, 25);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblProcurar = new JLabel("Procurar.:");
-		lblProcurar.setBounds(274, 27, 65, 25);
+		lblProcurar.setBounds(705, 27, 65, 25);
 		panel.add(lblProcurar);
 		
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon("Icones\\8440_32x32.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CadastroFornecedor view = new CadastroFornecedor();
+				CadastroSolicitante view = new CadastroSolicitante();
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
+				
 			}
 		});
 		button_3.setBounds(10, 11, 56, 48);
@@ -141,6 +142,18 @@ public class Fornecedores extends JFrame {
 		lblNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNovo.setBounds(10, 56, 56, 25);
 		panel.add(lblNovo);
+		
+		JButton button_4 = new JButton("");
+		button_4.setIcon(new ImageIcon("Icones\\zoom.png"));
+		button_4.setToolTipText("Cadastrar Fornecedor");
+		button_4.setBounds(1169, 25, 28, 28);
+		panel.add(button_4);
+		
+		JLabel lblProdutos = new JLabel("Solicitante");
+		lblProdutos.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblProdutos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProdutos.setBounds(222, 0, 473, 81);
+		panel.add(lblProdutos);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 99, 1282, 536);
