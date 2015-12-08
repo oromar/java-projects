@@ -15,6 +15,7 @@
 		<class>com.globalsoft.entities.Subcategory</class>
 		<class>com.globalsoft.entities.User</class>
 		<class>com.globalsoft.entities.Role</class>
+		<class>com.globalsoft.entities.OrderBuy</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>

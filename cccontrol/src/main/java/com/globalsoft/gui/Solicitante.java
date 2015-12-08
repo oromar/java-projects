@@ -144,6 +144,10 @@ public class Solicitante extends JFrame {
 		panel.add(lblNovo);
 		
 		JButton button_4 = new JButton("");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_4.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_4.setToolTipText("Cadastrar Fornecedor");
 		button_4.setBounds(1169, 25, 28, 28);

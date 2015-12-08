@@ -32,8 +32,8 @@ import com.globalsoft.entities.Product;
 public class Produtos extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTable table;
+	private JTextField textField;
 
 	/**
 	 * Create the frame.
@@ -106,15 +106,6 @@ public class Produtos extends JFrame {
 		button_1.setBounds(142, 11, 56, 48);
 		panel.add(button_1);
 		
-		textField = new JTextField();
-		textField.setBounds(339, 27, 393, 25);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblProcurar = new JLabel("Procurar.:");
-		lblProcurar.setBounds(274, 27, 65, 25);
-		panel.add(lblProcurar);
-		
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon("Icones\\8440_32x32.png"));
 		button_3.addActionListener(new ActionListener() {
@@ -134,10 +125,25 @@ public class Produtos extends JFrame {
 		lblNovo.setBounds(10, 56, 56, 25);
 		panel.add(lblNovo);
 		
+		JLabel label = new JLabel("Procurar.:");
+		label.setBounds(691, 27, 65, 25);
+		panel.add(label);
+		
+		JLabel lblProdutos = new JLabel("Produtos");
+		lblProdutos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProdutos.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblProdutos.setBounds(208, 0, 473, 81);
+		panel.add(lblProdutos);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(756, 27, 393, 25);
+		panel.add(textField);
+		
 		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon("Icones\\zoom.png"));
+		button_4.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
 		button_4.setToolTipText("Cadastrar Fornecedor");
-		button_4.setBounds(738, 25, 28, 28);
+		button_4.setBounds(1155, 25, 28, 28);
 		panel.add(button_4);
 		
 		JScrollPane scrollPane = new JScrollPane();
