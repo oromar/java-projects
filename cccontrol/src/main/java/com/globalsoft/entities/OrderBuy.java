@@ -8,9 +8,6 @@ import javax.persistence.Table;
 @Table(name="BuyOrder")
 public class OrderBuy extends BasicEntity {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8492843224827165182L;
 	
 	@Column(name="nome")
@@ -52,7 +49,7 @@ public class OrderBuy extends BasicEntity {
 	@Column(name="Cpf_Solicitante")
 	private String cpfSoli;
 	
-	@Column(name="nome")
+	@Column(name="Rg_Solicitante")
 	private String rgSoli;
 	
 	@Column(name="Matricula_Solicitante")

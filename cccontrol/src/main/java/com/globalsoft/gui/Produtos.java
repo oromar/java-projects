@@ -1,36 +1,39 @@
 package com.globalsoft.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.JMenuBar;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
-import javax.swing.JTextField;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JMenuItem;
-import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.globalsoft.business.Facade;
 import com.globalsoft.entities.Product;
 
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowEvent;
+
 public class Produtos extends JFrame {
 
+	private static final long serialVersionUID = 1948328249961547185L;
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
@@ -39,6 +42,17 @@ public class Produtos extends JFrame {
 	 * Create the frame.
 	 */
 	public Produtos() {
+		addWindowFocusListener(new WindowFocusListener() {
+			public void windowGainedFocus(WindowEvent e) {
+				try {
+					createTableOfProducts(Facade.getInstance().findAllProducts());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			public void windowLostFocus(WindowEvent e) {
+			}
+		});		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1318, 706);
 		
@@ -69,6 +83,25 @@ public class Produtos extends JFrame {
 		contentPane.add(panel);
 		
 		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = -1;
+				index = table.getSelectedRow();
+				if (index > -1) {
+					String id = (String) table.getValueAt(index, 0);
+					try {
+						Product p = Facade.getInstance().findProduct(Long.valueOf(id));
+						if (p != null){
+							CadastroProduto cadastro = new CadastroProduto(p);
+							cadastro.setVisible(true);
+						}
+						
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		button.setIcon(new ImageIcon("Icones\\11425_32x32.png"));
 		button.setBounds(76, 11, 56, 48);
 		panel.add(button);
@@ -141,12 +174,18 @@ public class Produtos extends JFrame {
 		panel.add(textField);
 		
 		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon("C:\\Users\\Elias Jobs\\java-projects\\cccontrol\\Icones\\zoom.png"));
+		button_4.setIcon(new ImageIcon("\\Icones\\zoom.png"));
 		button_4.setToolTipText("Cadastrar Fornecedor");
 		button_4.setBounds(1155, 25, 28, 28);
 		panel.add(button_4);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+		});
 		scrollPane.setBounds(10, 99, 1282, 536);
 		contentPane.add(scrollPane);
 		
@@ -161,8 +200,26 @@ public class Produtos extends JFrame {
 		
 	}
 
-	private void createTableOfProducts(Product[] findAllProducts) {
-		String[] columnNames = {"Descricao", "Estoque"};		
+	private void createTableOfProducts(Product[] products) {
+		String[] columnNames = {"Código", "Descricao", "Estoque"};
+		DefaultTableModel model = new DefaultTableModel(columnNames, 0){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		
+		if (products != null && products.length > 0) {
+			String[] line = null;
+			for (Product p : products){
+				line = new String[3];
+				line[0] = String.valueOf(p.getId());
+				line[1] = p.getNome();
+				line[2] = p.getEstoqueMax();
+				model.addRow(line);
+			}
+		}		
+		table.setModel(model);
+		table.createDefaultColumnsFromModel();		
 	}
 }

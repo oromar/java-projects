@@ -23,6 +23,7 @@ import com.globalsoft.entities.Category;
 import com.globalsoft.entities.Product;
 import com.globalsoft.entities.Subcategory;
 import com.globalsoft.entities.Supplier;
+import com.globalsoft.util.Util;
 
 public class CadastroProduto extends JFrame {
 
@@ -33,11 +34,11 @@ public class CadastroProduto extends JFrame {
 	private JComboBox<Supplier> cmbFornecedor;
 	private JTextField txtCod;
 	private JTextField txtDescription;
-	private JTextField txtValUnit;
+	private JTextField txtValorUnitario;
 	private JTextField txtNotaFiscal;
 	private JTextField txtEstoqueMinimo;
 	private JTextField txtEstoqueMaximo;
-	private JTextField txtLoca;
+	private JTextField txtLocalEstoque;
 	private JTextField txtMarca;
 	private JTextField txtFabricante;
 	private JTextField txtUnidadeMedida;
@@ -48,11 +49,11 @@ public class CadastroProduto extends JFrame {
 	private void clearScreen() {
 		txtCod.setText("");
 		txtDescription.setText("");
-		txtValUnit.setText("");
+		txtValorUnitario.setText("");
 		txtNotaFiscal.setText("");
 		txtEstoqueMinimo.setText("");
 		txtEstoqueMaximo.setText("");
-		txtLoca.setText("");
+		txtLocalEstoque.setText("");
 		txtMarca.setText("");
 		txtFabricante.setText("");
 		txtUnidadeMedida.setText("");
@@ -63,6 +64,10 @@ public class CadastroProduto extends JFrame {
 	
 	private Product getScreenData() {
 		Product result = new Product();
+		String id = txtCod.getText();
+		if (!Util.isNullOrEmpty(id)) {
+			result.setId(Long.valueOf(txtCod.getText()));
+		}
 		result.setNome(txtDescription.getText());
 		result.setEstoqueMin(txtEstoqueMinimo.getText());
 		result.setEstoqueMax(txtEstoqueMaximo.getText());
@@ -70,9 +75,9 @@ public class CadastroProduto extends JFrame {
 		result.setCor(txtCor.getText());	
 		result.setFornecedor((Supplier) cmbFornecedor.getSelectedItem());
 		result.setMarca(txtMarca.getText());
-		result.setLocalEstoque(txtLoca.getText());
+		result.setLocalEstoque(txtLocalEstoque.getText());
 		result.setNotaFiscal(txtNotaFiscal.getText());
-		result.setValorUnit(txtValUnit.getText());
+		result.setValorUnit(txtValorUnitario.getText());
 		result.setSerie(txtSerie.getText());	
 		result.setSubCategory((Subcategory) cbSubcat.getSelectedItem());
 		result.setUnidadeMedida(txtUnidadeMedida.getText());
@@ -81,12 +86,26 @@ public class CadastroProduto extends JFrame {
 	}
 	
 	private void setScreenData(Product product){
-		
+		txtCod.setText(String.valueOf(product.getId()));
+		txtCor.setText(product.getCor());
+		txtDescription.setText(product.getNome());
+		txtEstoqueMaximo.setText(product.getEstoqueMax());
+		txtEstoqueMinimo.setText(product.getEstoqueMin());
+		txtFabricante.setText(product.getFabricante());
+		txtLocalEstoque.setText(product.getLocalEstoque());
+		txtMarca.setText(product.getMarca());
+		txtNotaFiscal.setText(product.getNotaFiscal());
+		txtReferencia.setText(product.getReferencia());
+		txtSerie.setText(product.getSerie());
+		txtUnidadeMedida.setText(product.getUnidadeMedida());
+		txtValorUnitario.setText(product.getValorUnit());
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	public CadastroProduto(Product product) {
+		this();
+		setScreenData(product);
+	}
+	
 	public CadastroProduto() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -101,12 +120,17 @@ public class CadastroProduto extends JFrame {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Facade.getInstance().create(getScreenData());
-					JOptionPane.showMessageDialog(CadastroProduto.this, "Registro criado com sucesso !");
-					clearScreen();
+					Product p = getScreenData();
+					if (p.getId() != null){
+						Facade.getInstance().update(p);
+					} else {
+						Facade.getInstance().create(p);
+					}
+					JOptionPane.showMessageDialog(CadastroProduto.this, "Registro salvo com sucesso !");					
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(CadastroProduto.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				}				
+				}	
+				clearScreen();
 			}
 		});
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -157,10 +181,10 @@ public class CadastroProduto extends JFrame {
 		lblValorUnd.setBounds(565, 103, 81, 14);
 		panel.add(lblValorUnd);
 
-		txtValUnit = new JTextField();
-		txtValUnit.setColumns(10);
-		txtValUnit.setBounds(565, 118, 101, 20);
-		panel.add(txtValUnit);
+		txtValorUnitario = new JTextField();
+		txtValorUnitario.setColumns(10);
+		txtValorUnitario.setBounds(565, 118, 101, 20);
+		panel.add(txtValorUnitario);
 
 		JLabel lblMarca = new JLabel("N\u00BA Nota Fiscal");
 		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -192,10 +216,10 @@ public class CadastroProduto extends JFrame {
 		txtEstoqueMaximo.setBounds(455, 118, 100, 20);
 		panel.add(txtEstoqueMaximo);
 
-		txtLoca = new JTextField();
-		txtLoca.setColumns(10);
-		txtLoca.setBounds(11, 165, 304, 20);
-		panel.add(txtLoca);
+		txtLocalEstoque = new JTextField();
+		txtLocalEstoque.setColumns(10);
+		txtLocalEstoque.setBounds(11, 165, 304, 20);
+		panel.add(txtLocalEstoque);
 
 		JLabel lblLocalizao = new JLabel("Localiza\u00E7\u00E3o");
 		lblLocalizao.setFont(new Font("Tahoma", Font.PLAIN, 11));
