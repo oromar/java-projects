@@ -86,7 +86,9 @@ public class CadastroProduto extends JFrame {
 	}
 	
 	private void setScreenData(Product product){
-		txtCod.setText(String.valueOf(product.getId()));
+		if (product.getId() != null) {
+			txtCod.setText(String.valueOf(product.getId()));
+		}
 		txtCor.setText(product.getCor());
 		txtDescription.setText(product.getNome());
 		txtEstoqueMaximo.setText(product.getEstoqueMax());

@@ -94,8 +94,7 @@ public class Produtos extends JFrame {
 						if (p != null){
 							CadastroProduto cadastro = new CadastroProduto(p);
 							cadastro.setVisible(true);
-						}
-						
+						}						
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}

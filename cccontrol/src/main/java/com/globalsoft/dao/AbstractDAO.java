@@ -52,6 +52,7 @@ public class AbstractDAO<T extends Entity> implements DAO<T>{
 	public void update(T entity) throws Exception {
 		try{
 			entity.setUpdateDate(new Date());
+			entity.setRemoved(false);
 			manager.getTransaction().begin();
 			manager.merge(entity);
 			manager.getTransaction().commit();
