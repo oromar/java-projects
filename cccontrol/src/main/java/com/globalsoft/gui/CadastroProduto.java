@@ -45,6 +45,7 @@ public class CadastroProduto extends JFrame {
 	private JTextField txtCor;
 	private JTextField txtSerie;
 	private JTextField txtReferencia;
+	private JTextPane txtObservacao;
 
 	private void clearScreen() {
 		txtCod.setText("");
@@ -81,7 +82,8 @@ public class CadastroProduto extends JFrame {
 		result.setSerie(txtSerie.getText());	
 		result.setSubCategory((Subcategory) cbSubcat.getSelectedItem());
 		result.setUnidadeMedida(txtUnidadeMedida.getText());
-		result.setReferencia(txtReferencia.getText());		
+		result.setReferencia(txtReferencia.getText());
+		result.setObsComments(txtObservacao.getText());
 		return result;
 	}
 	
@@ -101,6 +103,7 @@ public class CadastroProduto extends JFrame {
 		txtSerie.setText(product.getSerie());
 		txtUnidadeMedida.setText(product.getUnidadeMedida());
 		txtValorUnitario.setText(product.getValorUnit());
+		txtObservacao.setText(product.getObsComments());
 	}
 
 	public CadastroProduto(Product product) {
@@ -384,8 +387,8 @@ public class CadastroProduto extends JFrame {
 		scrollPane.setBounds(10, 24, 656, 117);
 		panel_2.add(scrollPane);
 
-		JTextPane textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
+		txtObservacao = new JTextPane();
+		scrollPane.setViewportView(txtObservacao);
 
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addActionListener(new ActionListener() {

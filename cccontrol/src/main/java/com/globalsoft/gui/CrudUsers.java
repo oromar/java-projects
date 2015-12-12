@@ -168,7 +168,7 @@ public class CrudUsers extends JFrame {
 				if (result.isPresent()){
 					if (JOptionPane.showConfirmDialog(CrudUsers.this, "Tem certeza ?") == JOptionPane.YES_OPTION){
 						try {
-							Facade.getInstance().remove(result.get().getId());
+							Facade.getInstance().removeUser(result.get().getId());
 							createTableModel(Facade.getInstance().findAllUsers());
 							clearScreen();
 						} catch (Exception e1) {

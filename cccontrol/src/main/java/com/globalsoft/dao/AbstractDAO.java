@@ -69,7 +69,7 @@ public class AbstractDAO<T extends Entity> implements DAO<T>{
 			manager.getTransaction().begin();
 			manager.merge(entity);
 			manager.getTransaction().commit();
-		} catch(Exception e ){
+		} catch(Exception e ) {
 			manager.getTransaction().rollback();
 		}
 	}

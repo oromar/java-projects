@@ -47,7 +47,7 @@ public class Facade {
 		userBO.update(entity);
 	}
 
-	public void remove(Serializable key) throws Exception {
+	public void removeUser(Serializable key) throws Exception {
 		userBO.remove(key);
 	}
 
@@ -83,6 +83,10 @@ public class Facade {
 	public Client findClient(Serializable key) throws Exception {
 		return clientBO.find(key);
 	}
+	
+	public void removeClient(Serializable key) throws Exception {
+		clientBO.remove(key);
+	}
 
 	public Client[] findAllClients() throws Exception {
 		return clientBO.findAll();
@@ -108,6 +112,10 @@ public class Facade {
 		productBO.update(entity);
 	}
 
+	public void removeProduct(Serializable key) throws Exception {
+		productBO.remove(key);
+	}
+	
 	public Product findProduct(Serializable key) throws Exception {
 		return productBO.find(key);
 	}
