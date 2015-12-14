@@ -211,7 +211,7 @@ public class Product extends BasicEntity {
 	
 	public Boolean validate() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return Boolean.TRUE;
 	}
 
 	
