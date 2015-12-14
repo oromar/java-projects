@@ -20,4 +20,8 @@ public class Role extends BasicEntity {
 	public Boolean validate() throws Exception {
 		return null;
 	}
+	@Override
+	public String toString() {
+		return name;
+	}
 }

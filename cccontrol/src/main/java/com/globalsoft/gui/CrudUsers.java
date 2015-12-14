@@ -8,8 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Optional;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,9 +32,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
 
 import com.globalsoft.business.Facade;
+import com.globalsoft.entities.Role;
 import com.globalsoft.entities.User;
 import com.globalsoft.util.Util;
 
@@ -47,16 +52,24 @@ public class CrudUsers extends JFrame {
 	private JTextField txtPhone;
 	private JPasswordField txtPassword;
 	private JPasswordField txtConfirmPassword;
+	private JComboBox<Role> cmbUserRole;
+	
+	private Long idUser;
 
 	private User getScreenData() {
 		User result = new User();
 		try {
+			if (idUser != null && idUser > 0) {
+				result.setId(idUser);
+				idUser = 0L;
+			}
 			result.setCpf(txtCpf.getText());
 			result.setName(txtUserName.getText());
 			result.setLogin(result.getName());		
 			result.setPassword(String.valueOf(txtPassword.getPassword()));	
 			if (txtBornDate.getText() != null && !txtBornDate.getText().isEmpty())
 				result.setBornDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtBornDate.getText()));
+			result.setRole((Role) cmbUserRole.getSelectedItem());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -65,6 +78,9 @@ public class CrudUsers extends JFrame {
 
 	private void setScreenData(User user){
 		if (user != null) {
+			if (user.getId() != null && user.getId() > 0) {
+				idUser = user.getId();
+			}
 			if (!Util.isNullOrEmpty(user.getName())) {
 				txtUserName.setText(user.getName());
 			}
@@ -73,6 +89,9 @@ public class CrudUsers extends JFrame {
 			}
 			if (user.getBornDate() != null) {
 				txtBornDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getBornDate()));
+			}
+			if (user.getRole() != null) {
+				cmbUserRole.setSelectedItem(user.getRole());
 			}
 		}		
 	}
@@ -219,7 +238,12 @@ public class CrudUsers extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Facade.getInstance().create(getScreenData());
+					User u = getScreenData();
+					if (u.getId() == null) {
+						Facade.getInstance().create(u);						
+					} else {
+						Facade.getInstance().update(u);
+					}
 					createTableModel(Facade.getInstance().findAllUsers());
 					clearScreen();
 				} catch (Exception e1) {
@@ -275,8 +299,17 @@ public class CrudUsers extends JFrame {
 		lblPer.setBounds(10, 118, 119, 26);
 		panel_1.add(lblPer);
 
-		JComboBox cmbUserRole = new JComboBox();
-		cmbUserRole.setModel(new DefaultComboBoxModel(new String[] {"", "Administrador", "Usu\u00E1rio-Financeiro", "Usu\u00E1rio-Estoque"}));
+		cmbUserRole = new JComboBox<Role>();
+
+		try {
+			Role[] roles = Facade.getInstance().findAllRoles();			
+			for (Role r : roles) {
+				cmbUserRole.addItem(r);
+			}
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
 		cmbUserRole.setBounds(130, 121, 236, 20);
 		panel_1.add(cmbUserRole);
 

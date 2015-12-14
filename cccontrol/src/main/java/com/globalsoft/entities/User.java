@@ -63,15 +63,24 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 		if (bornDate == null) {
 			throw new Exception(Messages.INVALID_DATE);
 		}
-		
-		// código abaixo valida se o login já está em uso
-		User u = new User();
-		u.setLogin(login);
-		Collection<User> c = Facade.getInstance().filter(u);
-		if (getId() == null && c != null && !c.isEmpty()) {
-			throw new Exception("Login já em uso"); // trocar por mensagem apropriada e colocar no enum Messages
+		if (role == null) {
+			throw new Exception(Messages.INVALID_ROLE);
 		}
-		
+		if (getId() == null) { 
+			
+			User u = new User();
+			u.setLogin(login);
+			Collection<User> c = Facade.getInstance().filter(u);
+			if (c != null && !c.isEmpty()) {
+				throw new Exception(Messages.LOGIN_IN_USE_ALREADY); 
+			}			
+			u.setLogin(null);
+			u.setCpf(getCpf());
+			c = Facade.getInstance().filter(u);
+			if (c != null && !c.isEmpty()) {
+				throw new Exception(Messages.CPF_EXISTS_ALREADY);
+			}			
+		}
 		return Boolean.TRUE;
 	}
 }

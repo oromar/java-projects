@@ -5,10 +5,13 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.globalsoft.dao.ClientDAO;
+import com.globalsoft.dao.DAO;
 import com.globalsoft.dao.ProductDAO;
+import com.globalsoft.dao.RoleDAO;
 import com.globalsoft.dao.UserDAO;
 import com.globalsoft.entities.Client;
 import com.globalsoft.entities.Product;
+import com.globalsoft.entities.Role;
 import com.globalsoft.entities.User;
 
 public class Facade {
@@ -17,6 +20,7 @@ public class Facade {
 	private UserBO userBO; 
 	private ClientBO clientBO; 
 	private ProductBO productBO;
+	private RoleBO roleBO;
 	
 	private Facade(){
 		init();
@@ -33,6 +37,7 @@ public class Facade {
 		userBO = new UserBO(new UserDAO());
 		clientBO = new ClientBO(new ClientDAO());
 		productBO = new ProductBO(new ProductDAO());
+		roleBO = new RoleBO(new RoleDAO());
 	}
 
 	public boolean exists(Serializable key) throws Exception {
@@ -135,4 +140,37 @@ public class Facade {
 	public Collection<Product> findProductCollectionByHQL(String hql, Map<String, Object> parameters) {
 		return productBO.findCollectionByHQL(hql, parameters);
 	}
+
+	public void create(Role entity) throws Exception {
+		roleBO.create(entity);
+	}
+
+	public void update(Role entity) throws Exception {
+		roleBO.update(entity);
+	}
+
+	public void removeRole(Serializable key) throws Exception {
+		roleBO.remove(key);
+	}
+
+	public Role findRole(Serializable key) throws Exception {
+		return roleBO.find(key);
+	}
+
+	public Role[] findAllRoles() throws Exception {
+		return roleBO.findAll();
+	}
+
+	public Collection<Role> filter(Role entity) {
+		return roleBO.filter(entity);
+	}
+
+	public Collection<Role> findRoleCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
+		return roleBO.findCollectionByHQL(hql, parameters);
+	}
+
+	public Role findRoleUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return roleBO.findUniqueByHQL(hql, parameters);
+	}	
 }
