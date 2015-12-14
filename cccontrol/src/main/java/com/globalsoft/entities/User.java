@@ -1,6 +1,7 @@
 package com.globalsoft.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.globalsoft.business.Facade;
 import com.globalsoft.util.Messages;
 
 @Entity
@@ -60,6 +62,14 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 		}
 		if (bornDate == null) {
 			throw new Exception(Messages.INVALID_DATE);
+		}
+		
+		// código abaixo valida se o login já está em uso
+		User u = new User();
+		u.setLogin(login);
+		Collection<User> c = Facade.getInstance().filter(u);
+		if (c != null && !c.isEmpty()) {
+			throw new Exception("Login já em uso"); // trocar por mensagem apropriada e colocar no enum Messages
 		}
 		
 		return Boolean.TRUE;
