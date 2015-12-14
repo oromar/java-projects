@@ -68,7 +68,7 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 		User u = new User();
 		u.setLogin(login);
 		Collection<User> c = Facade.getInstance().filter(u);
-		if (c != null && !c.isEmpty()) {
+		if (getId() == null && c != null && !c.isEmpty()) {
 			throw new Exception("Login já em uso"); // trocar por mensagem apropriada e colocar no enum Messages
 		}
 		
