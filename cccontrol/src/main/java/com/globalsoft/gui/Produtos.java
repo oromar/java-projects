@@ -227,7 +227,7 @@ public class Produtos extends JFrame {
 		panel.add(txtPesquisar);
 		
 		JLabel lblDigiteAPesquisa = new JLabel("Digite o termo a ser pesquisado e pressione ENTER");
-		lblDigiteAPesquisa.setBounds(756, 11, 280, 14);
+		lblDigiteAPesquisa.setBounds(756, 11, 441, 14);
 		panel.add(lblDigiteAPesquisa);
 
 		JScrollPane scrollPane = new JScrollPane();

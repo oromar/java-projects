@@ -16,12 +16,19 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
 import com.globalsoft.entities.BasicEntity;
 import com.globalsoft.entities.Entity;
+import com.globalsoft.entities.Supplier;
 
 public class Util {
 
-	private static final DateFormat dFormat = new SimpleDateFormat(Constants.DEFAULT_DATE_FORMAT);
+	private static final DateFormat dFormat = new SimpleDateFormat(
+			Constants.DEFAULT_DATE_FORMAT);
 
 	private Util() {
 		super();
@@ -31,7 +38,8 @@ public class Util {
 		return dFormat.format(date);
 	}
 
-	public static final Date getStringAsDate(String string) throws ParseException {
+	public static final Date getStringAsDate(String string)
+			throws ParseException {
 		return dFormat.parse(string);
 	}
 
@@ -47,7 +55,8 @@ public class Util {
 		return value.matches(Constants.ONLY_NUMBERS_REGEX);
 	}
 
-	public static final void toUpperCaseAllStrings(Object object) throws IllegalArgumentException, IllegalAccessException {
+	public static final void toUpperCaseAllStrings(Object object)
+			throws IllegalArgumentException, IllegalAccessException {
 		if (Objects.isNull(object)) {
 			throw new IllegalArgumentException(Messages.CANNOT_PASS_NULL_OBJECT);
 		}
@@ -59,17 +68,21 @@ public class Util {
 		}
 		for (Field f : fields) {
 			f.setAccessible(true);
-			if (f.getType().equals(String.class) 
-					&& (f != null && 
-							f.get(object) != null && 
-							!f.get(object).equals(Constants.PASSWORD_FIELD_NAME) && 
-							!f.get(object).equals(Constants.LOGIN_FIELD_NAME))) {
+			if (f.getType().equals(String.class)
+					&& (f != null
+							&& f.get(object) != null
+							&& !f.get(object).equals(
+									Constants.PASSWORD_FIELD_NAME) && !f.get(
+							object).equals(Constants.LOGIN_FIELD_NAME))) {
 				try {
-					f.set(object, String.valueOf(f.get(object)).trim().toUpperCase());
+					f.set(object, String.valueOf(f.get(object)).trim()
+							.toUpperCase());
 				} catch (IllegalArgumentException ex) {
-					Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+					Logger.getLogger(Util.class.getName()).log(Level.SEVERE,
+							null, ex);
 				} catch (IllegalAccessException ex) {
-					Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+					Logger.getLogger(Util.class.getName()).log(Level.SEVERE,
+							null, ex);
 				}
 			} else if (f.get(object) instanceof Entity) {
 				toUpperCaseAllStrings(f.get(object));
@@ -78,22 +91,23 @@ public class Util {
 	}
 
 	public static String hashPassword(String password) {
-		try{
+		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			byte[] hash = digest.digest(password.getBytes("UTF-8"));
 			StringBuffer hexString = new StringBuffer();
 
 			for (int i = 0; i < hash.length; i++) {
 				String hex = Integer.toHexString(0xff & hash[i]);
-				if(hex.length() == 1) hexString.append('0');
+				if (hex.length() == 1)
+					hexString.append('0');
 				hexString.append(hex);
 			}
 			return hexString.toString();
-		} catch(Exception ex){
+		} catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
 	}
-	
+
 	public static Map<String, Object> getBeanAsMap(Object bean) {
 		Map<String, Object> mReturn = new HashMap<String, Object>();
 		try {
@@ -101,16 +115,22 @@ public class Util {
 			Object result = null;
 			String attributeName = null;
 			for (Method m : methods) {
-				if (m.getName().startsWith("get") && m.getParameterTypes().length == 0 ) {
-					result = m.invoke(bean, new Object[]{});
+				if (m.getName().startsWith("get")
+						&& m.getParameterTypes().length == 0) {
+					result = m.invoke(bean, new Object[] {});
 					if (result != null && !result.toString().isEmpty()) {
-						if (result instanceof String || result instanceof Date || result instanceof Number) {
-							attributeName = m.getName().substring(3, 4).toLowerCase() + m.getName().substring(4); 
+						if (result instanceof String || result instanceof Date
+								|| result instanceof Number) {
+							attributeName = m.getName().substring(3, 4)
+									.toLowerCase()
+									+ m.getName().substring(4);
 							mReturn.put(attributeName, result);
 						} else if (result instanceof BasicEntity) {
 							Map<String, Object> map = getBeanAsMap(result);
-							for (String s : map.keySet()){
-								mReturn.put(result.getClass().getSimpleName().toLowerCase() + "." + s, map.get(s));
+							for (String s : map.keySet()) {
+								mReturn.put(result.getClass().getSimpleName()
+										.toLowerCase()
+										+ "." + s, map.get(s));
 							}
 						}
 					}
@@ -122,14 +142,17 @@ public class Util {
 		return mReturn;
 	}
 
-	public static Map<String, String> getMapToGeneralFilter(String value, Class<?> clazz) { 
+	public static Map<String, String> getMapToGeneralFilter(String value,
+			Class<?> clazz) {
 		Map<String, String> retorno = new HashMap<String, String>();
 		try {
 			Method[] methods = clazz.getMethods();
 			for (Method m : methods) {
-				if (m.getName().startsWith("get") && m.getParameterTypes().length == 0 ) {
+				if (m.getName().startsWith("get")
+						&& m.getParameterTypes().length == 0) {
 					if (String.class.equals(m.getReturnType())) {
-						retorno.put(m.getName().substring(3).toLowerCase(), value);
+						retorno.put(m.getName().substring(3).toLowerCase(),
+								value);
 					}
 				}
 			}
@@ -138,4 +161,119 @@ public class Util {
 		}
 		return retorno;
 	}
+
+	public static<T> void setScreenData(JFrame form, T object) {
+		Field[] txtFields = form.getClass().getDeclaredFields();
+
+		Class<?> clazz = object.getClass();
+		List<Field> fields = new ArrayList<Field>();
+		while (clazz != null) {
+			fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+			clazz = clazz.getSuperclass();
+		}
+		Field[] objFields = fields.toArray(new Field[fields.size()]);
+		String objFieldName = "";
+		String txtFieldName = "";
+		try {
+			for (Field f : txtFields) {
+				f.setAccessible(true);
+				txtFieldName = f.getName().substring(3, 4).toLowerCase()
+						+ f.getName().substring(4);
+				for (Field field : objFields) {
+					field.setAccessible(true);
+					objFieldName = field.getName();
+					if (txtFieldName.equals(objFieldName)) {
+						if (f.getType().equals(JTextField.class)) {
+							JTextField txt = (JTextField) f.get(form);
+							txt.setText(String.valueOf(field.get(object)));
+						} else if (f.getType().equals(JTextPane.class)) {
+							JTextPane txt = (JTextPane) f.get(form);
+							txt.setText(String.valueOf(field.get(object)));
+						}
+					}
+				}
+			}
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static<T> T getScreenData(JFrame form, Class<T> clazz) {
+		
+		T result = null;
+		try {
+			result = clazz.newInstance();
+		} catch (InstantiationException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		}
+		Field[] txtFields = form.getClass().getDeclaredFields();
+		List<Field> fields = new ArrayList<Field>();
+		while (clazz != null) {
+			fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+			clazz = (Class<T>) clazz.getSuperclass();
+		}
+		Field[] objFields = fields.toArray(new Field[fields.size()]);
+		String objFieldName = "";
+		String txtFieldName = "";
+		try {
+			for (Field f : txtFields) {
+				f.setAccessible(true);
+				txtFieldName = f.getName().substring(3, 4).toLowerCase() + f.getName().substring(4);
+				for (Field field : objFields) {
+					field.setAccessible(true);
+					objFieldName = field.getName();
+					if (txtFieldName.equals(objFieldName)) {
+						if (f.getType().equals(JTextField.class)) {
+							JTextField txt = (JTextField) f.get(form);
+							if (txt.getText() != null && !txt.getText().isEmpty()) {
+								if (field.getType().equals(Long.class)) {
+									field.set(result, Long.valueOf(txt.getText()));
+								} else if (field.getType().equals(Date.class)) {
+									field.set(result, getStringAsDate(txt.getText()));
+								} else {
+									field.set(result, txt.getText());
+								}
+							}
+						} else if (f.getType().equals(JTextPane.class)) {
+							JTextPane txt = (JTextPane) f.get(form);
+							field.set(result, txt.getText());
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public static void clearScreen(JFrame form) {
+		Field[] txtFields = form.getClass().getDeclaredFields();
+		try {
+			for (Field f : txtFields) {
+				f.setAccessible(true);
+				if (f.getType().equals(JTextField.class)) {
+					JTextField txt = (JTextField) f.get(form);
+					txt.setText("");
+				}
+				if (f.getType().equals(JTextPane.class)) {
+					JTextPane txt = (JTextPane) f.get(form);
+					txt.setText("");
+				}
+				if (f.getType().equals(JComboBox.class)) {
+					JComboBox cmb = (JComboBox) f.get(form);
+					cmb.setSelectedIndex(0);
+				}
+			}
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

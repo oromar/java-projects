@@ -5,60 +5,59 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="input_materials")
-public class InputMaterials extends BasicEntity  {
+@Table(name = "input_materials")
+public class InputMaterials extends BasicEntity {
 
 	private static final long serialVersionUID = -6338033207049989141L;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String nome;
-	
-	@Column(name="person")
+
+	@Column(name = "person")
 	private Person usuario;
-	
-	@Column(name="UnidadeMed")
+
+	@Column(name = "UnidadeMed")
 	private String undMedida;
-	
-	@Column(name="NotaFiscal")
-	private String notaFiscal;  // falta o centro de custo 
-	
-	@Column(name="Contrato")
+
+	@Column(name = "NotaFiscal")
+	private String notaFiscal; // falta o centro de custo
+
+	@Column(name = "Contrato")
 	private String contrato;
-	
-	@Column(name="QtdAtual")
+
+	@Column(name = "QtdAtual")
 	private String qtdAtual;
-	
-	@Column(name="Qtd")
+
+	@Column(name = "Qtd")
 	private String qtd;
-	
-	@Column(name="Ipi")
+
+	@Column(name = "Ipi")
 	private String ipi;
-	
-	@Column(name="ValorUnit")
+
+	@Column(name = "ValorUnit")
 	private String valorUnit;
-	
-	@Column(name="ValorTotal")
+
+	@Column(name = "ValorTotal")
 	private String valorTotal;
-	
-	@Column(name="Fornecedor")
+
+	@Column(name = "Fornecedor")
 	private String fornecedor;
-	
-	@Column(name="Contato")
+
+	@Column(name = "Contato")
 	private String contato;
-	
-	@Column(name="Tel")
+
+	@Column(name = "Tel")
 	private String tel;
-	
-	@Column(name="Fax")
+
+	@Column(name = "Fax")
 	private String fax;
-	
-	@Column(name="Email")
+
+	@Column(name = "Email")
 	private String email;
-	
-	@Column(name="ObsComments")
+
+	@Column(name = "ObsComments")
 	private String obsComments;
-	
-	
+
 	public String getUndMedida() {
 		return undMedida;
 	}

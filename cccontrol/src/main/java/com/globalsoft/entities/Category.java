@@ -13,7 +13,7 @@ public class Category extends BasicEntity {
 
 	private static final long serialVersionUID = 167222140605537025L;
 	
-	@Column(name = "nome")
+	@Column(name = "nome", unique = true)
 	private String nome;
 	
 	@OneToMany()

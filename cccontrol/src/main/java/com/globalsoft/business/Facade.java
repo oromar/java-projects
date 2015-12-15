@@ -5,13 +5,14 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.globalsoft.dao.ClientDAO;
-import com.globalsoft.dao.DAO;
 import com.globalsoft.dao.ProductDAO;
 import com.globalsoft.dao.RoleDAO;
+import com.globalsoft.dao.SupplierDAO;
 import com.globalsoft.dao.UserDAO;
 import com.globalsoft.entities.Client;
 import com.globalsoft.entities.Product;
 import com.globalsoft.entities.Role;
+import com.globalsoft.entities.Supplier;
 import com.globalsoft.entities.User;
 
 public class Facade {
@@ -21,6 +22,7 @@ public class Facade {
 	private ClientBO clientBO; 
 	private ProductBO productBO;
 	private RoleBO roleBO;
+	private SupplierBO supplierBO;
 	
 	private Facade(){
 		init();
@@ -38,6 +40,7 @@ public class Facade {
 		clientBO = new ClientBO(new ClientDAO());
 		productBO = new ProductBO(new ProductDAO());
 		roleBO = new RoleBO(new RoleDAO());
+		supplierBO = new SupplierBO(new SupplierDAO());
 	}
 
 	public boolean exists(Serializable key) throws Exception {
@@ -172,5 +175,38 @@ public class Facade {
 
 	public Role findRoleUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return roleBO.findUniqueByHQL(hql, parameters);
+	}
+	
+	public void create(Supplier entity) throws Exception {
+		supplierBO.create(entity);
+	}
+
+	public void update(Supplier entity) throws Exception {
+		supplierBO.update(entity);
+	}
+
+	public void removeSupplier(Serializable key) throws Exception {
+		supplierBO.remove(key);
+	}
+
+	public Supplier findSupplier(Serializable key) throws Exception {
+		return supplierBO.find(key);
+	}
+
+	public Supplier[] findAllSuppliers() throws Exception {
+		return supplierBO.findAll();
+	}
+
+	public Collection<Supplier> filter(Supplier entity) {
+		return supplierBO.filter(entity);
+	}
+
+	public Collection<Supplier> findSupplierCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
+		return supplierBO.findCollectionByHQL(hql, parameters);
+	}
+
+	public Supplier findSupplierUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return supplierBO.findUniqueByHQL(hql, parameters);
 	}	
 }

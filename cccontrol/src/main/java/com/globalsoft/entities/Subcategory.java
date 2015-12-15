@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="sub_category")
+@Table(name = "sub_category")
 public class Subcategory extends BasicEntity {
 
 	private static final long serialVersionUID = 5402872208728797030L;
 
-	@Column (name= "nome")
+	@Column(name = "nome", unique = true)
 	private String nome;
 
 	public String getNome() {

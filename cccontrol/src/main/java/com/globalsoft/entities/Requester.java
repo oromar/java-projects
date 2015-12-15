@@ -9,25 +9,24 @@ import com.globalsoft.util.Messages;
 
 
 @Entity
-@Table(name="requester")
+@Table(name = "requester")
 public class Requester extends BasicEntity {
 
-	
 	private static final long serialVersionUID = 1809071967450079811L;
 
-	@Column(name="Nome")
+	@Column(name = "Nome")
 	private String nome;
-	
-	@Column(name="Cpf")
+
+	@Column(name = "Cpf")
 	private String cpf;
-	
-	@Column(name="Rg")
+
+	@Column(name = "Rg")
 	private String rg;
-	
-	@Column(name="Matricula")
+
+	@Column(name = "Matricula")
 	private String matricula;
-	
-	@Column(name="Setor")
+
+	@Column(name = "Setor")
 	private String setor;
 	
 	@Column(name="CentroCusto")
@@ -35,17 +34,16 @@ public class Requester extends BasicEntity {
 	
 	@Column(name="Funcao")
 	private String funcao;
-	
-	@Column(name="Tel1")
+
+	@Column(name = "Tel1")
 	private String tel1;
-	
-	@Column(name="Tel2")
+
+	@Column(name = "Tel2")
 	private String tel2;
-	
-	@Column(name="ObsComments")
+
+	@Column(name = "ObsComments")
 	private String obsComments;
 
-	
 	public String getNome() {
 		return nome;
 	}
@@ -156,5 +154,5 @@ public class Requester extends BasicEntity {
 		
 		return Boolean.TRUE;
 	}
-	
+
 }

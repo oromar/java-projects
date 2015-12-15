@@ -16,6 +16,7 @@ public enum Messages {
 	public static final String 	ARE_YOU_SURE_TO_EXIT = "Você tem certeza que deseja sair ?";
 	
 	public static final String INVALID_FIELD = "Campo Inválido";
+	public static final String PRODUCT_ALREADY_EXISTS = "Encontrado produto com mesmo nome, marca e fabricante";
 	
 
 }

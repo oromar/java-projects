@@ -13,8 +13,9 @@ import com.globalsoft.business.Facade;
 import com.globalsoft.util.Messages;
 
 @Entity
-@Table(name="users")
-public class User extends Person implements com.globalsoft.entities.Entity, Serializable {
+@Table(name = "users")
+public class User extends Person implements com.globalsoft.entities.Entity,
+		Serializable {
 
 	private static final long serialVersionUID = -741285610096169743L;
 
@@ -22,7 +23,7 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 	private String login;
 	@Column(name = "password")
 	private String password;
-	@Column(name="born_date")
+	@Column(name = "born_date")
 	private Date bornDate;
 	@OneToOne
 	private Role role;
@@ -30,27 +31,35 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public Date getBornDate() {
 		return bornDate;
 	}
+
 	public void setBornDate(Date bornDate) {
 		this.bornDate = bornDate;
 	}
+
 	public Role getRole() {
 		return role;
 	}
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
 	@Override
 	public Boolean validate() throws Exception {
 		super.validate();
@@ -66,20 +75,20 @@ public class User extends Person implements com.globalsoft.entities.Entity, Seri
 		if (role == null) {
 			throw new Exception(Messages.INVALID_ROLE);
 		}
-		if (getId() == null) { 
-			
+		if (getId() == null) {
+
 			User u = new User();
 			u.setLogin(login);
 			Collection<User> c = Facade.getInstance().filter(u);
 			if (c != null && !c.isEmpty()) {
-				throw new Exception(Messages.LOGIN_IN_USE_ALREADY); 
-			}			
+				throw new Exception(Messages.LOGIN_IN_USE_ALREADY);
+			}
 			u.setLogin(null);
 			u.setCpf(getCpf());
 			c = Facade.getInstance().filter(u);
 			if (c != null && !c.isEmpty()) {
 				throw new Exception(Messages.CPF_EXISTS_ALREADY);
-			}			
+			}
 		}
 		return Boolean.TRUE;
 	}
