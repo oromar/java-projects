@@ -3,6 +3,7 @@ package com.globalsoft.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -66,6 +67,7 @@ public class CadastroProduto extends JFrame {
 	private Product getScreenData() {
 		Product result = new Product();
 		String id = txtCod.getText();
+		
 		if (!Util.isNullOrEmpty(id)) {
 			result.setId(Long.valueOf(txtCod.getText()));
 		}
@@ -84,6 +86,7 @@ public class CadastroProduto extends JFrame {
 		result.setUnidadeMedida(txtUnidadeMedida.getText());
 		result.setReferencia(txtReferencia.getText());
 		result.setObsComments(txtObservacao.getText());
+		
 		return result;
 	}
 	
@@ -134,9 +137,10 @@ public class CadastroProduto extends JFrame {
 					JOptionPane.showMessageDialog(CadastroProduto.this, "Registro salvo com sucesso !");					
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(CadastroProduto.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				}	
+				}
 				clearScreen();
 			}
+				
 		});
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnSave.setIcon(new ImageIcon("Icones\\page_save.png"));

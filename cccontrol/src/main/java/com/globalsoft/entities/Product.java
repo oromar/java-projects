@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.globalsoft.util.Constants;
+import com.globalsoft.util.Messages;
+
 @Entity
 @Table(name="product")
 public class Product extends BasicEntity {
@@ -210,8 +213,35 @@ public class Product extends BasicEntity {
 	}
 	
 	public Boolean validate() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	
+		//Funciona tanto na tela de cadastro quanto na atualização dos dados.
+		if(nome == null || nome.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (fabricante == null || fabricante.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(notaFiscal == null || notaFiscal.isEmpty() || !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(marca == null || marca.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(unidadeMedida == null || unidadeMedida.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (localEstoque == null || localEstoque.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (estoqueMax == null || estoqueMax.isEmpty() || !estoqueMax.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		
+		
+		if(getId()==null){ // Só Funciona na Tela de Cadastro de Produtos. 
+			
+		}
+		return Boolean.TRUE;
 	}
 
 	
