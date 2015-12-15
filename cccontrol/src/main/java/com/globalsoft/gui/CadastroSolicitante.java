@@ -23,14 +23,16 @@ public class CadastroSolicitante extends JFrame {
 
 	private static final long serialVersionUID = -5862683290614642467L;
 	private JPanel contentPane;
-	private JTextField Tfcod;
-	private JTextField TfDesc;
-	private JTextField TfMarca;
-	private JTextField TfFabricante;
-	private JTextField TfUnidMedida;
-	private JTextField tfCor;
-	private JTextField tfSerie;
-	private JTextField tfReferencia;
+	private JTextField txtCod;
+	private JTextField txtNome;
+	private JTextField txtCpf;
+	private JTextField txtRg;
+	private JTextField txtMatri;
+	private JTextField txtCentroCusto;
+	private JTextField txtTel1;
+	private JTextField txtTel2;
+	private JTextField txtSetor;
+	private JTextField txtFuncao;
 
 	/**
 	 * Launch the application.
@@ -54,7 +56,7 @@ public class CadastroSolicitante extends JFrame {
 	public CadastroSolicitante() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 472, 512);
+		setBounds(100, 100, 472, 488);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,7 +66,7 @@ public class CadastroSolicitante extends JFrame {
 		JButton btsalve = new JButton("Salvar");
 		btsalve.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btsalve.setIcon(new ImageIcon("Icones\\disk.png"));
-		btsalve.setBounds(269, 451, 89, 23);
+		btsalve.setBounds(269, 429, 89, 23);
 		contentPane.add(btsalve);
 		
 		JButton btExit = new JButton("Sair");
@@ -75,12 +77,12 @@ public class CadastroSolicitante extends JFrame {
 		});
 		btExit.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btExit.setIcon(new ImageIcon("Icones\\door_in.png"));
-		btExit.setBounds(368, 451, 89, 23);
+		btExit.setBounds(368, 429, 89, 23);
 		contentPane.add(btExit);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBounds(10, 67, 447, 210);
+		panel.setBounds(10, 54, 447, 201);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -89,18 +91,18 @@ public class CadastroSolicitante extends JFrame {
 		lblCod.setBounds(10, 11, 67, 14);
 		panel.add(lblCod);
 		
-		Tfcod = new JTextField();
-		Tfcod.setEditable(false);
-		Tfcod.setBounds(10, 26, 67, 20);
-		panel.add(Tfcod);
-		Tfcod.setColumns(10);
+		txtCod = new JTextField();
+		txtCod.setEditable(false);
+		txtCod.setBounds(10, 26, 67, 20);
+		panel.add(txtCod);
+		txtCod.setColumns(10);
 		
-		TfDesc = new JTextField();
-		TfDesc.setColumns(10);
-		TfDesc.setBounds(82, 26, 349, 20);
-		panel.add(TfDesc);
+		txtNome = new JTextField();
+		txtNome.setColumns(10);
+		txtNome.setBounds(82, 26, 349, 20);
+		panel.add(txtNome);
 		
-		JLabel lblDescrio = new JLabel("Nome");
+		JLabel lblDescrio = new JLabel("Nome *");
 		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDescrio.setBounds(82, 11, 304, 14);
 		panel.add(lblDescrio);
@@ -110,20 +112,20 @@ public class CadastroSolicitante extends JFrame {
 		lblQuantidade.setBounds(355, 103, 100, 14);
 		panel.add(lblQuantidade);
 		
-		TfMarca = new JTextField();
-		TfMarca.setColumns(10);
-		TfMarca.setBounds(10, 72, 131, 20);
-		panel.add(TfMarca);
+		txtCpf = new JTextField();
+		txtCpf.setColumns(10);
+		txtCpf.setBounds(10, 72, 131, 20);
+		panel.add(txtCpf);
 		
 		JLabel lblMarca_1 = new JLabel("CPF*");
 		lblMarca_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMarca_1.setBounds(10, 57, 100, 14);
 		panel.add(lblMarca_1);
 		
-		TfFabricante = new JTextField();
-		TfFabricante.setColumns(10);
-		TfFabricante.setBounds(151, 72, 133, 20);
-		panel.add(TfFabricante);
+		txtRg = new JTextField();
+		txtRg.setColumns(10);
+		txtRg.setBounds(151, 72, 133, 20);
+		panel.add(txtRg);
 		
 		JLabel lblFabricante = new JLabel("RG*");
 		lblFabricante.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -135,63 +137,73 @@ public class CadastroSolicitante extends JFrame {
 		lblUnidadeDeMedida.setBounds(294, 57, 169, 14);
 		panel.add(lblUnidadeDeMedida);
 		
-		TfUnidMedida = new JTextField();
-		TfUnidMedida.setColumns(10);
-		TfUnidMedida.setBounds(294, 72, 137, 20);
-		panel.add(TfUnidMedida);
+		txtMatri = new JTextField();
+		txtMatri.setColumns(10);
+		txtMatri.setBounds(294, 72, 137, 20);
+		panel.add(txtMatri);
 		
-		tfCor = new JTextField();
-		tfCor.setColumns(10);
-		tfCor.setBounds(10, 164, 100, 20);
-		panel.add(tfCor);
+		txtCentroCusto = new JTextField();
+		txtCentroCusto.setEditable(false);
+		txtCentroCusto.setColumns(10);
+		txtCentroCusto.setBounds(10, 164, 111, 20);
+		panel.add(txtCentroCusto);
 		
-		JLabel lblCor = new JLabel("Centro de Custo");
+		JLabel lblCor = new JLabel("Centro de Custo *");
 		lblCor.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCor.setBounds(10, 149, 100, 14);
+		lblCor.setBounds(10, 149, 111, 14);
 		panel.add(lblCor);
 		
-		tfSerie = new JTextField();
-		tfSerie.setColumns(10);
-		tfSerie.setBounds(120, 164, 153, 20);
-		panel.add(tfSerie);
+		txtTel1 = new JTextField();
+		txtTel1.setText("(81) 9999999999");
+		txtTel1.setColumns(10);
+		txtTel1.setBounds(164, 164, 126, 20);
+		panel.add(txtTel1);
 		
-		JLabel lblSrie = new JLabel("Telefone 1");
+		JLabel lblSrie = new JLabel("Telefone 1 *");
 		lblSrie.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblSrie.setBounds(120, 149, 153, 14);
+		lblSrie.setBounds(164, 149, 126, 14);
 		panel.add(lblSrie);
 		
 		JLabel lblReferncia = new JLabel("Telefone 2");
 		lblReferncia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblReferncia.setBounds(283, 149, 148, 14);
+		lblReferncia.setBounds(294, 149, 137, 14);
 		panel.add(lblReferncia);
 		
-		tfReferencia = new JTextField();
-		tfReferencia.setColumns(10);
-		tfReferencia.setBounds(283, 164, 148, 20);
-		panel.add(tfReferencia);
+		txtTel2 = new JTextField();
+		txtTel2.setColumns(10);
+		txtTel2.setBounds(294, 164, 137, 20);
+		panel.add(txtTel2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(10, 118, 218, 20);
-		panel.add(comboBox);
-		
-		JLabel lblSetor = new JLabel("Setor");
+		JLabel lblSetor = new JLabel("Setor *");
 		lblSetor.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblSetor.setBounds(10, 103, 218, 14);
+		lblSetor.setBounds(10, 103, 201, 14);
 		panel.add(lblSetor);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(238, 119, 193, 20);
-		panel.add(comboBox_1);
-		
-		JLabel lblFuno = new JLabel("Fun\u00E7\u00E3o");
+		JLabel lblFuno = new JLabel("Fun\u00E7\u00E3o *");
 		lblFuno.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblFuno.setBounds(238, 103, 193, 14);
+		lblFuno.setBounds(221, 103, 210, 14);
 		panel.add(lblFuno);
+		
+		txtSetor = new JTextField();
+		txtSetor.setColumns(10);
+		txtSetor.setBounds(10, 118, 201, 20);
+		panel.add(txtSetor);
+		
+		txtFuncao = new JTextField();
+		txtFuncao.setColumns(10);
+		txtFuncao.setBounds(221, 118, 210, 20);
+		panel.add(txtFuncao);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("Icones\\zoom.png"));
+		button.setToolTipText("Cadastrar Fornecedor");
+		button.setBounds(126, 156, 28, 28);
+		panel.add(button);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_2.setBounds(10, 288, 447, 152);
+		panel_2.setBounds(10, 266, 447, 152);
 		contentPane.add(panel_2);
 		
 		JLabel lblObservaes = new JLabel("Observa\u00E7\u00F5es");
@@ -203,13 +215,13 @@ public class CadastroSolicitante extends JFrame {
 		scrollPane.setBounds(10, 24, 427, 117);
 		panel_2.add(scrollPane);
 		
-		JTextPane textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
+		JTextPane txtObs = new JTextPane();
+		scrollPane.setViewportView(txtObs);
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNovo.setIcon(new ImageIcon("Icones\\page_white_horizontal.png"));
-		btnNovo.setBounds(10, 451, 89, 23);
+		btnNovo.setBounds(10, 429, 89, 23);
 		contentPane.add(btnNovo);
 		
 		JLabel lblCadastroProduto = new JLabel("Cadastro Solicitante");

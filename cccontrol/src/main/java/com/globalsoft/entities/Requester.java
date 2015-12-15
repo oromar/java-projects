@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.globalsoft.util.Constants;
+import com.globalsoft.util.Messages;
+
 
 @Entity
 @Table(name="requester")
@@ -26,6 +29,9 @@ public class Requester extends BasicEntity {
 	
 	@Column(name="Setor")
 	private String setor;
+	
+	@Column(name="CentroCusto")
+	private String centroCusto;
 	
 	@Column(name="Funcao")
 	private String funcao;
@@ -111,10 +117,44 @@ public class Requester extends BasicEntity {
 	public void setObsComments(String obsComments) {
 		this.obsComments = obsComments;
 	}
+	
+	public String getCentroCusto() {
+		return centroCusto;
+	}
+
+	public void setCentroCusto(String centroCusto) {
+		this.centroCusto = centroCusto;
+	}
+
 
 	public Boolean validate() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (nome == null || nome.isEmpty()){ 
+			throw new Exception(Messages.INVALID_NAME);
+		}
+		if (cpf == null || cpf.isEmpty() || cpf.length() != 11 || !cpf.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (rg == null || rg.isEmpty()||!rg.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (matricula==null||matricula.isEmpty()||!matricula.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (centroCusto==null || centroCusto.isEmpty()||!centroCusto.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (setor==null|| setor.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(funcao==null|| funcao.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(tel1==null || tel1.isEmpty()|| !tel1.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		
+		return Boolean.TRUE;
 	}
 	
 }
