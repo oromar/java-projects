@@ -6,6 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.globalsoft.gui.Fornecedores;
 import com.globalsoft.util.Constants;
 import com.globalsoft.util.Messages;
 
@@ -39,6 +40,9 @@ public class Product extends BasicEntity {
 	@Column(name="Referencia")
 	private String referencia;
 	
+	@Column (name="EmEstoque")
+	private String emEstoque;
+	
 	@Column(name="EstoqueMax")
 	private String estoqueMax;
 	
@@ -62,6 +66,17 @@ public class Product extends BasicEntity {
 	@JoinColumn(name="sub_category")
 	private Subcategory subCategory;
 	
+	
+
+	public String getEmEstoque() {
+		return emEstoque;
+	}
+	// Em estoque
+
+	public void setEmEstoque(String emEstoque) {
+		this.emEstoque = emEstoque;
+	}
+
 	
 	public String getObsComments() {
 		return obsComments;
@@ -153,11 +168,11 @@ public class Product extends BasicEntity {
 	}
 
 
-	public String getEstoqueMax() {
+	public String getEstoqueMax() {  
 		return estoqueMax;
 	}
-
-
+    
+			
 	public void setEstoqueMax(String estoqueMax) {
 		this.estoqueMax = estoqueMax;
 	}
@@ -214,34 +229,38 @@ public class Product extends BasicEntity {
 	
 	public Boolean validate() throws Exception {
 	
-		//Funciona tanto na tela de cadastro quanto na atualização dos dados.
-		if(nome == null || nome.isEmpty()){
+		if (nome == null || nome.isEmpty()){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		if (fabricante == null || fabricante.isEmpty()){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if(notaFiscal == null || notaFiscal.isEmpty() || !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if (notaFiscal == null || notaFiscal.isEmpty() || !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if(marca == null || marca.isEmpty()){
+		if (marca == null || marca.isEmpty()){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if(unidadeMedida == null || unidadeMedida.isEmpty()){
+		if (unidadeMedida == null || unidadeMedida.isEmpty()){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		if (localEstoque == null || localEstoque.isEmpty()){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (estoqueMax == null || estoqueMax.isEmpty() || !estoqueMax.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if(emEstoque==null|| emEstoque.isEmpty()||!emEstoque.matches(Constants.ONLY_NUMBERS_REGEX)){
+				throw new Exception(Messages.INVALID_FIELD); // tem que verificar esse campo, pois talvez na hora de cadastrar o produto ele pode...
+															// ... ou não conter no estoque. 	
+		}
+		if (estoqueMax.isEmpty() || !estoqueMax.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (estoqueMin == null || estoqueMin.isEmpty() || !estoqueMin.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (valorUnit == null || valorUnit.isEmpty() || !valorUnit.matches(Constants.ONLY_NUMBERS_REGEX)){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		
-		
-		if(getId()==null){ // Só Funciona na Tela de Cadastro de Produtos. 
-			
-		}
-
 		return Boolean.TRUE;
 	}
 

@@ -266,7 +266,7 @@ public class Produtos extends JFrame {
 				line = new String[3];
 				line[0] = String.valueOf(p.getId());
 				line[1] = p.getNome();
-				line[2] = p.getEstoqueMax();
+				line[2] = p.getEmEstoque();
 				model.addRow(line);
 			}
 		}

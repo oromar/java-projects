@@ -47,6 +47,7 @@ public class CadastroProduto extends JFrame {
 	private JTextField txtSerie;
 	private JTextField txtReferencia;
 	private JTextPane txtObservacao;
+	private JTextField txtEmEstoque;
 
 	private void clearScreen() {
 		txtCod.setText("");
@@ -63,6 +64,7 @@ public class CadastroProduto extends JFrame {
 		txtSerie.setText("");
 		txtReferencia.setText("");
 		txtObservacao.setText("");
+		txtEmEstoque.setText("");
 	}
 	
 	private Product getScreenData() {
@@ -87,6 +89,7 @@ public class CadastroProduto extends JFrame {
 		result.setUnidadeMedida(txtUnidadeMedida.getText());
 		result.setReferencia(txtReferencia.getText());
 		result.setObsComments(txtObservacao.getText());
+		result.setEmEstoque(txtEmEstoque.getText());
 		
 		return result;
 	}
@@ -108,6 +111,7 @@ public class CadastroProduto extends JFrame {
 		txtUnidadeMedida.setText(product.getUnidadeMedida());
 		txtValorUnitario.setText(product.getValorUnit());
 		txtObservacao.setText(product.getObsComments());
+		txtEmEstoque.setText(product.getEmEstoque()); 
 	}
 
 	public CadastroProduto(Product product) {
@@ -208,22 +212,22 @@ public class CadastroProduto extends JFrame {
 
 		JLabel lblQuantidade = new JLabel("Estoque Minimo");
 		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblQuantidade.setBounds(345, 103, 100, 14);
+		lblQuantidade.setBounds(230, 103, 100, 14);
 		panel.add(lblQuantidade);
 
 		txtEstoqueMinimo = new JTextField();
 		txtEstoqueMinimo.setColumns(10);
-		txtEstoqueMinimo.setBounds(345, 118, 100, 20);
+		txtEstoqueMinimo.setBounds(230, 118, 100, 20);
 		panel.add(txtEstoqueMinimo);
 
-		JLabel lblQtdMaxima = new JLabel("Estoque M\u00E1ximo");
+		JLabel lblQtdMaxima = new JLabel("Estoque Max");
 		lblQtdMaxima.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblQtdMaxima.setBounds(455, 103, 100, 14);
+		lblQtdMaxima.setBounds(340, 103, 100, 14);
 		panel.add(lblQtdMaxima);
 
 		txtEstoqueMaximo = new JTextField();
 		txtEstoqueMaximo.setColumns(10);
-		txtEstoqueMaximo.setBounds(455, 118, 100, 20);
+		txtEstoqueMaximo.setBounds(340, 118, 100, 20);
 		panel.add(txtEstoqueMaximo);
 
 		txtLocalEstoque = new JTextField();
@@ -238,32 +242,32 @@ public class CadastroProduto extends JFrame {
 
 		txtMarca = new JTextField();
 		txtMarca.setColumns(10);
-		txtMarca.setBounds(10, 72, 148, 20);
+		txtMarca.setBounds(10, 72, 117, 20);
 		panel.add(txtMarca);
 
 		JLabel lblMarca_1 = new JLabel("Marca");
 		lblMarca_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMarca_1.setBounds(10, 57, 100, 14);
+		lblMarca_1.setBounds(10, 57, 117, 14);
 		panel.add(lblMarca_1);
 
 		txtFabricante = new JTextField();
 		txtFabricante.setColumns(10);
-		txtFabricante.setBounds(168, 72, 295, 20);
+		txtFabricante.setBounds(137, 72, 299, 20);
 		panel.add(txtFabricante);
 
 		JLabel lblFabricante = new JLabel("Fabricante");
 		lblFabricante.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblFabricante.setBounds(168, 57, 100, 14);
+		lblFabricante.setBounds(137, 57, 299, 14);
 		panel.add(lblFabricante);
 
 		JLabel lblUnidadeDeMedida = new JLabel("Unidade de Medida");
 		lblUnidadeDeMedida.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUnidadeDeMedida.setBounds(473, 57, 193, 14);
+		lblUnidadeDeMedida.setBounds(446, 57, 109, 14);
 		panel.add(lblUnidadeDeMedida);
 
 		txtUnidadeMedida = new JTextField();
 		txtUnidadeMedida.setColumns(10);
-		txtUnidadeMedida.setBounds(473, 72, 193, 20);
+		txtUnidadeMedida.setBounds(446, 72, 109, 20);
 		panel.add(txtUnidadeMedida);
 
 		cmbFornecedor = new JComboBox<Supplier>();
@@ -277,32 +281,32 @@ public class CadastroProduto extends JFrame {
 
 		txtCor = new JTextField();
 		txtCor.setColumns(10);
-		txtCor.setBounds(10, 118, 100, 20);
+		txtCor.setBounds(566, 72, 100, 20);
 		panel.add(txtCor);
 
 		JLabel lblCor = new JLabel("Cor");
 		lblCor.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCor.setBounds(10, 103, 100, 14);
+		lblCor.setBounds(566, 57, 100, 14);
 		panel.add(lblCor);
 
 		txtSerie = new JTextField();
 		txtSerie.setColumns(10);
-		txtSerie.setBounds(120, 118, 100, 20);
+		txtSerie.setBounds(10, 118, 100, 20);
 		panel.add(txtSerie);
 
 		JLabel lblSrie = new JLabel("S\u00E9rie");
 		lblSrie.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblSrie.setBounds(120, 103, 100, 14);
+		lblSrie.setBounds(10, 103, 100, 14);
 		panel.add(lblSrie);
 
 		JLabel lblReferncia = new JLabel("Refer\u00EAncia");
 		lblReferncia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblReferncia.setBounds(235, 103, 100, 14);
+		lblReferncia.setBounds(120, 103, 100, 14);
 		panel.add(lblReferncia);
 
 		txtReferencia = new JTextField();
 		txtReferencia.setColumns(10);
-		txtReferencia.setBounds(235, 118, 100, 20);
+		txtReferencia.setBounds(120, 118, 100, 20);
 		panel.add(txtReferencia);
 
 		JButton btNewFornec = new JButton("");
@@ -328,6 +332,17 @@ public class CadastroProduto extends JFrame {
 		button.setToolTipText("Cadastrar Fornecedor");
 		button.setBounds(607, 157, 28, 28);
 		panel.add(button);
+		
+		txtEmEstoque = new JTextField();
+		txtEmEstoque.setText("0");
+		txtEmEstoque.setColumns(10);
+		txtEmEstoque.setBounds(450, 118, 100, 20);
+		panel.add(txtEmEstoque);
+		
+		JLabel lblEmEstoque = new JLabel("Em Estoque");
+		lblEmEstoque.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblEmEstoque.setBounds(450, 103, 100, 14);
+		panel.add(lblEmEstoque);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
