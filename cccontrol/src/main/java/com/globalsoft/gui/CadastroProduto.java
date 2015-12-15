@@ -62,6 +62,7 @@ public class CadastroProduto extends JFrame {
 		txtCor.setText("");
 		txtSerie.setText("");
 		txtReferencia.setText("");
+		txtObservacao.setText("");
 	}
 	
 	private Product getScreenData() {

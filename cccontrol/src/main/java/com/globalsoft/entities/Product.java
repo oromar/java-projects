@@ -241,6 +241,7 @@ public class Product extends BasicEntity {
 		if(getId()==null){ // Só Funciona na Tela de Cadastro de Produtos. 
 			
 		}
+
 		return Boolean.TRUE;
 	}
 

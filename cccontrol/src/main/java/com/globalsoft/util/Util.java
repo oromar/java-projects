@@ -1,6 +1,7 @@
 package com.globalsoft.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.security.MessageDigest;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -8,11 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.globalsoft.entities.BasicEntity;
 import com.globalsoft.entities.Entity;
 
 public class Util {
@@ -88,5 +92,50 @@ public class Util {
 		} catch(Exception ex){
 			throw new RuntimeException(ex);
 		}
+	}
+	
+	public static Map<String, Object> getBeanAsMap(Object bean) {
+		Map<String, Object> mReturn = new HashMap<String, Object>();
+		try {
+			Method[] methods = bean.getClass().getMethods();
+			Object result = null;
+			String attributeName = null;
+			for (Method m : methods) {
+				if (m.getName().startsWith("get") && m.getParameterTypes().length == 0 ) {
+					result = m.invoke(bean, new Object[]{});
+					if (result != null && !result.toString().isEmpty()) {
+						if (result instanceof String || result instanceof Date || result instanceof Number) {
+							attributeName = m.getName().substring(3, 4).toLowerCase() + m.getName().substring(4); 
+							mReturn.put(attributeName, result);
+						} else if (result instanceof BasicEntity) {
+							Map<String, Object> map = getBeanAsMap(result);
+							for (String s : map.keySet()){
+								mReturn.put(result.getClass().getSimpleName().toLowerCase() + "." + s, map.get(s));
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mReturn;
+	}
+
+	public static Map<String, String> getMapToGeneralFilter(String value, Class<?> clazz) { 
+		Map<String, String> retorno = new HashMap<String, String>();
+		try {
+			Method[] methods = clazz.getMethods();
+			for (Method m : methods) {
+				if (m.getName().startsWith("get") && m.getParameterTypes().length == 0 ) {
+					if (String.class.equals(m.getReturnType())) {
+						retorno.put(m.getName().substring(3).toLowerCase(), value);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return retorno;
 	}
 }
