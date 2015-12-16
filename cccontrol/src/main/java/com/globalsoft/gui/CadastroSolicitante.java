@@ -69,7 +69,7 @@ public class CadastroSolicitante extends JFrame {
 					JOptionPane.showMessageDialog(CadastroSolicitante.this, "Registro salvo com sucesso.");
 					Util.clearScreen(CadastroSolicitante.this);
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(CadastroSolicitante.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
