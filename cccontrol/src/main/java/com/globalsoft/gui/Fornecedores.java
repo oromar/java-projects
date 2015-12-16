@@ -230,18 +230,26 @@ public class Fornecedores extends JFrame {
 						if (Util.onlyNumbers(value)) {
 							Long id = Long.valueOf(value);
 							sup = Facade.getInstance().findSupplier(id);
-							createTableModel(new Supplier[] { sup });
+							if (sup != null) {
+								createTableModel(new Supplier[] { sup });
+							} else {
+								JOptionPane.showMessageDialog(Fornecedores.this, "Registro não encontrado.");
+							}
 						} else {
 							sup = new Supplier();
 							sup.setNome(value);
 							Collection<Supplier> col = Facade.getInstance()
 									.filter(sup);
-							createTableModel(col.toArray((Supplier[]) Array
-									.newInstance(Supplier.class, col.size())));
+							if (col != null && !col.isEmpty()) {
+								createTableModel(col.toArray((Supplier[]) Array
+										.newInstance(Supplier.class, col.size())));
+							} else {
+								JOptionPane.showMessageDialog(Fornecedores.this, "Não foram encontrados registros para os parametros passados.");
+							}
 						}
 					}
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(Fornecedores.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

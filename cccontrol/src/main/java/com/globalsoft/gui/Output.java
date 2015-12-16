@@ -177,7 +177,7 @@ public class Output extends JFrame {
 		button_3.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Solicitante view = new Solicitante();
+				Solicitantes view = new Solicitantes();
       			view.setLocationRelativeTo(null);
 				view.setVisible(true);
 				

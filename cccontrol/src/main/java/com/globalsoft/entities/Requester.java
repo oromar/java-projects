@@ -36,10 +36,10 @@ public class Requester extends BasicEntity {
 	private String funcao;
 
 	@Column(name = "Tel1")
-	private String tel1;
+	private String telefone1;
 
 	@Column(name = "Tel2")
-	private String tel2;
+	private String telefone2;
 
 	@Column(name = "ObsComments")
 	private String obsComments;
@@ -93,19 +93,19 @@ public class Requester extends BasicEntity {
 	}
 
 	public String getTel1() {
-		return tel1;
+		return telefone1;
 	}
 
 	public void setTel1(String tel1) {
-		this.tel1 = tel1;
+		this.telefone1 = tel1;
 	}
 
 	public String getTel2() {
-		return tel2;
+		return telefone2;
 	}
 
 	public void setTel2(String tel2) {
-		this.tel2 = tel2;
+		this.telefone2 = tel2;
 	}
 
 	public String getObsComments() {
@@ -139,7 +139,7 @@ public class Requester extends BasicEntity {
 		if (matricula==null||matricula.isEmpty()||!matricula.matches(Constants.ONLY_NUMBERS_REGEX)){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (centroCusto==null || centroCusto.isEmpty()||!centroCusto.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if (centroCusto==null || centroCusto.isEmpty() || !centroCusto.matches(Constants.ONLY_NUMBERS_REGEX)){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		if (setor==null|| setor.isEmpty()){
@@ -148,7 +148,7 @@ public class Requester extends BasicEntity {
 		if(funcao==null|| funcao.isEmpty()){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if(tel1==null || tel1.isEmpty()|| !tel1.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if(telefone1==null || telefone1.isEmpty()|| !telefone1.matches(Constants.ONLY_NUMBERS_REGEX)){
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		

@@ -6,11 +6,13 @@ import java.util.Map;
 
 import com.globalsoft.dao.ClientDAO;
 import com.globalsoft.dao.ProductDAO;
+import com.globalsoft.dao.RequesterDAO;
 import com.globalsoft.dao.RoleDAO;
 import com.globalsoft.dao.SupplierDAO;
 import com.globalsoft.dao.UserDAO;
 import com.globalsoft.entities.Client;
 import com.globalsoft.entities.Product;
+import com.globalsoft.entities.Requester;
 import com.globalsoft.entities.Role;
 import com.globalsoft.entities.Supplier;
 import com.globalsoft.entities.User;
@@ -23,6 +25,7 @@ public class Facade {
 	private ProductBO productBO;
 	private RoleBO roleBO;
 	private SupplierBO supplierBO;
+	private RequesterBO requesterBO;
 	
 	private Facade(){
 		init();
@@ -41,6 +44,7 @@ public class Facade {
 		productBO = new ProductBO(new ProductDAO());
 		roleBO = new RoleBO(new RoleDAO());
 		supplierBO = new SupplierBO(new SupplierDAO());
+		requesterBO = new RequesterBO(new RequesterDAO());
 	}
 
 	public boolean exists(Serializable key) throws Exception {
@@ -208,5 +212,38 @@ public class Facade {
 
 	public Supplier findSupplierUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return supplierBO.findUniqueByHQL(hql, parameters);
+	}	
+	
+	public void create(Requester entity) throws Exception {
+		requesterBO.create(entity);
+	}
+
+	public void update(Requester entity) throws Exception {
+		requesterBO.update(entity);
+	}
+
+	public void removeRequester(Serializable key) throws Exception {
+		requesterBO.remove(key);
+	}
+
+	public Requester findRequester(Serializable key) throws Exception {
+		return requesterBO.find(key);
+	}
+
+	public Requester[] findAllRequesters() throws Exception {
+		return requesterBO.findAll();
+	}
+
+	public Collection<Requester> filter(Requester entity) {
+		return requesterBO.filter(entity);
+	}
+
+	public Collection<Requester> findRequesterCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
+		return requesterBO.findCollectionByHQL(hql, parameters);
+	}
+
+	public Requester findRequesterUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return requesterBO.findUniqueByHQL(hql, parameters);
 	}	
 }
