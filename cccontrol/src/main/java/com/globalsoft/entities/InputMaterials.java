@@ -2,6 +2,8 @@ package com.globalsoft.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.globalsoft.util.Constants;
@@ -13,14 +15,16 @@ public class InputMaterials extends BasicEntity {
 
 	private static final long serialVersionUID = -6338033207049989141L;
 
-	@Column(name = "name")
-	private String nome;//Descrição do produto
+	@OneToOne
+	@JoinColumn(name = "produto")
+	private Product produto;
 
-	@Column(name = "person")
-	private Person usuario;
+	@OneToOne
+	@JoinColumn(name = "user_requester")
+	private User usuario;
 
 	@Column(name = "UnidadeMed")
-	private String undMedida;
+	private String unidadeMedidaProduto;
 
 	@Column(name = "NotaFiscal")
 	private String notaFiscal; // falta o centro de custo
@@ -29,44 +33,61 @@ public class InputMaterials extends BasicEntity {
 	private String contrato;
 
 	@Column(name = "QtdAtual")
-	private String qtdAtual;
+	private String quantidadeAtual;
 
 	@Column(name = "Qtd")
-	private String qtd;
+	private String quantidade;
 
 	@Column(name = "Ipi")
 	private String ipi;
 
 	@Column(name = "ValorUnit")
-	private String valorUnit;
+	private String valorUnitario;
 
 	@Column(name = "ValorTotal")
 	private String valorTotal;
 
-	@Column(name = "Fornecedor")
-	private String fornecedor;
+	@OneToOne
+	@JoinColumn(name = "fornecedor")
+	private Supplier fornecedor;
 
 	@Column(name = "Contato")
-	private String contato;
+	private String contatoFornecedor;
 
 	@Column(name = "Tel")
-	private String tel;
+	private String telefoneFornecedor;
 
 	@Column(name = "Fax")
-	private String fax;
+	private String faxFornecedor;
 
 	@Column(name = "Email")
-	private String email;
+	private String emailContatoFornecedor;
 
 	@Column(name = "ObsComments")
 	private String obsComments;
 
-	public String getUndMedida() {
-		return undMedida;
+	public Product getProduto() {
+		return produto;
 	}
 
-	public void setUndMedida(String undMedida) {
-		this.undMedida = undMedida;
+	public void setProduto(Product produto) {
+		this.produto = produto;
+	}
+
+	public User getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(User usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getUnidadeMedidaProduto() {
+		return unidadeMedidaProduto;
+	}
+
+	public void setUnidadeMedidaProduto(String unidadeMedidaProduto) {
+		this.unidadeMedidaProduto = unidadeMedidaProduto;
 	}
 
 	public String getNotaFiscal() {
@@ -85,20 +106,20 @@ public class InputMaterials extends BasicEntity {
 		this.contrato = contrato;
 	}
 
-	public String getQtdAtual() {
-		return qtdAtual;
+	public String getQuantidadeAtual() {
+		return quantidadeAtual;
 	}
 
-	public void setQtdAtual(String qtdAtual) {
-		this.qtdAtual = qtdAtual;
+	public void setQuantidadeAtual(String quantidadeAtual) {
+		this.quantidadeAtual = quantidadeAtual;
 	}
 
-	public String getQtd() {
-		return qtd;
+	public String getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQtd(String qtd) {
-		this.qtd = qtd;
+	public void setQuantidade(String quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public String getIpi() {
@@ -109,12 +130,12 @@ public class InputMaterials extends BasicEntity {
 		this.ipi = ipi;
 	}
 
-	public String getValorUnit() {
-		return valorUnit;
+	public String getValorUnitario() {
+		return valorUnitario;
 	}
 
-	public void setValorUnit(String valorUnit) {
-		this.valorUnit = valorUnit;
+	public void setValorUnitario(String valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
 
 	public String getValorTotal() {
@@ -125,91 +146,83 @@ public class InputMaterials extends BasicEntity {
 		this.valorTotal = valorTotal;
 	}
 
-	public String getFornecedor() {
+	public Supplier getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(String fornecedor) {
+	public void setFornecedor(Supplier fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 
-	public String getContato() {
-		return contato;
+	public String getContatoFornecedor() {
+		return contatoFornecedor;
 	}
 
-	public void setContato(String contato) {
-		this.contato = contato;
+	public void setContatoFornecedor(String contatoFornecedor) {
+		this.contatoFornecedor = contatoFornecedor;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getTelefoneFornecedor() {
+		return telefoneFornecedor;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setTelefoneFornecedor(String telefoneFornecedor) {
+		this.telefoneFornecedor = telefoneFornecedor;
 	}
 
-	public String getFax() {
-		return fax;
+	public String getFaxFornecedor() {
+		return faxFornecedor;
 	}
 
-	public void setFax(String fax) {
-		this.fax = fax;
+	public void setFaxFornecedor(String faxFornecedor) {
+		this.faxFornecedor = faxFornecedor;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getEmailContatoFornecedor() {
+		return emailContatoFornecedor;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailContatoFornecedor(String emailContatoFornecedor) {
+		this.emailContatoFornecedor = emailContatoFornecedor;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getObsComments() {
+		return obsComments;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Person getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Person usuario) {
-		this.usuario = usuario;
+	public void setObsComments(String obsComments) {
+		this.obsComments = obsComments;
 	}
 
 	public Boolean validate() throws Exception {
-		if (fornecedor == null || fornecedor.isEmpty()){ 
+		if (fornecedor == null) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (nome == null || nome.isEmpty()){ 
+		if (notaFiscal == null || notaFiscal.isEmpty()
+				|| !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (notaFiscal == null || notaFiscal.isEmpty() || !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+		if (contrato == null || contrato.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (contrato == null || contrato.isEmpty()){ 
+		if (quantidade == null || quantidade.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (qtd == null || qtd.isEmpty()){ 
+		if (ipi == null || ipi.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (ipi == null || ipi.isEmpty()){ 
+		if (valorUnitario == null || valorUnitario.isEmpty()
+				|| !valorUnitario.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (valorUnit== null || valorUnit.isEmpty() || !valorUnit.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+		if (valorTotal == null || valorTotal.isEmpty()
+				|| !valorTotal.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (valorTotal == null || valorTotal.isEmpty() || !valorTotal.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+		if (contatoFornecedor == null || contatoFornecedor.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (contato == null || contato.isEmpty()){ 
-			throw new Exception(Messages.INVALID_FIELD);
-		}
-		if (email == null || email.isEmpty()){ 
+		if (emailContatoFornecedor == null || emailContatoFornecedor.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		return Boolean.TRUE;

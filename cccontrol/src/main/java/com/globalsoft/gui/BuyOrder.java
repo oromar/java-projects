@@ -404,7 +404,7 @@ public class BuyOrder extends JFrame {
 		button_4.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fornecedores view = new Fornecedores();
+				Fornecedores view = new Fornecedores(true);
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
 			}

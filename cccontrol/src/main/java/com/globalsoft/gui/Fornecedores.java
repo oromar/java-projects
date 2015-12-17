@@ -36,6 +36,11 @@ public class Fornecedores extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
+	private Supplier fornecedorSelecionado;
+
+	public Supplier getFornecedorSelecionado() {
+		return fornecedorSelecionado;
+	}
 
 	private void createTableModel(Supplier[] values) {
 		String[] columns = { "Codigo", "Nome", "Telefone 1", "Telefone 2",
@@ -66,7 +71,7 @@ public class Fornecedores extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fornecedores() {
+	public Fornecedores(boolean isSelectFrame) {
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
 				try {
@@ -216,6 +221,36 @@ public class Fornecedores extends JFrame {
 		lblFornecedores.setBounds(208, 0, 473, 81);
 		panel.add(lblFornecedores);
 
+		JButton btnSelecionar = new JButton("");
+		btnSelecionar.setIcon(new ImageIcon("Icones\\Yes.png"));
+		btnSelecionar.setBounds(208, 11, 56, 48);
+		panel.add(btnSelecionar);
+		btnSelecionar.setVisible(isSelectFrame);
+		JLabel lblSelecionar = new JLabel("Selecionar");
+		lblSelecionar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSelecionar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelecionar.setBounds(208, 61, 56, 14);
+		panel.add(lblSelecionar);
+		lblSelecionar.setVisible(isSelectFrame);
+		btnSelecionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = -1;
+				index = table.getSelectedRow();
+				if (index > -1) {
+					String id = (String) table.getValueAt(index, 0);
+					try {
+						Supplier s = Facade.getInstance().findSupplier(Long.valueOf(id));
+						if (s != null) {
+							fornecedorSelecionado = s;
+							Fornecedores.this.dispose();
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+
 		textField = new JTextField();
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -233,7 +268,9 @@ public class Fornecedores extends JFrame {
 							if (sup != null) {
 								createTableModel(new Supplier[] { sup });
 							} else {
-								JOptionPane.showMessageDialog(Fornecedores.this, "Registro não encontrado.");
+								JOptionPane.showMessageDialog(
+										Fornecedores.this,
+										"Registro não encontrado.");
 							}
 						} else {
 							sup = new Supplier();
@@ -244,12 +281,15 @@ public class Fornecedores extends JFrame {
 								createTableModel(col.toArray((Supplier[]) Array
 										.newInstance(Supplier.class, col.size())));
 							} else {
-								JOptionPane.showMessageDialog(Fornecedores.this, "Não foram encontrados registros para os parametros passados.");
+								JOptionPane
+										.showMessageDialog(Fornecedores.this,
+												"Não foram encontrados registros para os parametros passados.");
 							}
 						}
 					}
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(Fornecedores.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(Fornecedores.this,
+							e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

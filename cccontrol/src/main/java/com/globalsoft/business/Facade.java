@@ -5,12 +5,14 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.globalsoft.dao.ClientDAO;
+import com.globalsoft.dao.InputMaterialsDAO;
 import com.globalsoft.dao.ProductDAO;
 import com.globalsoft.dao.RequesterDAO;
 import com.globalsoft.dao.RoleDAO;
 import com.globalsoft.dao.SupplierDAO;
 import com.globalsoft.dao.UserDAO;
 import com.globalsoft.entities.Client;
+import com.globalsoft.entities.InputMaterials;
 import com.globalsoft.entities.Product;
 import com.globalsoft.entities.Requester;
 import com.globalsoft.entities.Role;
@@ -26,6 +28,7 @@ public class Facade {
 	private RoleBO roleBO;
 	private SupplierBO supplierBO;
 	private RequesterBO requesterBO;
+	private InputMaterialsBO inputBO;
 	
 	private Facade(){
 		init();
@@ -45,6 +48,7 @@ public class Facade {
 		roleBO = new RoleBO(new RoleDAO());
 		supplierBO = new SupplierBO(new SupplierDAO());
 		requesterBO = new RequesterBO(new RequesterDAO());
+		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
 	}
 
 	public boolean exists(Serializable key) throws Exception {
@@ -245,5 +249,38 @@ public class Facade {
 
 	public Requester findRequesterUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return requesterBO.findUniqueByHQL(hql, parameters);
-	}	
+	}
+	
+	public void create(InputMaterials entity) throws Exception {
+		inputBO.create(entity);
+	}
+
+	public void update(InputMaterials entity) throws Exception {
+		inputBO.update(entity);
+	}
+
+	public void removeInputMaterials(Serializable key) throws Exception {
+		inputBO.remove(key);
+	}
+
+	public InputMaterials findInputMaterials(Serializable key) throws Exception {
+		return inputBO.find(key);
+	}
+
+	public InputMaterials[] findAllInputMaterials() throws Exception {
+		return inputBO.findAll();
+	}
+
+	public Collection<InputMaterials> filter(InputMaterials entity) {
+		return inputBO.filter(entity);
+	}
+
+	public Collection<InputMaterials> findInputMaterialsCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
+		return inputBO.findCollectionByHQL(hql, parameters);
+	}
+
+	public InputMaterials findInputMaterialsUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return inputBO.findUniqueByHQL(hql, parameters);
+	}
 }

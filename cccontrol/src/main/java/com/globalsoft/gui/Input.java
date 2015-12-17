@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -18,34 +19,35 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import com.globalsoft.business.Facade;
+import com.globalsoft.entities.InputMaterials;
 import com.globalsoft.entities.Product;
+import com.globalsoft.entities.Supplier;
+import com.globalsoft.util.Util;
 
 public class Input extends JFrame {
 
+	private static final long serialVersionUID = 4627718026424582707L;
 	private JPanel contentPane;
- 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+ 	private JTextField txtIdProduto;
+	private JTextField txtDescricaoProduto;
+	private JTextField txtUnidadeMedidaProduto;
+	private JTextField txtNotaFiscal;
+	private JTextField txtQuantidadeAtual;
+	private JTextField txtQuantidade;
+	private JTextField txtIdFornecedor;
+	private JTextField txtNomeFornecedor;
+	private JTextField txtValorUnitario;
 	private JTextField txtValorTotal;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private Product produtoSelecionado;
-
-	public void setProdutoSelecionado(Product produtoSelecionado) {
-		this.produtoSelecionado = produtoSelecionado;
-	}
-
+	private JTextField txtIpi;
+	private JTextField txtCentroCusto;
+	private JTextField txtContrato;
+	private JTextField txtContatoFornecedor;
+	private JTextField txtTelefoneFornecedor;
+	private JTextField txtFaxFornecedor;
+	private JTextField txtEmailContatoFornecedor;
+	private JTextPane txtObsComments;
+	
 	public Input() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 771, 513);
@@ -60,23 +62,23 @@ public class Input extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
- 		textField.setEditable(false);
- 		textField.setBounds(10, 27, 79, 20);
- 		panel.add(textField);
- 		textField.setColumns(10);
+		txtIdProduto = new JTextField();
+ 		txtIdProduto.setEditable(false);
+ 		txtIdProduto.setBounds(10, 27, 79, 20);
+ 		panel.add(txtIdProduto);
+ 		txtIdProduto.setColumns(10);
  		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(99, 27, 497, 20);
-		panel.add(textField_1);
+		txtDescricaoProduto = new JTextField();
+		txtDescricaoProduto.setEditable(false);
+		txtDescricaoProduto.setColumns(10);
+		txtDescricaoProduto.setBounds(99, 27, 497, 20);
+		panel.add(txtDescricaoProduto);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(606, 27, 79, 20);
-		panel.add(textField_2);
+		txtUnidadeMedidaProduto = new JTextField();
+		txtUnidadeMedidaProduto.setEditable(false);
+		txtUnidadeMedidaProduto.setColumns(10);
+		txtUnidadeMedidaProduto.setBounds(606, 27, 79, 20);
+		panel.add(txtUnidadeMedidaProduto);
 		
 		JLabel lblNewLabel = new JLabel("C\u00F3digo");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -103,9 +105,10 @@ public class Input extends JFrame {
 					@Override
 					public void windowClosed(WindowEvent e) {
 						Product p = view.getSelecionado();
-						textField.setText(String.valueOf(p.getId()));
-						textField_1.setText(p.getNome());
-						textField_4.setText(p.getEmEstoque());
+						txtIdProduto.setText(String.valueOf(p.getId()));
+						txtDescricaoProduto.setText(p.getNome());
+						txtUnidadeMedidaProduto.setText(p.getUnidadeMedida());
+						txtQuantidadeAtual.setText(p.getEmEstoque());
 					}
 				});
 			}							
@@ -114,31 +117,31 @@ public class Input extends JFrame {
 		button.setBounds(695, 19, 28, 28);
 		panel.add(button);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(10, 74, 122, 20);
-		panel.add(textField_3);
+		txtNotaFiscal = new JTextField();
+		txtNotaFiscal.setColumns(10);
+		txtNotaFiscal.setBounds(10, 74, 122, 20);
+		panel.add(txtNotaFiscal);
 		
 		JLabel lblNNotaFiscal = new JLabel("N\u00BA Nota Fiscal");
 		lblNNotaFiscal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNNotaFiscal.setBounds(10, 58, 122, 14);
 		panel.add(lblNNotaFiscal);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
-		textField_4.setBounds(10, 116, 122, 20);
-		panel.add(textField_4);
+		txtQuantidadeAtual = new JTextField();
+		txtQuantidadeAtual.setEditable(false);
+		txtQuantidadeAtual.setColumns(10);
+		txtQuantidadeAtual.setBounds(10, 116, 122, 20);
+		panel.add(txtQuantidadeAtual);
 		
 		JLabel lblQuantidadeEmEstoque = new JLabel("Quantidade Atual");
 		lblQuantidadeEmEstoque.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblQuantidadeEmEstoque.setBounds(10, 100, 122, 14);
 		panel.add(lblQuantidadeEmEstoque);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(142, 116, 122, 20);
-		panel.add(textField_5);
+		txtQuantidade = new JTextField();
+		txtQuantidade.setColumns(10);
+		txtQuantidade.setBounds(142, 116, 122, 20);
+		panel.add(txtQuantidade);
 		
 		JLabel lblQuantidade = new JLabel("Quantidade");
 		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -150,10 +153,10 @@ public class Input extends JFrame {
 		lblValorUnitrio.setBounds(411, 100, 122, 14);
 		panel.add(lblValorUnitrio);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(411, 116, 122, 20);
-		panel.add(textField_8);
+		txtValorUnitario = new JTextField();
+		txtValorUnitario.setColumns(10);
+		txtValorUnitario.setBounds(411, 116, 122, 20);
+		panel.add(txtValorUnitario);
 		
 		txtValorTotal = new JTextField();
 		txtValorTotal.setColumns(10);
@@ -165,30 +168,30 @@ public class Input extends JFrame {
 		lblValorTotal.setBounds(543, 100, 185, 14);
 		panel.add(lblValorTotal);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(274, 116, 127, 20);
-		panel.add(textField_9);
+		txtIpi = new JTextField();
+		txtIpi.setColumns(10);
+		txtIpi.setBounds(274, 116, 127, 20);
+		panel.add(txtIpi);
 		
 		JLabel lblIpi = new JLabel("I.P.I.");
 		lblIpi.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIpi.setBounds(274, 100, 127, 14);
 		panel.add(lblIpi);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(142, 74, 122, 20);
-		panel.add(textField_10);
+		txtCentroCusto = new JTextField();
+		txtCentroCusto.setColumns(10);
+		txtCentroCusto.setBounds(142, 74, 122, 20);
+		panel.add(txtCentroCusto);
 		
 		JLabel lblCentroDeCusto = new JLabel("Centro de Custo");
 		lblCentroDeCusto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCentroDeCusto.setBounds(142, 58, 122, 14);
 		panel.add(lblCentroDeCusto);
 		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(274, 74, 449, 20);
-		panel.add(textField_11);
+		txtContrato = new JTextField();
+		txtContrato.setColumns(10);
+		txtContrato.setBounds(274, 74, 449, 20);
+		panel.add(txtContrato);
 		
 		JLabel lblContrato = new JLabel("Contrato");
 		lblContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -206,73 +209,85 @@ public class Input extends JFrame {
 		lblCdFornecedor.setBounds(10, 11, 122, 14);
 		panel_1.add(lblCdFornecedor);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		textField_6.setBounds(10, 27, 122, 20);
-		panel_1.add(textField_6);
-		textField_6.setColumns(10);
+		txtIdFornecedor = new JTextField();
+		txtIdFornecedor.setEditable(false);
+		txtIdFornecedor.setBounds(10, 27, 122, 20);
+		panel_1.add(txtIdFornecedor);
+		txtIdFornecedor.setColumns(10);
 		
 		JLabel lblFornecedor = new JLabel("Fornecedor");
 		lblFornecedor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblFornecedor.setBounds(142, 11, 122, 14);
 		panel_1.add(lblFornecedor);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(142, 27, 411, 20);
-		panel_1.add(textField_7);
-		textField_7.setEditable(false);
-		textField_7.setColumns(10);
+		txtNomeFornecedor = new JTextField();
+		txtNomeFornecedor.setBounds(142, 27, 411, 20);
+		panel_1.add(txtNomeFornecedor);
+		txtNomeFornecedor.setEditable(false);
+		txtNomeFornecedor.setColumns(10);
 		
 		JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				Fornecedores view = new Fornecedores();
+				final Fornecedores view = new Fornecedores(true);
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);	
+				view.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+						Supplier f = view.getFornecedorSelecionado();
+						txtIdFornecedor.setText(String.valueOf(f.getId()));
+						txtNomeFornecedor.setText(f.getNome());
+						txtEmailContatoFornecedor.setText(f.getEmail());
+						txtContatoFornecedor.setText(f.getContato());
+						txtFaxFornecedor.setText(f.getFax());
+						txtTelefoneFornecedor.setText(f.getTel1());
+					}
+				});				
 			}
 		});
 		button_3.setToolTipText("Buscar Fornecedor");
 		button_3.setBounds(696, 64, 28, 28);
 		panel_1.add(button_3);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(564, 27, 160, 20);
-		panel_1.add(textField_12);
+		txtContatoFornecedor = new JTextField();
+		txtContatoFornecedor.setColumns(10);
+		txtContatoFornecedor.setBounds(564, 27, 160, 20);
+		panel_1.add(txtContatoFornecedor);
 		
 		JLabel lblContato = new JLabel("Contato");
 		lblContato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblContato.setBounds(564, 11, 127, 14);
 		panel_1.add(lblContato);
 		
-		textField_13 = new JTextField();
-		textField_13.setEditable(false);
-		textField_13.setColumns(10);
-		textField_13.setBounds(10, 72, 148, 20);
-		panel_1.add(textField_13);
+		txtTelefoneFornecedor = new JTextField();
+		txtTelefoneFornecedor.setEditable(false);
+		txtTelefoneFornecedor.setColumns(10);
+		txtTelefoneFornecedor.setBounds(10, 72, 148, 20);
+		panel_1.add(txtTelefoneFornecedor);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTelefone.setBounds(10, 56, 148, 14);
 		panel_1.add(lblTelefone);
 		
-		textField_14 = new JTextField();
-		textField_14.setEditable(false);
-		textField_14.setColumns(10);
-		textField_14.setBounds(168, 74, 139, 20);
-		panel_1.add(textField_14);
+		txtFaxFornecedor = new JTextField();
+		txtFaxFornecedor.setEditable(false);
+		txtFaxFornecedor.setColumns(10);
+		txtFaxFornecedor.setBounds(168, 74, 139, 20);
+		panel_1.add(txtFaxFornecedor);
 		
 		JLabel lblFax = new JLabel("Fax");
 		lblFax.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblFax.setBounds(168, 58, 139, 14);
 		panel_1.add(lblFax);
 		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
-		textField_15.setBounds(317, 72, 369, 20);
-		panel_1.add(textField_15);
+		txtEmailContatoFornecedor = new JTextField();
+		txtEmailContatoFornecedor.setColumns(10);
+		txtEmailContatoFornecedor.setBounds(317, 72, 369, 20);
+		panel_1.add(txtEmailContatoFornecedor);
 		
 		JLabel lblEmailContato = new JLabel("Email Contato");
 		lblEmailContato.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -301,12 +316,39 @@ public class Input extends JFrame {
 		btnSalvar.setIcon(new ImageIcon("Icones\\page_save.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				InputMaterials entrada = Util.getScreenData(Input.this, InputMaterials.class);
+				try {
+					String idProduto = txtIdProduto.getText();
+					String idFornecedor = txtIdFornecedor.getText();
+					if (idProduto == null || idProduto.isEmpty()) {
+						throw new Exception("Produto não informado");
+					}
+					if (idFornecedor == null || idFornecedor.isEmpty()) {
+						throw new Exception("Fornecedor não informado");
+					}
+					entrada.setFornecedor(Facade.getInstance().findSupplier(Long.valueOf(idFornecedor)));
+					entrada.setProduto(Facade.getInstance().findProduct(Long.valueOf(idProduto)));
+					if (entrada.getId() == null) {
+						Facade.getInstance().create(entrada);
+					} else {
+						Facade.getInstance().update(entrada);
+					}
+					JOptionPane.showMessageDialog(Input.this, "Registro salvo com sucesso.");
+					Util.clearScreen(Input.this);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(Input.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnSalvar.setBounds(560, 440, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		JButton btnNovo = new JButton("Novo");
+		btnNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Util.clearScreen(Input.this);
+			}
+		});
 		btnNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNovo.setIcon(new ImageIcon("Icones\\page_white_horizontal.png"));
 		btnNovo.setBounds(10, 440, 89, 23);
@@ -327,7 +369,7 @@ public class Input extends JFrame {
 		scrollPane.setBounds(10, 26, 714, 66);
 		panel_2.add(scrollPane);
 		
-		JTextPane textPane = new JTextPane();
-		scrollPane.setViewportView(textPane);
+		txtObsComments = new JTextPane();
+		scrollPane.setViewportView(txtObsComments);
 	}
 }

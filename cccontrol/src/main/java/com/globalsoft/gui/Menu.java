@@ -162,7 +162,7 @@ public class Menu extends JFrame {
 				.setIcon(new ImageIcon("Icones\\1448763387_Supervisor.png"));
 		btfornecedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fornecedores view = new Fornecedores();
+				Fornecedores view = new Fornecedores(false);
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
 			}

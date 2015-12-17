@@ -270,9 +270,7 @@ public class Util {
 					cmb.setSelectedIndex(0);
 				}
 			}
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

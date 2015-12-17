@@ -246,15 +246,15 @@ public class Product extends BasicEntity {
 				|| !estoqueMin.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		
+
 		if (Integer.valueOf(estoqueMin) > Integer.valueOf(estoqueMax)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		
+
 		if (Integer.valueOf(estoqueMin) < 0) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		
+
 		if (valorUnit == null || valorUnit.isEmpty()
 				|| !valorUnit.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
@@ -263,15 +263,16 @@ public class Product extends BasicEntity {
 		// validações de negócio
 		// verifica se existe produto com mesmo nome, marca e fabricante
 		// cadastrado
-		Product p = new Product();
-		p.setNome(getNome());
-		p.setMarca(getMarca());
-		p.setFabricante(getFabricante());
-		Collection<Product> collection = Facade.getInstance().filter(p);
-		if (collection != null && !collection.isEmpty()) {
-			throw new Exception(Messages.PRODUCT_ALREADY_EXISTS);
+		if (getId() == null) {
+			Product p = new Product();
+			p.setNome(getNome());
+			p.setMarca(getMarca());
+			p.setFabricante(getFabricante());
+			Collection<Product> collection = Facade.getInstance().filter(p);
+			if (collection != null && !collection.isEmpty()) {
+				throw new Exception(Messages.PRODUCT_ALREADY_EXISTS);
+			}
 		}
-
 		return Boolean.TRUE;
 	}
 

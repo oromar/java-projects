@@ -140,10 +140,10 @@ public class CadastroProduto extends JFrame {
 						Facade.getInstance().create(p);
 					}
 					JOptionPane.showMessageDialog(CadastroProduto.this, "Registro salvo com sucesso !");					
+					clearScreen();
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(CadastroProduto.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				clearScreen();
 			}
 				
 		});
