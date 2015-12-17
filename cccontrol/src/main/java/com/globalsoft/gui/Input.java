@@ -1,9 +1,10 @@
 package com.globalsoft.gui;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,11 +18,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import com.globalsoft.entities.Product;
+
 public class Input extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtCodigoProduto;
+	private JTextField txtDescricaoProduto;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -37,26 +40,12 @@ public class Input extends JFrame {
 	private JTextField textField_13;
 	private JTextField textField_14;
 	private JTextField textField_15;
+	private Product produtoSelecionado;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Input frame = new Input();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void setProdutoSelecionado(Product produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Input() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 771, 513);
@@ -71,17 +60,17 @@ public class Input extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(10, 27, 79, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtCodigoProduto = new JTextField();
+		txtCodigoProduto.setEditable(false);
+		txtCodigoProduto.setBounds(10, 27, 79, 20);
+		panel.add(txtCodigoProduto);
+		txtCodigoProduto.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(99, 27, 497, 20);
-		panel.add(textField_1);
+		txtDescricaoProduto = new JTextField();
+		txtDescricaoProduto.setEditable(false);
+		txtDescricaoProduto.setColumns(10);
+		txtDescricaoProduto.setBounds(99, 27, 497, 20);
+		panel.add(txtDescricaoProduto);
 		
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
@@ -107,10 +96,18 @@ public class Input extends JFrame {
 		button.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Produtos view = new Produtos();
-				view.setLocationRelativeTo(null);
+				final Produtos view = new Produtos(true);
+				view.setLocationRelativeTo(Input.this);
 				view.setVisible(true);
-			}
+				view.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+						Product p = view.getSelecionado();
+						txtCodigoProduto.setText(String.valueOf(p.getId()));
+						txtDescricaoProduto.setText(p.getNome());
+					}
+				});
+			}							
 		});
 		button.setToolTipText("Buscar Produto");
 		button.setBounds(695, 19, 28, 28);

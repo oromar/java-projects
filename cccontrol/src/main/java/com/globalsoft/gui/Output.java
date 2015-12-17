@@ -1,22 +1,23 @@
 package com.globalsoft.gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
+
+import com.globalsoft.entities.Product;
 
 public class Output extends JFrame {
 
@@ -107,9 +108,10 @@ public class Output extends JFrame {
 		button.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Produtos view = new Produtos();
+				Produtos view = new Produtos(true);
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
+				Product p = view.getSelecionado();
 			}
 		});
 		button.setToolTipText("Buscar Produto");

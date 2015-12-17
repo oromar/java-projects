@@ -88,7 +88,7 @@ public class Menu extends JFrame {
 		btProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Produtos r = new Produtos();
+				Produtos r = new Produtos(false);
 				r.setLocationRelativeTo(null);
 				r.setVisible(true);
 			}
