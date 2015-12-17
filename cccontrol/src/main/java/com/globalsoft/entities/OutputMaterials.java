@@ -6,13 +6,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.globalsoft.util.Constants;
+import com.globalsoft.util.Messages;
+
 @Entity
 @Table(name = "output_materials")
 public class OutputMaterials extends BasicEntity {
 
 	private static final long serialVersionUID = 2902806345887997198L;
 
-	@Column(name = "name")
+	@Column(name = "name") //Descricao do produto
 	private String nome;
 
 	@OneToOne
@@ -179,7 +182,25 @@ public class OutputMaterials extends BasicEntity {
 	}
 
 	public Boolean validate() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (requisitanteName == null || requisitanteName.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (nome == null || nome.isEmpty()){ // descricao produto
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (qtd == null || qtd.isEmpty() || !qtd.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (departamento == null || departamento.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (contrato == null || contrato.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (autorizacao == null || autorizacao.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		return Boolean.TRUE;
 	}
 }

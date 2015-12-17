@@ -5,6 +5,7 @@ public enum Messages {
 	Messages;
 	
 	public static final String INVALID_CPF = "CPF Inválido";
+	public static final String INVALID_CEP = "CEP Inválido";
 	public static final String INVALID_NAME = "Nome Inválido";
 	public static final String INVALID_LOGIN = "Login Inválido";
 	public static final String INVALID_PASSWORD = "Senha Inválida";

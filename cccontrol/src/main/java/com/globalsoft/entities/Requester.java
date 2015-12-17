@@ -131,7 +131,7 @@ public class Requester extends BasicEntity {
 			throw new Exception(Messages.INVALID_NAME);
 		}
 		if (cpf == null || cpf.isEmpty() || cpf.length() != 11 || !cpf.matches(Constants.ONLY_NUMBERS_REGEX)){ 
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_CPF);
 		}
 		if (rg == null || rg.isEmpty()||!rg.matches(Constants.ONLY_NUMBERS_REGEX)){
 			throw new Exception(Messages.INVALID_FIELD);

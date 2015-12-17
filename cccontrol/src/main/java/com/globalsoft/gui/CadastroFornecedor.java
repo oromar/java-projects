@@ -69,6 +69,7 @@ public class CadastroFornecedor extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Supplier sup = Util.getScreenData(CadastroFornecedor.this, Supplier.class);
@@ -92,6 +93,7 @@ public class CadastroFornecedor extends JFrame {
 		contentPane.add(btnSalvar);
 
 		btnSair = new JButton("Sair");
+		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnSair.setIcon(new ImageIcon("Icones\\door_in.png"));
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -348,6 +350,7 @@ public class CadastroFornecedor extends JFrame {
 		scrollPane.setViewportView(txtObsComments);
 
 		btnNovo = new JButton("Novo");
+		btnNovo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Util.clearScreen(CadastroFornecedor.this);

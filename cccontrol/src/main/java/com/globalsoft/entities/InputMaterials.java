@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.globalsoft.util.Constants;
+import com.globalsoft.util.Messages;
+
 @Entity
 @Table(name = "input_materials")
 public class InputMaterials extends BasicEntity {
@@ -11,7 +14,7 @@ public class InputMaterials extends BasicEntity {
 	private static final long serialVersionUID = -6338033207049989141L;
 
 	@Column(name = "name")
-	private String nome;
+	private String nome;//Descrição do produto
 
 	@Column(name = "person")
 	private Person usuario;
@@ -179,7 +182,36 @@ public class InputMaterials extends BasicEntity {
 	}
 
 	public Boolean validate() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if (fornecedor == null || fornecedor.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (nome == null || nome.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (notaFiscal == null || notaFiscal.isEmpty() || !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (contrato == null || contrato.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (qtd == null || qtd.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (ipi == null || ipi.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (valorUnit== null || valorUnit.isEmpty() || !valorUnit.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (valorTotal == null || valorTotal.isEmpty() || !valorTotal.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (contato == null || contato.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (email == null || email.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		return Boolean.TRUE;
 	}
 }

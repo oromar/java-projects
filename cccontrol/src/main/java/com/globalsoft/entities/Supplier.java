@@ -3,6 +3,9 @@ package com.globalsoft.entities;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import com.globalsoft.util.Constants;
+import com.globalsoft.util.Messages;
+
 @javax.persistence.Entity
 @Table(name = "supplier")
 public class Supplier extends BasicEntity {
@@ -252,8 +255,66 @@ public class Supplier extends BasicEntity {
 	}
 
 	public Boolean validate() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (razaoSocial == null || razaoSocial.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (nome == null || nome.isEmpty()){ 
+			throw new Exception(Messages.INVALID_NAME);
+		}
+		if (endereco == null || endereco.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (numero == null || numero.isEmpty() || !numero.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (bairro == null || bairro.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (cidade == null || cidade.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (estado == null || estado.isEmpty()){ 
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (cep == null || cep.isEmpty() || cep.length() != 8 || !cep.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+			throw new Exception(Messages.INVALID_CEP);
+		}
+		if (nome == null || nome.isEmpty()){ 
+			throw new Exception(Messages.INVALID_NAME);
+		}
+		if (documento1 == null || documento1.isEmpty()||!documento1.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (documento2==null||documento2.isEmpty()||!documento2.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (banco==null || banco.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (conta==null|| conta.isEmpty() || !conta.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if (agencia==null|| agencia.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(telefone1==null || telefone1.isEmpty()|| !telefone1.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(telefone2==null || telefone2.isEmpty()|| !telefone2.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(fax==null || fax.isEmpty()|| !fax.matches(Constants.ONLY_NUMBERS_REGEX)){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(email==null || email.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		if(contato==null || contato.isEmpty()){
+			throw new Exception(Messages.INVALID_FIELD);
+		}
+		
+		return Boolean.TRUE;
 	}
 
 }
