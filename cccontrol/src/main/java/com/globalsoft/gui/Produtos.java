@@ -12,6 +12,7 @@ import java.awt.event.WindowFocusListener;
 import java.lang.reflect.Array;
 import java.util.Collection;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,11 +40,13 @@ public class Produtos extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField txtPesquisar;
+	private Product selecionado;
 
-	/**
-	 * Create the frame.
-	 */
-	public Produtos() {
+	public Product getSelecionado() {
+		return selecionado;
+	}
+
+	public Produtos(boolean isSelectFrame) {
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
 				try {
@@ -184,7 +187,7 @@ public class Produtos extends JFrame {
 		JLabel lblProdutos = new JLabel("Produtos");
 		lblProdutos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProdutos.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblProdutos.setBounds(208, 0, 473, 81);
+		lblProdutos.setBounds(367, 0, 314, 81);
 		panel.add(lblProdutos);
 
 		txtPesquisar = new JTextField();
@@ -229,7 +232,7 @@ public class Produtos extends JFrame {
 		JLabel lblDigiteAPesquisa = new JLabel("Digite o termo a ser pesquisado e pressione ENTER");
 		lblDigiteAPesquisa.setBounds(756, 11, 441, 14);
 		panel.add(lblDigiteAPesquisa);
-
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.addMouseListener(new MouseAdapter() {
 			@Override
@@ -237,7 +240,35 @@ public class Produtos extends JFrame {
 
 			}
 		});
-		scrollPane.setBounds(20, 99, 1282, 536);
+		
+		JButton btnSelecionar = new JButton("");
+		btnSelecionar.setBounds(208, 11, 56, 48);
+		panel.add(btnSelecionar);		
+		btnSelecionar.setVisible(isSelectFrame);
+		JLabel lblSelecionar = new JLabel("Selecionar");
+		lblSelecionar.setBounds(208, 61, 65, 14);
+		panel.add(lblSelecionar);
+		lblSelecionar.setVisible(isSelectFrame);
+		btnSelecionar.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				int index = -1;
+				index = table.getSelectedRow();
+				if (index > -1) {
+					String id = (String) table.getValueAt(index, 0);
+					try {
+						Product p = Facade.getInstance().findProduct(Long.valueOf(id));
+						if (p != null) {
+							selecionado = p;
+							Produtos.this.dispose();
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});	
+		
+		scrollPane.setBounds(20, 83, 1282, 536);
 		contentPane.add(scrollPane);
 
 		table = new JTable();

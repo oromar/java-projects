@@ -1,33 +1,33 @@
 package com.globalsoft.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTabbedPane;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 import java.awt.Color;
-import javax.swing.JTextField;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.JTextPane;
-import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+
+import com.globalsoft.entities.Product;
 
 public class BuyOrder extends JFrame {
 
@@ -603,9 +603,7 @@ public class BuyOrder extends JFrame {
 		button_6.setIcon(new ImageIcon("Icones\\zoom.png"));
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Produtos view = new Produtos();
-				view.setLocationRelativeTo(null);
-				view.setVisible(true);
+				
 			}
 		});
 		button_6.setToolTipText("Buscar Produto");
