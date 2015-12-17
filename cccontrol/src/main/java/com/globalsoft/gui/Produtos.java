@@ -242,11 +242,14 @@ public class Produtos extends JFrame {
 		});
 		
 		JButton btnSelecionar = new JButton("");
+		btnSelecionar.setIcon(new ImageIcon("Icones\\Yes.png"));
 		btnSelecionar.setBounds(208, 11, 56, 48);
 		panel.add(btnSelecionar);		
 		btnSelecionar.setVisible(isSelectFrame);
 		JLabel lblSelecionar = new JLabel("Selecionar");
-		lblSelecionar.setBounds(208, 61, 65, 14);
+		lblSelecionar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSelecionar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelecionar.setBounds(208, 61, 56, 14);
 		panel.add(lblSelecionar);
 		lblSelecionar.setVisible(isSelectFrame);
 		btnSelecionar.addActionListener(new ActionListener() {			
@@ -268,7 +271,7 @@ public class Produtos extends JFrame {
 			}
 		});	
 		
-		scrollPane.setBounds(20, 83, 1282, 536);
+		scrollPane.setBounds(10, 99, 1282, 536);
 		contentPane.add(scrollPane);
 
 		table = new JTable();

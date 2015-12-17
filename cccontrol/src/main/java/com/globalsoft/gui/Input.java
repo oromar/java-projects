@@ -105,6 +105,7 @@ public class Input extends JFrame {
 						Product p = view.getSelecionado();
 						textField.setText(String.valueOf(p.getId()));
 						textField_1.setText(p.getNome());
+						textField_4.setText(p.getEmEstoque());
 					}
 				});
 			}							
