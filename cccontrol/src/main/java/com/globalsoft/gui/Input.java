@@ -23,8 +23,8 @@ import com.globalsoft.entities.Product;
 public class Input extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtCodigoProduto;
-	private JTextField txtDescricaoProduto;
+ 	private JTextField textField;
+	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -60,31 +60,23 @@ public class Input extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		txtCodigoProduto = new JTextField();
-		txtCodigoProduto.setEditable(false);
-		txtCodigoProduto.setBounds(10, 27, 79, 20);
-		panel.add(txtCodigoProduto);
-		txtCodigoProduto.setColumns(10);
+		textField = new JTextField();
+ 		textField.setEditable(false);
+ 		textField.setBounds(10, 27, 79, 20);
+ 		panel.add(textField);
+ 		textField.setColumns(10);
+ 		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(99, 27, 497, 20);
+		panel.add(textField_1);
 		
-<<<<<<< HEAD
-		txtDescProd = new JTextField();
-		txtDescProd.setEditable(false);
-		txtDescProd.setColumns(10);
-		txtDescProd.setBounds(99, 27, 497, 20);
-		panel.add(txtDescProd);
-=======
-		txtDescricaoProduto = new JTextField();
-		txtDescricaoProduto.setEditable(false);
-		txtDescricaoProduto.setColumns(10);
-		txtDescricaoProduto.setBounds(99, 27, 497, 20);
-		panel.add(txtDescricaoProduto);
->>>>>>> 901ece3645b94d55e62af5f869ca79938631a9ae
-		
-		txtUndProd = new JTextField();
-		txtUndProd.setEditable(false);
-		txtUndProd.setColumns(10);
-		txtUndProd.setBounds(606, 27, 79, 20);
-		panel.add(txtUndProd);
+		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(606, 27, 79, 20);
+		panel.add(textField_2);
 		
 		JLabel lblNewLabel = new JLabel("C\u00F3digo");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -100,9 +92,9 @@ public class Input extends JFrame {
 		lblUnd.setBounds(606, 11, 79, 14);
 		panel.add(lblUnd);
 		
-		JButton btnFindProd = new JButton("");
-		btnFindProd.setIcon(new ImageIcon("Icones\\zoom.png"));
-		btnFindProd.addActionListener(new ActionListener() {
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("Icones\\zoom.png"));
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				final Produtos view = new Produtos(true);
 				view.setLocationRelativeTo(Input.this);
@@ -111,41 +103,41 @@ public class Input extends JFrame {
 					@Override
 					public void windowClosed(WindowEvent e) {
 						Product p = view.getSelecionado();
-						txtCodigoProduto.setText(String.valueOf(p.getId()));
-						txtDescricaoProduto.setText(p.getNome());
+						textField.setText(String.valueOf(p.getId()));
+						textField_1.setText(p.getNome());
 					}
 				});
 			}							
 		});
-		btnFindProd.setToolTipText("Buscar Produto");
-		btnFindProd.setBounds(695, 19, 28, 28);
-		panel.add(btnFindProd);
+		button.setToolTipText("Buscar Produto");
+		button.setBounds(695, 19, 28, 28);
+		panel.add(button);
 		
-		txtNotaFiscal = new JTextField();
-		txtNotaFiscal.setColumns(10);
-		txtNotaFiscal.setBounds(10, 74, 122, 20);
-		panel.add(txtNotaFiscal);
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(10, 74, 122, 20);
+		panel.add(textField_3);
 		
 		JLabel lblNNotaFiscal = new JLabel("N\u00BA Nota Fiscal");
 		lblNNotaFiscal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNNotaFiscal.setBounds(10, 58, 122, 14);
 		panel.add(lblNNotaFiscal);
 		
-		txtQtdAtual = new JTextField();
-		txtQtdAtual.setEditable(false);
-		txtQtdAtual.setColumns(10);
-		txtQtdAtual.setBounds(10, 116, 122, 20);
-		panel.add(txtQtdAtual);
+		textField_4 = new JTextField();
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBounds(10, 116, 122, 20);
+		panel.add(textField_4);
 		
 		JLabel lblQuantidadeEmEstoque = new JLabel("Quantidade Atual");
 		lblQuantidadeEmEstoque.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblQuantidadeEmEstoque.setBounds(10, 100, 122, 14);
 		panel.add(lblQuantidadeEmEstoque);
 		
-		txtQtdEntrada = new JTextField();
-		txtQtdEntrada.setColumns(10);
-		txtQtdEntrada.setBounds(142, 116, 122, 20);
-		panel.add(txtQtdEntrada);
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(142, 116, 122, 20);
+		panel.add(textField_5);
 		
 		JLabel lblQuantidade = new JLabel("Quantidade");
 		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -157,45 +149,45 @@ public class Input extends JFrame {
 		lblValorUnitrio.setBounds(411, 100, 122, 14);
 		panel.add(lblValorUnitrio);
 		
-		txtValueUnit = new JTextField();
-		txtValueUnit.setColumns(10);
-		txtValueUnit.setBounds(411, 116, 122, 20);
-		panel.add(txtValueUnit);
+		textField_8 = new JTextField();
+		textField_8.setColumns(10);
+		textField_8.setBounds(411, 116, 122, 20);
+		panel.add(textField_8);
 		
-		txtValueTotal = new JTextField();
-		txtValueTotal.setColumns(10);
-		txtValueTotal.setBounds(543, 116, 180, 20);
-		panel.add(txtValueTotal);
+		txtValorTotal = new JTextField();
+		txtValorTotal.setColumns(10);
+		txtValorTotal.setBounds(543, 116, 180, 20);
+		panel.add(txtValorTotal);
 		
 		JLabel lblValorTotal = new JLabel("Valor Total");
 		lblValorTotal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblValorTotal.setBounds(543, 100, 185, 14);
 		panel.add(lblValorTotal);
 		
-		txtIPI = new JTextField();
-		txtIPI.setColumns(10);
-		txtIPI.setBounds(274, 116, 127, 20);
-		panel.add(txtIPI);
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		textField_9.setBounds(274, 116, 127, 20);
+		panel.add(textField_9);
 		
 		JLabel lblIpi = new JLabel("I.P.I.");
 		lblIpi.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIpi.setBounds(274, 100, 127, 14);
 		panel.add(lblIpi);
 		
-		txtCentroCusto = new JTextField();
-		txtCentroCusto.setColumns(10);
-		txtCentroCusto.setBounds(142, 74, 122, 20);
-		panel.add(txtCentroCusto);
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		textField_10.setBounds(142, 74, 122, 20);
+		panel.add(textField_10);
 		
 		JLabel lblCentroDeCusto = new JLabel("Centro de Custo");
 		lblCentroDeCusto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCentroDeCusto.setBounds(142, 58, 122, 14);
 		panel.add(lblCentroDeCusto);
 		
-		txtContrato = new JTextField();
-		txtContrato.setColumns(10);
-		txtContrato.setBounds(274, 74, 449, 20);
-		panel.add(txtContrato);
+		textField_11 = new JTextField();
+		textField_11.setColumns(10);
+		textField_11.setBounds(274, 74, 449, 20);
+		panel.add(textField_11);
 		
 		JLabel lblContrato = new JLabel("Contrato");
 		lblContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -213,26 +205,26 @@ public class Input extends JFrame {
 		lblCdFornecedor.setBounds(10, 11, 122, 14);
 		panel_1.add(lblCdFornecedor);
 		
-		txtCodFone = new JTextField();
-		txtCodFone.setEditable(false);
-		txtCodFone.setBounds(10, 27, 122, 20);
-		panel_1.add(txtCodFone);
-		txtCodFone.setColumns(10);
+		textField_6 = new JTextField();
+		textField_6.setEditable(false);
+		textField_6.setBounds(10, 27, 122, 20);
+		panel_1.add(textField_6);
+		textField_6.setColumns(10);
 		
 		JLabel lblFornecedor = new JLabel("Fornecedor");
 		lblFornecedor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblFornecedor.setBounds(142, 11, 122, 14);
 		panel_1.add(lblFornecedor);
 		
-		txtNameForn = new JTextField();
-		txtNameForn.setBounds(142, 27, 411, 20);
-		panel_1.add(txtNameForn);
-		txtNameForn.setEditable(false);
-		txtNameForn.setColumns(10);
+		textField_7 = new JTextField();
+		textField_7.setBounds(142, 27, 411, 20);
+		panel_1.add(textField_7);
+		textField_7.setEditable(false);
+		textField_7.setColumns(10);
 		
-		JButton btnFindForn = new JButton("");
-		btnFindForn.setIcon(new ImageIcon("Icones\\zoom.png"));
-		btnFindForn.addActionListener(new ActionListener() {
+		JButton button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon("Icones\\zoom.png"));
+		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
 				Fornecedores view = new Fornecedores();
@@ -240,46 +232,46 @@ public class Input extends JFrame {
 				view.setVisible(true);	
 			}
 		});
-		btnFindForn.setToolTipText("Buscar Fornecedor");
-		btnFindForn.setBounds(696, 64, 28, 28);
-		panel_1.add(btnFindForn);
+		button_3.setToolTipText("Buscar Fornecedor");
+		button_3.setBounds(696, 64, 28, 28);
+		panel_1.add(button_3);
 		
-		txtContato = new JTextField();
-		txtContato.setColumns(10);
-		txtContato.setBounds(564, 27, 160, 20);
-		panel_1.add(txtContato);
+		textField_12 = new JTextField();
+		textField_12.setColumns(10);
+		textField_12.setBounds(564, 27, 160, 20);
+		panel_1.add(textField_12);
 		
 		JLabel lblContato = new JLabel("Contato");
 		lblContato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblContato.setBounds(564, 11, 127, 14);
 		panel_1.add(lblContato);
 		
-		txtTel = new JTextField();
-		txtTel.setEditable(false);
-		txtTel.setColumns(10);
-		txtTel.setBounds(10, 72, 148, 20);
-		panel_1.add(txtTel);
+		textField_13 = new JTextField();
+		textField_13.setEditable(false);
+		textField_13.setColumns(10);
+		textField_13.setBounds(10, 72, 148, 20);
+		panel_1.add(textField_13);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTelefone.setBounds(10, 56, 148, 14);
 		panel_1.add(lblTelefone);
 		
-		txtFax = new JTextField();
-		txtFax.setEditable(false);
-		txtFax.setColumns(10);
-		txtFax.setBounds(168, 74, 139, 20);
-		panel_1.add(txtFax);
+		textField_14 = new JTextField();
+		textField_14.setEditable(false);
+		textField_14.setColumns(10);
+		textField_14.setBounds(168, 74, 139, 20);
+		panel_1.add(textField_14);
 		
 		JLabel lblFax = new JLabel("Fax");
 		lblFax.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblFax.setBounds(168, 58, 139, 14);
 		panel_1.add(lblFax);
 		
-		txtEmail = new JTextField();
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(317, 72, 369, 20);
-		panel_1.add(txtEmail);
+		textField_15 = new JTextField();
+		textField_15.setColumns(10);
+		textField_15.setBounds(317, 72, 369, 20);
+		panel_1.add(textField_15);
 		
 		JLabel lblEmailContato = new JLabel("Email Contato");
 		lblEmailContato.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -334,7 +326,7 @@ public class Input extends JFrame {
 		scrollPane.setBounds(10, 26, 714, 66);
 		panel_2.add(scrollPane);
 		
-		JTextPane txtObs = new JTextPane();
-		scrollPane.setViewportView(txtObs);
+		JTextPane textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
 	}
 }
