@@ -15,24 +15,11 @@ public class OutputMaterials extends BasicEntity {
 
 	private static final long serialVersionUID = 2902806345887997198L;
 
-	@Column(name = "name") //Descricao do produto
-	private String nome;
-
-	@OneToOne
-	@JoinColumn(name = "person")
-	private Person usuario;
-
 	@Column(name = "ObsComments")
 	private String obsComments;
 
-	@Column(name = "unidade_medida")
-	private String unidade;
-
-	@Column(name = "QtdAtual")
-	private String qtdAtual;
-
 	@Column(name = "QTD")
-	private String qtd;
+	private String quantidade;
 
 	@Column(name = "Departamento")
 	private String departamento;
@@ -40,26 +27,19 @@ public class OutputMaterials extends BasicEntity {
 	@Column(name = "Contrato")
 	private String contrato;
 
-	@Column(name = "Requisitante")
-	private String requisitanteName;
-
-	@Column(name = "Cpf")
-	private String cpf;
-
-	@Column(name = "Rg")
-	private String rg;
-
-	@Column(name = "Matricula")
-	private String matricula;
-
 	@Column(name = "Autorizacao")
 	private String autorizacao;
 
-	@Column(name = "Email")
-	private String email;
-
 	@Column(name = "Tel")
-	private String tel1;
+	private String telefone;
+
+	@OneToOne
+	@JoinColumn(name = "requester")
+	private Requester requester;
+
+	@OneToOne
+	@JoinColumn(name = "product")
+	private Product product;
 
 	public String getObsComments() {
 		return obsComments;
@@ -69,28 +49,12 @@ public class OutputMaterials extends BasicEntity {
 		this.obsComments = obsComments;
 	}
 
-	public String getUnidade() {
-		return unidade;
+	public String getQuantidade() {
+		return quantidade;
 	}
 
-	public void setUnidade(String unidade) {
-		this.unidade = unidade;
-	}
-
-	public String getQtdAtual() {
-		return qtdAtual;
-	}
-
-	public void setQtdAtual(String qtdAtual) {
-		this.qtdAtual = qtdAtual;
-	}
-
-	public String getQtd() {
-		return qtd;
-	}
-
-	public void setQtd(String qtd) {
-		this.qtd = qtd;
+	public void setQuantidade(String quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public String getDepartamento() {
@@ -109,38 +73,6 @@ public class OutputMaterials extends BasicEntity {
 		this.contrato = contrato;
 	}
 
-	public String getRequisitanteName() {
-		return requisitanteName;
-	}
-
-	public void setRequisitanteName(String requisitanteName) {
-		this.requisitanteName = requisitanteName;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-
 	public String getAutorizacao() {
 		return autorizacao;
 	}
@@ -149,56 +81,48 @@ public class OutputMaterials extends BasicEntity {
 		this.autorizacao = autorizacao;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public String getTel1() {
-		return tel1;
+	public Requester getRequester() {
+		return requester;
 	}
 
-	public void setTel1(String tel1) {
-		this.tel1 = tel1;
+	public void setRequester(Requester requester) {
+		this.requester = requester;
 	}
 
-	public String getNome() {
-		return nome;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Person getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Person usuario) {
-		this.usuario = usuario;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public Boolean validate() throws Exception {
-		
-		if (requisitanteName == null || requisitanteName.isEmpty()){ 
+
+		if (requester == null) {
+			throw new Exception(Messages.INVALID_FIELD);
+		} else {
+			requester.validate();
+		}
+		if (quantidade == null || quantidade.isEmpty()
+				|| !quantidade.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (nome == null || nome.isEmpty()){ // descricao produto
+		if (departamento == null || departamento.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (qtd == null || qtd.isEmpty() || !qtd.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+		if (contrato == null || contrato.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (departamento == null || departamento.isEmpty()){ 
-			throw new Exception(Messages.INVALID_FIELD);
-		}
-		if (contrato == null || contrato.isEmpty()){ 
-			throw new Exception(Messages.INVALID_FIELD);
-		}
-		if (autorizacao == null || autorizacao.isEmpty()){ 
+		if (autorizacao == null || autorizacao.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		return Boolean.TRUE;

@@ -141,7 +141,7 @@ public class Menu extends JFrame {
 		JButton btCliente = new JButton("");
 		btCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Solicitantes view = new Solicitantes();
+				Solicitantes view = new Solicitantes(false);
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
 

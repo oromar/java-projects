@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.globalsoft.business.Facade;
 import com.globalsoft.entities.Requester;
+import com.globalsoft.entities.Supplier;
 import com.globalsoft.util.Util;
 
 public class Solicitantes extends JFrame {
@@ -38,33 +39,39 @@ public class Solicitantes extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
+	private Requester selecionado;
 
-	private void createTableModel(Requester[] values){
-		String[] columns = {"Matrícula", "Nome"};
-		DefaultTableModel model = new DefaultTableModel(columns, 0){
+	public Requester getSelecionado() {
+		return selecionado;
+	}
+
+	private void createTableModel(Requester[] values) {
+		String[] columns = { "Matrícula", "Nome" };
+		DefaultTableModel model = new DefaultTableModel(columns, 0) {
 			private static final long serialVersionUID = 8997062589770807215L;
 
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
-			}};
-			String[] line = null;
-			if (values != null && values.length > 0) {
-				for (Requester r : values){
-					line = new String[columns.length];
-					line[0] = String.valueOf(r.getMatricula());
-					line[1] = String.valueOf(r.getNome());
-					model.addRow(line);				
-				}
 			}
-			table.setModel(model);
-			table.createDefaultColumnsFromModel();
+		};
+		String[] line = null;
+		if (values != null && values.length > 0) {
+			for (Requester r : values) {
+				line = new String[columns.length];
+				line[0] = String.valueOf(r.getMatricula());
+				line[1] = String.valueOf(r.getNome());
+				model.addRow(line);
+			}
+		}
+		table.setModel(model);
+		table.createDefaultColumnsFromModel();
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Solicitantes() {
+	public Solicitantes(boolean isSelectFrame) {
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
 				try {
@@ -73,6 +80,7 @@ public class Solicitantes extends JFrame {
 					e1.printStackTrace();
 				}
 			}
+
 			public void windowLostFocus(WindowEvent e) {
 			}
 		});
@@ -111,15 +119,18 @@ public class Solicitantes extends JFrame {
 				int index = -1;
 				index = table.getSelectedRow();
 				if (index > -1) {
-					String matricula = String.valueOf(table.getValueAt(index, 0));
+					String matricula = String.valueOf(table
+							.getValueAt(index, 0));
 					Requester req = new Requester();
 					req.setMatricula(matricula);
-					Optional<Requester> optReq = Facade.getInstance().filter(req).stream().findFirst();
-					if (optReq.isPresent()){
-						CadastroSolicitante view = new CadastroSolicitante(optReq.get());
+					Optional<Requester> optReq = Facade.getInstance()
+							.filter(req).stream().findFirst();
+					if (optReq.isPresent()) {
+						CadastroSolicitante view = new CadastroSolicitante(
+								optReq.get());
 						view.setLocationRelativeTo(Solicitantes.this);
 						view.setVisible(true);
-					}					
+					}
 				}
 			}
 		});
@@ -128,7 +139,8 @@ public class Solicitantes extends JFrame {
 		panel.add(button);
 
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon("Icones\\1448763830_xfce-system-exit.png"));
+		button_2.setIcon(new ImageIcon(
+				"Icones\\1448763830_xfce-system-exit.png"));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -161,20 +173,27 @@ public class Solicitantes extends JFrame {
 				int index = -1;
 				index = table.getSelectedRow();
 				if (index > -1) {
-					String matricula = String.valueOf(table.getValueAt(index, 0));
+					String matricula = String.valueOf(table
+							.getValueAt(index, 0));
 					Requester req = new Requester();
 					req.setMatricula(matricula);
-					Optional<Requester> optReq = Facade.getInstance().filter(req).stream().findFirst();
-					if (optReq.isPresent()){
-						if (JOptionPane.showConfirmDialog(Solicitantes.this, "Tem certeza", "Confirma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					Optional<Requester> optReq = Facade.getInstance()
+							.filter(req).stream().findFirst();
+					if (optReq.isPresent()) {
+						if (JOptionPane.showConfirmDialog(Solicitantes.this,
+								"Tem certeza", "Confirma",
+								JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 							try {
-								Facade.getInstance().removeRequester(optReq.get().getId());
-								JOptionPane.showMessageDialog(Solicitantes.this, "Removido com sucesso.");
+								Facade.getInstance().removeRequester(
+										optReq.get().getId());
+								JOptionPane.showMessageDialog(
+										Solicitantes.this,
+										"Removido com sucesso.");
 							} catch (Exception e1) {
 								e1.printStackTrace();
 							}
 						}
-					}					
+					}
 				}
 			}
 		});
@@ -187,21 +206,26 @@ public class Solicitantes extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				try {
-					String value = textField.getText(); 
+					String value = textField.getText();
 					if (value.isEmpty()) {
-						createTableModel(Facade.getInstance().findAllRequesters());
+						createTableModel(Facade.getInstance()
+								.findAllRequesters());
 					} else if (e.getKeyChar() == KeyEvent.VK_ENTER) {
 						Requester r = new Requester();
 						if (Util.onlyNumbers(value)) {
-							r.setMatricula(value);							 
+							r.setMatricula(value);
 						} else {
 							r.setNome(value);
 						}
-						Collection<Requester> col = Facade.getInstance().filter(r);
+						Collection<Requester> col = Facade.getInstance()
+								.filter(r);
 						if (col != null && !col.isEmpty()) {
-							createTableModel(col.toArray((Requester[])Array.newInstance(Requester.class, col.size())));
+							createTableModel(col.toArray((Requester[]) Array
+									.newInstance(Requester.class, col.size())));
 						} else {
-							JOptionPane.showMessageDialog(Solicitantes.this, "Não foram encontrados registros para os parâmetros informados.");
+							JOptionPane
+									.showMessageDialog(Solicitantes.this,
+											"Não foram encontrados registros para os parâmetros informados.");
 						}
 					}
 				} catch (Exception e1) {
@@ -242,6 +266,38 @@ public class Solicitantes extends JFrame {
 		lblProdutos.setBounds(222, 0, 473, 81);
 		panel.add(lblProdutos);
 
+		JButton btnSelecionar = new JButton("");
+		btnSelecionar.setIcon(new ImageIcon("Icones\\Yes.png"));
+		btnSelecionar.setBounds(208, 11, 56, 48);
+		panel.add(btnSelecionar);
+		btnSelecionar.setVisible(isSelectFrame);
+		JLabel lblSelecionar = new JLabel("Selecionar");
+		lblSelecionar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSelecionar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelecionar.setBounds(208, 61, 56, 14);
+		panel.add(lblSelecionar);
+		lblSelecionar.setVisible(isSelectFrame);
+		btnSelecionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = -1;
+				index = table.getSelectedRow();
+				if (index > -1) {
+					String id = (String) table.getValueAt(index, 0);
+					try {
+						Requester r = new Requester();
+						r.setMatricula(id);
+						Optional<Requester> opt = Facade.getInstance().filter(r).stream().findFirst();
+						if (opt.isPresent()) {
+							selecionado = opt.get();
+							Solicitantes.this.dispose();
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 99, 1282, 536);
 		contentPane.add(scrollPane);

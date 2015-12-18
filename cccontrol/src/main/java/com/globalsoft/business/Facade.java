@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.globalsoft.dao.ClientDAO;
 import com.globalsoft.dao.InputMaterialsDAO;
+import com.globalsoft.dao.OutputMaterialsDAO;
 import com.globalsoft.dao.ProductDAO;
 import com.globalsoft.dao.RequesterDAO;
 import com.globalsoft.dao.RoleDAO;
@@ -13,6 +14,7 @@ import com.globalsoft.dao.SupplierDAO;
 import com.globalsoft.dao.UserDAO;
 import com.globalsoft.entities.Client;
 import com.globalsoft.entities.InputMaterials;
+import com.globalsoft.entities.OutputMaterials;
 import com.globalsoft.entities.Product;
 import com.globalsoft.entities.Requester;
 import com.globalsoft.entities.Role;
@@ -29,6 +31,7 @@ public class Facade {
 	private SupplierBO supplierBO;
 	private RequesterBO requesterBO;
 	private InputMaterialsBO inputBO;
+	private OutputMaterialsBO outputBO;
 	
 	private Facade(){
 		init();
@@ -49,6 +52,8 @@ public class Facade {
 		supplierBO = new SupplierBO(new SupplierDAO());
 		requesterBO = new RequesterBO(new RequesterDAO());
 		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
+		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
+		outputBO = new OutputMaterialsBO(new OutputMaterialsDAO());
 	}
 
 	public boolean exists(Serializable key) throws Exception {
@@ -282,5 +287,38 @@ public class Facade {
 
 	public InputMaterials findInputMaterialsUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return inputBO.findUniqueByHQL(hql, parameters);
+	}
+	
+	public void create(OutputMaterials entity) throws Exception {
+		outputBO.create(entity);
+	}
+
+	public void update(OutputMaterials entity) throws Exception {
+		outputBO.update(entity);
+	}
+
+	public void removeOutputMaterials(Serializable key) throws Exception {
+		outputBO.remove(key);
+	}
+
+	public OutputMaterials findOutputMaterials(Serializable key) throws Exception {
+		return outputBO.find(key);
+	}
+
+	public OutputMaterials[] findAllOutputMaterials() throws Exception {
+		return outputBO.findAll();
+	}
+
+	public Collection<OutputMaterials> filter(OutputMaterials entity) {
+		return outputBO.filter(entity);
+	}
+
+	public Collection<OutputMaterials> findOutputMaterialsCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
+		return outputBO.findCollectionByHQL(hql, parameters);
+	}
+
+	public OutputMaterials findOutputMaterialsUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return outputBO.findUniqueByHQL(hql, parameters);
 	}
 }

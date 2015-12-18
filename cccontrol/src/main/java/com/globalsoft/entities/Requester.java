@@ -7,7 +7,6 @@ import javax.persistence.Table;
 import com.globalsoft.util.Constants;
 import com.globalsoft.util.Messages;
 
-
 @Entity
 @Table(name = "requester")
 public class Requester extends BasicEntity {
@@ -28,11 +27,11 @@ public class Requester extends BasicEntity {
 
 	@Column(name = "Setor")
 	private String setor;
-	
-	@Column(name="CentroCusto")
+
+	@Column(name = "CentroCusto")
 	private String centroCusto;
-	
-	@Column(name="Funcao")
+
+	@Column(name = "Funcao")
 	private String funcao;
 
 	@Column(name = "Tel1")
@@ -40,6 +39,9 @@ public class Requester extends BasicEntity {
 
 	@Column(name = "Tel2")
 	private String telefone2;
+
+	@Column(name = "email")
+	private String email;
 
 	@Column(name = "ObsComments")
 	private String obsComments;
@@ -115,7 +117,7 @@ public class Requester extends BasicEntity {
 	public void setObsComments(String obsComments) {
 		this.obsComments = obsComments;
 	}
-	
+
 	public String getCentroCusto() {
 		return centroCusto;
 	}
@@ -124,34 +126,62 @@ public class Requester extends BasicEntity {
 		this.centroCusto = centroCusto;
 	}
 
+	public String getTelefone1() {
+		return telefone1;
+	}
+
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
+	}
+
+	public String getTelefone2() {
+		return telefone2;
+	}
+
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Boolean validate() throws Exception {
-		
-		if (nome == null || nome.isEmpty()){ 
+
+		if (nome == null || nome.isEmpty()) {
 			throw new Exception(Messages.INVALID_NAME);
 		}
-		if (cpf == null || cpf.isEmpty() || cpf.length() != 11 || !cpf.matches(Constants.ONLY_NUMBERS_REGEX)){ 
+		if (cpf == null || cpf.isEmpty() || cpf.length() != 11
+				|| !cpf.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_CPF);
 		}
-		if (rg == null || rg.isEmpty()||!rg.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if (rg == null || rg.isEmpty()
+				|| !rg.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (matricula==null||matricula.isEmpty()||!matricula.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if (matricula == null || matricula.isEmpty()
+				|| !matricula.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (centroCusto==null || centroCusto.isEmpty() || !centroCusto.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if (centroCusto == null || centroCusto.isEmpty()
+				|| !centroCusto.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if (setor==null|| setor.isEmpty()){
+		if (setor == null || setor.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if(funcao==null|| funcao.isEmpty()){
+		if (funcao == null || funcao.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		if(telefone1==null || telefone1.isEmpty()|| !telefone1.matches(Constants.ONLY_NUMBERS_REGEX)){
+		if (telefone1 == null || telefone1.isEmpty()
+				|| !telefone1.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
-		
+
 		return Boolean.TRUE;
 	}
 

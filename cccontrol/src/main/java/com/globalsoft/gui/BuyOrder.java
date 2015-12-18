@@ -275,7 +275,7 @@ public class BuyOrder extends JFrame {
 		JButton button_3 = new JButton("");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Solicitantes view = new Solicitantes();
+				Solicitantes view = new Solicitantes(true);
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
 			}
