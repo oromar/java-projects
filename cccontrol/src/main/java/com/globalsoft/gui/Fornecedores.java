@@ -72,6 +72,7 @@ public class Fornecedores extends JFrame {
 	 * Create the frame.
 	 */
 	public Fornecedores(boolean isSelectFrame) {
+		setResizable(false);
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
 				try {
@@ -85,7 +86,7 @@ public class Fornecedores extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1318, 706);
+		setBounds(100, 100, 1309, 706);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

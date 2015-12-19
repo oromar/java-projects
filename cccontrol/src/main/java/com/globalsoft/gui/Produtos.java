@@ -47,6 +47,7 @@ public class Produtos extends JFrame {
 	}
 
 	public Produtos(boolean isSelectFrame) {
+		setResizable(false);
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
 				try {
@@ -60,7 +61,7 @@ public class Produtos extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1318, 706);
+		setBounds(100, 100, 1308, 706);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
