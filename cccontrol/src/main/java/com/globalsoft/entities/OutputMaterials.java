@@ -114,7 +114,7 @@ public class OutputMaterials extends BasicEntity {
 		}
 		if (quantidade == null || quantidade.isEmpty()
 				|| !quantidade.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Campo Quantidade");
 		}
 		if (departamento == null || departamento.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD);

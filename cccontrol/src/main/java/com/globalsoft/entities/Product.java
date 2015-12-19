@@ -224,18 +224,7 @@ public class Product extends BasicEntity {
 								// uma inserção
 			if (emEstoque == null || emEstoque.isEmpty()
 					|| !emEstoque.matches(Constants.ONLY_NUMBERS_REGEX)) {
-				throw new Exception(Messages.INVALID_FIELD); // tem que
-																// verificar
-																// esse campo,
-																// pois
-																// talvez na
-																// hora de
-																// cadastrar o
-																// produto ele
-																// pode...
-																// ... ou não
-																// conter
-																// no estoque.
+				throw new Exception(Messages.INVALID_FIELD);
 			}
 			if (estoqueMax.isEmpty()
 					|| !estoqueMax.matches(Constants.ONLY_NUMBERS_REGEX)) {
