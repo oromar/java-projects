@@ -401,7 +401,7 @@ public class Output extends JFrame {
 		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CentroDeCusto view = new CentroDeCusto();
+				CentroDeCusto view = new CentroDeCusto(false);
 				view.setLocationRelativeTo(null);
 				view.setVisible(true);
 			}
