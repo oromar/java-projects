@@ -161,25 +161,25 @@ public class Requester extends BasicEntity {
 		}
 		if (rg == null || rg.isEmpty()
 				|| !rg.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "\nPor Favor Informe o RG Corretamente.");
 		}
 		if (matricula == null || matricula.isEmpty()
 				|| !matricula.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "\nPor Favor Informe a Matrícula Corretamente.");
 		}
 		if (centroCusto == null || centroCusto.isEmpty()
 				|| !centroCusto.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD+ "\nPor Favor Informe o Centro De Custo.");
 		}
 		if (setor == null || setor.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "\nPor Favor Informe o Setor Corretamente.");
 		}
 		if (funcao == null || funcao.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "\nPor Favor Informe a Função Corretamente.");
 		}
 		if (telefone1 == null || telefone1.isEmpty()
 				|| !telefone1.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "\nPor favor Informe o Telefone Corretamente.");
 		}
 
 		return Boolean.TRUE;

@@ -401,6 +401,9 @@ public class Output extends JFrame {
 		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				CentroDeCusto view = new CentroDeCusto();
+				view.setLocationRelativeTo(null);
+				view.setVisible(true);
 			}
 		});
 		button_1.setIcon(new ImageIcon("Icones\\zoom.png"));
