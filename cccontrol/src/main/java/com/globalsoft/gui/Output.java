@@ -177,7 +177,7 @@ public class Output extends JFrame {
 				});
 			}
 		});
-		btnBuscaSolicitante.setToolTipText("Buscar Fornecedor");
+		btnBuscaSolicitante.setToolTipText("Buscar Requisitante");
 		btnBuscaSolicitante.setBounds(469, 111, 105, 28);
 		panel_1.add(btnBuscaSolicitante);
 
@@ -394,7 +394,7 @@ public class Output extends JFrame {
 
 		JButton button = new JButton("Add");
 		button.setIcon(new ImageIcon("Icones\\accept.png"));
-		button.setToolTipText("Add Produto");
+		button.setToolTipText("Adicionar Produto");
 		button.setBounds(480, 66, 97, 28);
 		panel.add(button);
 
@@ -407,7 +407,7 @@ public class Output extends JFrame {
 			}
 		});
 		button_1.setIcon(new ImageIcon("Icones\\zoom.png"));
-		button_1.setToolTipText("Buscar Produto");
+		button_1.setToolTipText("Buscar Centro de Custo");
 		button_1.setBounds(140, 66, 28, 28);
 		panel.add(button_1);
 

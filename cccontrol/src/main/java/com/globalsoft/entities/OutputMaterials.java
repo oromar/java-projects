@@ -21,9 +21,6 @@ public class OutputMaterials extends BasicEntity {
 	@Column(name = "QTD")
 	private String quantidade;
 
-	@Column(name = "Departamento")
-	private String departamento;
-
 	@Column(name = "Contrato")
 	private String contrato;
 
@@ -55,14 +52,6 @@ public class OutputMaterials extends BasicEntity {
 
 	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	public String getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
 	}
 
 	public String getContrato() {
@@ -108,22 +97,21 @@ public class OutputMaterials extends BasicEntity {
 	public Boolean validate() throws Exception {
 
 		if (requester == null) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_REQUEST);
 		} else {
 			requester.validate();
 		}
+		if(product == null){
+			throw new Exception(Messages.INVALID_PRODUCT);
+		}else{
+			product.validate();
+		}
 		if (quantidade == null || quantidade.isEmpty()
 				|| !quantidade.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD + "Campo Quantidade");
-		}
-		if (departamento == null || departamento.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
-		}
-		if (contrato == null || contrato.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Quantidade");
 		}
 		if (autorizacao == null || autorizacao.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Autorização/Supervisor");
 		}
 		return Boolean.TRUE;
 	}

@@ -24,8 +24,11 @@ import com.globalsoft.entities.InputMaterials;
 import com.globalsoft.entities.Product;
 import com.globalsoft.entities.Supplier;
 import com.globalsoft.util.Util;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
 
 public class Input extends JFrame {
 
@@ -52,6 +55,12 @@ public class Input extends JFrame {
 	public Input() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 596, 601);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnArquivo = new JMenu("Arquivo");
+		menuBar.add(mnArquivo);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -206,8 +215,12 @@ public class Input extends JFrame {
 		txtFaxFornecedor.setColumns(10);
 		
 		JButton button_4 = new JButton("Add");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_4.setIcon(new ImageIcon("Icones\\accept.png"));
-		button_4.setToolTipText("Add Produto");
+		button_4.setToolTipText("Adicionar Produto");
 		button_4.setBounds(421, 64, 104, 28);
 		panel_1.add(button_4);
 		
@@ -336,6 +349,7 @@ public class Input extends JFrame {
 		panel.add(txtValorUnitario);
 		
 		txtValorTotal = new JTextField();
+		txtValorTotal.setEditable(false);
 		txtValorTotal.setColumns(10);
 		txtValorTotal.setBounds(274, 116, 122, 20);
 		panel.add(txtValorTotal);
@@ -366,8 +380,13 @@ public class Input extends JFrame {
 		panel.add(lblCentroDeCusto);
 		
 		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		});
 		button_1.setIcon(new ImageIcon("Icones\\zoom.png"));
-		button_1.setToolTipText("Buscar Produto");
+		button_1.setToolTipText("Buscar Centro de Custo");
 		button_1.setBounds(500, 66, 28, 28);
 		panel.add(button_1);
 		

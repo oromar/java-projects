@@ -19,6 +19,8 @@ public enum Messages {
 	public static final String INVALID_FIELD = "Campo Inválido: ";
 	public static final String PRODUCT_ALREADY_EXISTS = "Encontrado produto com mesmo nome, marca e fabricante";
 	
-
+	public static final String INVALID_PRODUCT = "Produto Inválido";
+	public static final String INVALID_REQUEST = "Requisitante Inválido";
+	public static final String INVALID_FORNECEDOR = "Fornecedor Inválido";
 }
 

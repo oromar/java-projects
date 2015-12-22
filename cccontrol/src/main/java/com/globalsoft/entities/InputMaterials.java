@@ -196,34 +196,39 @@ public class InputMaterials extends BasicEntity {
 
 	public Boolean validate() throws Exception {
 		if (fornecedor == null) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FORNECEDOR);
+		}else{
+			fornecedor.validate();
 		}
-		if (notaFiscal == null || notaFiscal.isEmpty()
-				|| !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+		if (notaFiscal == null || notaFiscal.isEmpty() || !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)) {
+			throw new Exception(Messages.INVALID_FIELD + "Nota Fiscal");
 		}
 		if (contrato == null || contrato.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Contrato");
 		}
 		if (quantidade == null || quantidade.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Quantidade");
 		}
-		if (ipi == null || ipi.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
-		}
+		
+		/*if (ipi == null || ipi.isEmpty()) {
+			throw new Exception(Messages.INVALID_FIELD + "Ipi");
+		}*/
+		
 		if (valorUnitario == null || valorUnitario.isEmpty()
 				|| !valorUnitario.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Valor Unitário");
 		}
-		if (valorTotal == null || valorTotal.isEmpty()
-				|| !valorTotal.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
-		}
+		
+		/*if (valorTotal == null || valorTotal.isEmpty()
+				|| !valorTotal.matches(Constants.ONLY_NUMBERS_REGEX)) { // Sera Feito uma calculo a partir do valor unitário e Quantidade
+			throw new Exception(Messages.INVALID_FIELD + "Valor Total");
+		}*/
+		
 		if (contatoFornecedor == null || contatoFornecedor.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Contato Fornecedor");
 		}
 		if (emailContatoFornecedor == null || emailContatoFornecedor.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Email");
 		}
 		return Boolean.TRUE;
 	}
