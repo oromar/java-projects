@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -67,6 +68,21 @@ public class Product extends BasicEntity {
 	@OneToOne
 	@JoinColumn(name = "sub_category")
 	private Subcategory subCategory;
+
+	@ManyToMany(mappedBy = "produtos")
+	private Collection<InputMaterials> inputs;
+
+	public Collection<InputMaterials> getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(Collection<InputMaterials> inputs) {
+		this.inputs = inputs;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
 
 	public String getEmEstoque() {
 		return emEstoque;

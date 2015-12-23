@@ -1,8 +1,11 @@
 package com.globalsoft.entities;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,9 +18,8 @@ public class InputMaterials extends BasicEntity {
 
 	private static final long serialVersionUID = -6338033207049989141L;
 
-	@OneToOne
-	@JoinColumn(name = "produto")
-	private Product produto;
+	@ManyToMany
+	private Collection<Product> produtos;
 
 	@OneToOne
 	@JoinColumn(name = "user_requester")
@@ -66,12 +68,12 @@ public class InputMaterials extends BasicEntity {
 	@Column(name = "ObsComments")
 	private String obsComments;
 
-	public Product getProduto() {
-		return produto;
+	public Collection<Product> getProdutos() {
+		return produtos;
 	}
 
-	public void setProduto(Product produto) {
-		this.produto = produto;
+	public void setProdutos(Collection<Product> produtos) {
+		this.produtos = produtos;
 	}
 
 	public User getUsuario() {
@@ -197,10 +199,11 @@ public class InputMaterials extends BasicEntity {
 	public Boolean validate() throws Exception {
 		if (fornecedor == null) {
 			throw new Exception(Messages.INVALID_FORNECEDOR);
-		}else{
+		} else {
 			fornecedor.validate();
 		}
-		if (notaFiscal == null || notaFiscal.isEmpty() || !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)) {
+		if (notaFiscal == null || notaFiscal.isEmpty()
+				|| !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD + "Nota Fiscal");
 		}
 		if (contrato == null || contrato.isEmpty()) {
@@ -209,21 +212,24 @@ public class InputMaterials extends BasicEntity {
 		if (quantidade == null || quantidade.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD + "Quantidade");
 		}
-		
-		/*if (ipi == null || ipi.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD + "Ipi");
-		}*/
-		
+
+		/*
+		 * if (ipi == null || ipi.isEmpty()) { throw new
+		 * Exception(Messages.INVALID_FIELD + "Ipi"); }
+		 */
+
 		if (valorUnitario == null || valorUnitario.isEmpty()
 				|| !valorUnitario.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD + "Valor Unitário");
 		}
-		
-		/*if (valorTotal == null || valorTotal.isEmpty()
-				|| !valorTotal.matches(Constants.ONLY_NUMBERS_REGEX)) { // Sera Feito uma calculo a partir do valor unitário e Quantidade
-			throw new Exception(Messages.INVALID_FIELD + "Valor Total");
-		}*/
-		
+
+		/*
+		 * if (valorTotal == null || valorTotal.isEmpty() ||
+		 * !valorTotal.matches(Constants.ONLY_NUMBERS_REGEX)) { // Sera Feito
+		 * uma calculo a partir do valor unitário e Quantidade throw new
+		 * Exception(Messages.INVALID_FIELD + "Valor Total"); }
+		 */
+
 		if (contatoFornecedor == null || contatoFornecedor.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD + "Contato Fornecedor");
 		}
