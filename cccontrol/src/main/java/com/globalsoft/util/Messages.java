@@ -22,5 +22,6 @@ public enum Messages {
 	public static final String INVALID_PRODUCT = "Produto Inválido";
 	public static final String INVALID_REQUEST = "Requisitante Inválido";
 	public static final String INVALID_FORNECEDOR = "Fornecedor Inválido";
+	public static final String INVALID_CENTERCOST = "Centro de Custo Inválido";
 }
 

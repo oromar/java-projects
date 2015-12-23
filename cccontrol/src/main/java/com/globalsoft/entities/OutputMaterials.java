@@ -37,6 +37,19 @@ public class OutputMaterials extends BasicEntity {
 	@OneToOne
 	@JoinColumn(name = "product")
 	private Product product;
+	
+	@OneToOne
+	@JoinColumn(name = "centro_custo")
+	private CentroCusto centrocusto;
+
+	
+	public CentroCusto getCentrocusto() {
+		return centrocusto;
+	}
+
+	public void setCentrocusto(CentroCusto centrocusto) {
+		this.centrocusto = centrocusto;
+	}
 
 	public String getObsComments() {
 		return obsComments;
@@ -112,6 +125,12 @@ public class OutputMaterials extends BasicEntity {
 		}
 		if (autorizacao == null || autorizacao.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD + "Autorização/Supervisor");
+		}
+		
+		if (centrocusto == null) {
+			throw new Exception(Messages.INVALID_CENTERCOST);
+		}else{
+			centrocusto.validate();
 		}
 		return Boolean.TRUE;
 	}

@@ -27,9 +27,13 @@ public class InputMaterials extends BasicEntity {
 
 	@Column(name = "UnidadeMed")
 	private String unidadeMedidaProduto;
+	
+	@OneToOne
+	@JoinColumn(name = "centro_custo")
+	private CentroCusto centrocusto;
 
 	@Column(name = "NotaFiscal")
-	private String notaFiscal; // falta o centro de custo
+	private String notaFiscal;
 
 	@Column(name = "Contrato")
 	private String contrato;
@@ -74,6 +78,13 @@ public class InputMaterials extends BasicEntity {
 
 	public void setProdutos(Collection<Product> produtos) {
 		this.produtos = produtos;
+	}
+	public CentroCusto getCentrocusto() {
+		return centrocusto;
+	}
+
+	public void setCentrocusto(CentroCusto centrocusto) {
+		this.centrocusto = centrocusto;
 	}
 
 	public User getUsuario() {
@@ -197,10 +208,16 @@ public class InputMaterials extends BasicEntity {
 	}
 
 	public Boolean validate() throws Exception {
+		
 		if (fornecedor == null) {
 			throw new Exception(Messages.INVALID_FORNECEDOR);
 		} else {
 			fornecedor.validate();
+		}
+		if(centrocusto == null){
+			throw new Exception(Messages.INVALID_CENTERCOST);
+		}else{
+			centrocusto.validate();
 		}
 		if (notaFiscal == null || notaFiscal.isEmpty()
 				|| !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)) {
@@ -212,12 +229,6 @@ public class InputMaterials extends BasicEntity {
 		if (quantidade == null || quantidade.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD + "Quantidade");
 		}
-
-		/*
-		 * if (ipi == null || ipi.isEmpty()) { throw new
-		 * Exception(Messages.INVALID_FIELD + "Ipi"); }
-		 */
-
 		if (valorUnitario == null || valorUnitario.isEmpty()
 				|| !valorUnitario.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD + "Valor Unitário");
@@ -236,6 +247,7 @@ public class InputMaterials extends BasicEntity {
 		if (emailContatoFornecedor == null || emailContatoFornecedor.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD + "Email");
 		}
+		
 		return Boolean.TRUE;
 	}
 }
