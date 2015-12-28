@@ -57,7 +57,7 @@ public class Product extends BasicEntity {
 
 	@Column(name = "LocalEstoque")
 	private String localEstoque;
-
+	
 	@OneToOne
 	@JoinColumn(name = "supplier")
 	private Supplier supplier;
@@ -221,20 +221,20 @@ public class Product extends BasicEntity {
 			throw new Exception(Messages.INVALID_FIELD);
 		}
 		if (fabricante == null || fabricante.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Fabricante");
 		}
 		if (notaFiscal == null || notaFiscal.isEmpty()
 				|| !notaFiscal.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Nota Fiscal");
 		}
 		if (marca == null || marca.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Marca");
 		}
 		if (unidadeMedida == null || unidadeMedida.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Unidade de Medida");
 		}
 		if (localEstoque == null || localEstoque.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Local Estoque");
 		}
 		if (getId() != null) { // verifica se é uma atualização de produto e não
 								// uma inserção
@@ -249,20 +249,19 @@ public class Product extends BasicEntity {
 		}
 		if (estoqueMin == null || estoqueMin.isEmpty()
 				|| !estoqueMin.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Estoque Minimo");
 		}
 
 		if (Integer.valueOf(estoqueMin) > Integer.valueOf(estoqueMax)) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Estoque Minimo" );
 		}
 
 		if (Integer.valueOf(estoqueMin) < 0) {
-			throw new Exception(Messages.INVALID_FIELD);
+			throw new Exception(Messages.INVALID_FIELD + "Estoque Minimo");
 		}
 
-		if (valorUnit == null || valorUnit.isEmpty()
-				|| !valorUnit.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD);
+		if (valorUnit == null || valorUnit.isEmpty()) { // tirei a validação de só numero no campo pois os valores podem ser R$ 0,50 || R$ 1,10
+			throw new Exception(Messages.INVALID_FIELD + "Valor Unitário");
 		}
 
 		// validações de negócio
