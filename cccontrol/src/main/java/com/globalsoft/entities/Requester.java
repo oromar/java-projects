@@ -2,6 +2,8 @@ package com.globalsoft.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.globalsoft.util.Constants;
@@ -28,8 +30,9 @@ public class Requester extends BasicEntity {
 	@Column(name = "Setor")
 	private String setor;
 
-	@Column(name = "CentroCusto")
-	private String centroCusto;
+	@OneToOne
+	@JoinColumn(name = "centro_custo")
+	private CentroCusto centrocusto;
 
 	@Column(name = "Funcao")
 	private String funcao;
@@ -118,12 +121,12 @@ public class Requester extends BasicEntity {
 		this.obsComments = obsComments;
 	}
 
-	public String getCentroCusto() {
-		return centroCusto;
+	public CentroCusto getCentrocusto() {
+		return centrocusto;
 	}
 
-	public void setCentroCusto(String centroCusto) {
-		this.centroCusto = centroCusto;
+	public void setCentrocusto(CentroCusto centrocusto) {
+		this.centrocusto = centrocusto;
 	}
 
 	public String getTelefone1() {
@@ -167,9 +170,10 @@ public class Requester extends BasicEntity {
 				|| !matricula.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD + "Matrícula");
 		}
-		if (centroCusto == null || centroCusto.isEmpty()
-				|| !centroCusto.matches(Constants.ONLY_NUMBERS_REGEX)) {
-			throw new Exception(Messages.INVALID_FIELD + "Centro De Custo");
+		if (centrocusto == null) {
+			throw new Exception(Messages.INVALID_CENTERCOST);
+		}else{
+			centrocusto.validate();
 		}
 		if (setor == null || setor.isEmpty()) {
 			throw new Exception(Messages.INVALID_FIELD + "Setor");
