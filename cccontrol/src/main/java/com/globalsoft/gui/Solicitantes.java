@@ -85,7 +85,7 @@ public class Solicitantes extends JFrame {
 			public void windowLostFocus(WindowEvent e) {
 			}
 		});
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1309, 706);
 
 		JMenuBar menuBar = new JMenuBar();

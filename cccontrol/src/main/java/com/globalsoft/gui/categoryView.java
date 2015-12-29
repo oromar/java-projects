@@ -7,8 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.globalsoft.business.Facade;
+import com.globalsoft.entities.Category;
+import com.globalsoft.entities.Requester;
+import com.globalsoft.util.Util;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -17,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.util.Optional;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -25,29 +34,37 @@ public class categoryView extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					categoryView frame = new categoryView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	private Category selecionado;
+		
+	public Category getSelecionado() {
+		return selecionado;
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public categoryView() {
+	private void createTableModel(Category[] values) {
+		String[] columns = { "Categoria" };
+		DefaultTableModel model = new DefaultTableModel(columns, 0) {
+			private static final long serialVersionUID = 8997062589770807215L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		String[] line = null;
+		if (values != null && values.length > 0) {
+			for (Category c : values) {
+				line = new String[columns.length];
+				line[0] = String.valueOf(c.getNome());
+				model.addRow(line);
+			}
+		}
+		table.setModel(model);
+		table.createDefaultColumnsFromModel();
+	}
+
+	public categoryView(boolean isSelectFrame) {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 435, 542);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -67,6 +84,11 @@ public class categoryView extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnDelete = new JButton("");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnDelete.setIcon(new ImageIcon("Icones\\Delete.png"));
 		btnDelete.setBounds(10, 11, 56, 48);
 		panel.add(btnDelete);
@@ -131,6 +153,18 @@ public class categoryView extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			/*	Category cat = Util.getScreenData(categoryView.this, Category.class);
+				try {
+					if (req.getId() == null) { 
+						Facade.getInstance().create(cat);
+					} else {
+						Facade.getInstance().update(cat);
+					}
+					JOptionPane.showMessageDialog(categoryView.this, "Registro salvo com sucesso.");
+					Util.clearScreen(categoryView.this);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(categoryView.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}  */
 			}
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 11));

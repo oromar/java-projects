@@ -12,6 +12,7 @@ import com.globalsoft.dao.RequesterDAO;
 import com.globalsoft.dao.RoleDAO;
 import com.globalsoft.dao.SupplierDAO;
 import com.globalsoft.dao.UserDAO;
+import com.globalsoft.entities.Category;
 import com.globalsoft.entities.Client;
 import com.globalsoft.entities.InputMaterials;
 import com.globalsoft.entities.OutputMaterials;
@@ -32,6 +33,7 @@ public class Facade {
 	private RequesterBO requesterBO;
 	private InputMaterialsBO inputBO;
 	private OutputMaterialsBO outputBO;
+	//private CategoryBO categoryBO;
 	
 	private Facade(){
 		init();
@@ -54,7 +56,10 @@ public class Facade {
 		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
 		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
 		outputBO = new OutputMaterialsBO(new OutputMaterialsDAO());
+		//categoryBO = new CategoryBO(new CategoryBO());
 	}
+	
+	
 
 	public boolean exists(Serializable key) throws Exception {
 		return userBO.exists(key);

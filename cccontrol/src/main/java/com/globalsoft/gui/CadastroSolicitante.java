@@ -48,7 +48,7 @@ public class CadastroSolicitante extends JFrame {
 	 */
 	public CadastroSolicitante() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 472, 488);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();

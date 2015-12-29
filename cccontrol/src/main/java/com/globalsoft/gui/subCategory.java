@@ -48,7 +48,7 @@ public class subCategory extends JFrame {
 	 */
 	public subCategory() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 435, 542);
 		
 		JMenuBar menuBar = new JMenuBar();
