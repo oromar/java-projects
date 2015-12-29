@@ -33,7 +33,7 @@ public class Facade {
 	private RequesterBO requesterBO;
 	private InputMaterialsBO inputBO;
 	private OutputMaterialsBO outputBO;
-	//private CategoryBO categoryBO;
+	private CategoryBO categoryBO;
 	
 	private Facade(){
 		init();
@@ -60,7 +60,7 @@ public class Facade {
 	}
 	
 	
-
+	
 	public boolean exists(Serializable key) throws Exception {
 		return userBO.exists(key);
 	}
@@ -326,4 +326,6 @@ public class Facade {
 	public OutputMaterials findOutputMaterialsUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return outputBO.findUniqueByHQL(hql, parameters);
 	}
+
+	
 }
