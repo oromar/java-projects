@@ -299,7 +299,7 @@ public class Input extends JFrame {
 						txtIdProduto.setText(String.valueOf(p.getId()));
 						txtDescricaoProduto.setText(p.getNome());
 						txtUnidadeMedidaProduto.setText(p.getUnidadeMedida());
-						txtQuantidadeAtual.setText(p.getEmEstoque());
+						txtQuantidadeAtual.setText(p.getEstoque());
 					}
 				});
 			}

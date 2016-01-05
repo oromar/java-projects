@@ -14,7 +14,7 @@
 		<class>com.globalsoft.entities.Product</class>
 		<class>com.globalsoft.entities.Requester</class>
 		<class>com.globalsoft.entities.Role</class>
-		<class>com.globalsoft.entities.Subcategory</class>
+		<class>com.globalsoft.entities.SubCategory</class>
 		<class>com.globalsoft.entities.Supplier</class>
 		<class>com.globalsoft.entities.User</class>
 		

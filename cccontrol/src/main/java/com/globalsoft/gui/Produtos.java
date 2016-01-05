@@ -41,6 +41,7 @@ public class Produtos extends JFrame {
 	private JTable table;
 	private JTextField txtPesquisar;
 	private Product selecionado;
+	private String[] columnNames = { "Id", "Nome", "Estoque" };
 
 	public Product getSelecionado() {
 		return selecionado;
@@ -51,7 +52,8 @@ public class Produtos extends JFrame {
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
 				try {
-					createTableOfProducts(Facade.getInstance().findAllProducts());
+					createTableOfProducts(Facade.getInstance()
+							.findAllProducts());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -97,7 +99,8 @@ public class Produtos extends JFrame {
 				if (index > -1) {
 					String id = (String) table.getValueAt(index, 0);
 					try {
-						Product p = Facade.getInstance().findProduct(Long.valueOf(id));
+						Product p = Facade.getInstance().findProduct(
+								Long.valueOf(id));
 						if (p != null) {
 							CadastroProduto cadastro = new CadastroProduto(p);
 							cadastro.setVisible(true);
@@ -113,7 +116,8 @@ public class Produtos extends JFrame {
 		panel.add(button);
 
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon("Icones\\1448763830_xfce-system-exit.png"));
+		button_2.setIcon(new ImageIcon(
+				"Icones\\1448763830_xfce-system-exit.png"));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -148,9 +152,12 @@ public class Produtos extends JFrame {
 				if (index > -1) {
 					String id = (String) table.getValueAt(index, 0);
 					try {
-						if (JOptionPane.showConfirmDialog(Produtos.this, "Tem certeza ?") == JOptionPane.YES_OPTION) {
-							Facade.getInstance().removeProduct(Long.valueOf(id));
-							JOptionPane.showMessageDialog(Produtos.this, "Produto removido com sucesso.");
+						if (JOptionPane.showConfirmDialog(Produtos.this,
+								"Tem certeza ?") == JOptionPane.YES_OPTION) {
+							Facade.getInstance()
+									.removeProduct(Long.valueOf(id));
+							JOptionPane.showMessageDialog(Produtos.this,
+									"Produto removido com sucesso.");
 						}
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -197,7 +204,8 @@ public class Produtos extends JFrame {
 			public void keyTyped(KeyEvent e) {
 				if (txtPesquisar.getText().isEmpty()) {
 					try {
-						createTableOfProducts(Facade.getInstance().findAllProducts());
+						createTableOfProducts(Facade.getInstance()
+								.findAllProducts());
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -218,9 +226,11 @@ public class Produtos extends JFrame {
 					} else {
 						Product product = new Product();
 						product.setNome(value);
-						Collection<Product> collection = Facade.getInstance().filter(product);
-						createTableOfProducts(
-								collection.toArray((Product[]) Array.newInstance(Product.class, collection.size())));
+						Collection<Product> collection = Facade.getInstance()
+								.filter(product);
+						createTableOfProducts(collection
+								.toArray((Product[]) Array.newInstance(
+										Product.class, collection.size())));
 					}
 
 				}
@@ -229,11 +239,12 @@ public class Produtos extends JFrame {
 		txtPesquisar.setColumns(10);
 		txtPesquisar.setBounds(756, 27, 441, 25);
 		panel.add(txtPesquisar);
-		
-		JLabel lblDigiteAPesquisa = new JLabel("Digite o termo a ser pesquisado e pressione ENTER");
+
+		JLabel lblDigiteAPesquisa = new JLabel(
+				"Digite o termo a ser pesquisado e pressione ENTER");
 		lblDigiteAPesquisa.setBounds(756, 11, 441, 14);
 		panel.add(lblDigiteAPesquisa);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.addMouseListener(new MouseAdapter() {
 			@Override
@@ -241,11 +252,11 @@ public class Produtos extends JFrame {
 
 			}
 		});
-		
+
 		JButton btnSelecionar = new JButton("");
 		btnSelecionar.setIcon(new ImageIcon("Icones\\Yes.png"));
 		btnSelecionar.setBounds(208, 11, 56, 48);
-		panel.add(btnSelecionar);		
+		panel.add(btnSelecionar);
 		btnSelecionar.setVisible(isSelectFrame);
 		JLabel lblSelecionar = new JLabel("Selecionar");
 		lblSelecionar.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -253,14 +264,15 @@ public class Produtos extends JFrame {
 		lblSelecionar.setBounds(208, 61, 56, 14);
 		panel.add(lblSelecionar);
 		lblSelecionar.setVisible(isSelectFrame);
-		btnSelecionar.addActionListener(new ActionListener() {			
+		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int index = -1;
 				index = table.getSelectedRow();
 				if (index > -1) {
 					String id = (String) table.getValueAt(index, 0);
 					try {
-						Product p = Facade.getInstance().findProduct(Long.valueOf(id));
+						Product p = Facade.getInstance().findProduct(
+								Long.valueOf(id));
 						if (p != null) {
 							selecionado = p;
 							Produtos.this.dispose();
@@ -270,8 +282,8 @@ public class Produtos extends JFrame {
 					}
 				}
 			}
-		});	
-		
+		});
+
 		scrollPane.setBounds(10, 99, 1282, 536);
 		contentPane.add(scrollPane);
 
@@ -281,31 +293,13 @@ public class Produtos extends JFrame {
 		try {
 			createTableOfProducts(Facade.getInstance().findAllProducts());
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(Produtos.this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(Produtos.this, e1.getMessage(),
+					"Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
 
 	private void createTableOfProducts(Product[] products) {
-		String[] columnNames = { "Código", "Descricao", "Estoque" };
-		DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-
-		if (products != null && products.length > 0) {
-			String[] line = null;
-			for (Product p : products) {
-				line = new String[3];
-				line[0] = String.valueOf(p.getId());
-				line[1] = p.getNome();
-				line[2] = p.getEmEstoque();
-				model.addRow(line);
-			}
-		}
-		table.setModel(model);
-		table.createDefaultColumnsFromModel();
+		Util.createTableModel(table, columnNames, products);
 	}
 }

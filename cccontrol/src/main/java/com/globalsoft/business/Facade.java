@@ -11,6 +11,7 @@ import com.globalsoft.dao.OutputMaterialsDAO;
 import com.globalsoft.dao.ProductDAO;
 import com.globalsoft.dao.RequesterDAO;
 import com.globalsoft.dao.RoleDAO;
+import com.globalsoft.dao.SubCategoryDAO;
 import com.globalsoft.dao.SupplierDAO;
 import com.globalsoft.dao.UserDAO;
 import com.globalsoft.entities.Category;
@@ -20,14 +21,15 @@ import com.globalsoft.entities.OutputMaterials;
 import com.globalsoft.entities.Product;
 import com.globalsoft.entities.Requester;
 import com.globalsoft.entities.Role;
+import com.globalsoft.entities.SubCategory;
 import com.globalsoft.entities.Supplier;
 import com.globalsoft.entities.User;
 
 public class Facade {
-	
+
 	private static Facade instance;
-	private UserBO userBO; 
-	private ClientBO clientBO; 
+	private UserBO userBO;
+	private ClientBO clientBO;
 	private ProductBO productBO;
 	private RoleBO roleBO;
 	private SupplierBO supplierBO;
@@ -35,18 +37,19 @@ public class Facade {
 	private InputMaterialsBO inputBO;
 	private OutputMaterialsBO outputBO;
 	private CategoryBO categoryBO;
-	
-	private Facade(){
+	private SubCategoryBO subCategoryBO;
+
+	private Facade() {
 		init();
 	}
 
 	public static Facade getInstance() {
 		if (instance == null) {
-			instance = new Facade();			
+			instance = new Facade();
 		}
 		return instance;
 	}
-	
+
 	private void init() {
 		userBO = new UserBO(new UserDAO());
 		clientBO = new ClientBO(new ClientDAO());
@@ -58,10 +61,9 @@ public class Facade {
 		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
 		outputBO = new OutputMaterialsBO(new OutputMaterialsDAO());
 		categoryBO = new CategoryBO(new CategoryBO(new CategoryDAO()));
+		subCategoryBO = new SubCategoryBO(new SubCategoryDAO());
 	}
-	
-	
-	
+
 	public boolean exists(Serializable key) throws Exception {
 		return userBO.exists(key);
 	}
@@ -110,7 +112,7 @@ public class Facade {
 	public Client findClient(Serializable key) throws Exception {
 		return clientBO.find(key);
 	}
-	
+
 	public void removeClient(Serializable key) throws Exception {
 		clientBO.remove(key);
 	}
@@ -123,18 +125,20 @@ public class Facade {
 		return clientBO.filter(entity);
 	}
 
-	public Client findClientUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public Client findClientUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
 		return clientBO.findUniqueByHQL(hql, parameters);
 	}
-	
-	public Collection<Client> findClientCollectionByHQL(String hql, Map<String, Object> parameters) {
+
+	public Collection<Client> findClientCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
 		return clientBO.findCollectionByHQL(hql, parameters);
 	}
 
 	public void create(Product entity) throws Exception {
 		productBO.create(entity);
 	}
-	
+
 	public void update(Product entity) throws Exception {
 		productBO.update(entity);
 	}
@@ -142,7 +146,7 @@ public class Facade {
 	public void removeProduct(Serializable key) throws Exception {
 		productBO.remove(key);
 	}
-	
+
 	public Product findProduct(Serializable key) throws Exception {
 		return productBO.find(key);
 	}
@@ -155,11 +159,13 @@ public class Facade {
 		return productBO.filter(entity);
 	}
 
-	public Product findProductUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public Product findProductUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
 		return productBO.findUniqueByHQL(hql, parameters);
 	}
-	
-	public Collection<Product> findProductCollectionByHQL(String hql, Map<String, Object> parameters) {
+
+	public Collection<Product> findProductCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
 		return productBO.findCollectionByHQL(hql, parameters);
 	}
 
@@ -195,7 +201,7 @@ public class Facade {
 	public Role findRoleUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return roleBO.findUniqueByHQL(hql, parameters);
 	}
-	
+
 	public void create(Supplier entity) throws Exception {
 		supplierBO.create(entity);
 	}
@@ -225,10 +231,11 @@ public class Facade {
 		return supplierBO.findCollectionByHQL(hql, parameters);
 	}
 
-	public Supplier findSupplierUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public Supplier findSupplierUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
 		return supplierBO.findUniqueByHQL(hql, parameters);
-	}	
-	
+	}
+
 	public void create(Requester entity) throws Exception {
 		requesterBO.create(entity);
 	}
@@ -258,10 +265,11 @@ public class Facade {
 		return requesterBO.findCollectionByHQL(hql, parameters);
 	}
 
-	public Requester findRequesterUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public Requester findRequesterUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
 		return requesterBO.findUniqueByHQL(hql, parameters);
 	}
-	
+
 	public void create(InputMaterials entity) throws Exception {
 		inputBO.create(entity);
 	}
@@ -286,15 +294,16 @@ public class Facade {
 		return inputBO.filter(entity);
 	}
 
-	public Collection<InputMaterials> findInputMaterialsCollectionByHQL(String hql,
-			Map<String, Object> parameters) {
+	public Collection<InputMaterials> findInputMaterialsCollectionByHQL(
+			String hql, Map<String, Object> parameters) {
 		return inputBO.findCollectionByHQL(hql, parameters);
 	}
 
-	public InputMaterials findInputMaterialsUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public InputMaterials findInputMaterialsUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
 		return inputBO.findUniqueByHQL(hql, parameters);
 	}
-	
+
 	public void create(OutputMaterials entity) throws Exception {
 		outputBO.create(entity);
 	}
@@ -307,7 +316,8 @@ public class Facade {
 		outputBO.remove(key);
 	}
 
-	public OutputMaterials findOutputMaterials(Serializable key) throws Exception {
+	public OutputMaterials findOutputMaterials(Serializable key)
+			throws Exception {
 		return outputBO.find(key);
 	}
 
@@ -319,15 +329,16 @@ public class Facade {
 		return outputBO.filter(entity);
 	}
 
-	public Collection<OutputMaterials> findOutputMaterialsCollectionByHQL(String hql,
-			Map<String, Object> parameters) {
+	public Collection<OutputMaterials> findOutputMaterialsCollectionByHQL(
+			String hql, Map<String, Object> parameters) {
 		return outputBO.findCollectionByHQL(hql, parameters);
 	}
 
-	public OutputMaterials findOutputMaterialsUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public OutputMaterials findOutputMaterialsUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
 		return outputBO.findUniqueByHQL(hql, parameters);
 	}
-	
+
 	public void create(Category entity) throws Exception {
 		categoryBO.create(entity);
 	}
@@ -357,9 +368,43 @@ public class Facade {
 		return categoryBO.findCollectionByHQL(hql, parameters);
 	}
 
-	public Category findCategoryUniqueByHQL(String hql, Map<String, Object> parameters) {
+	public Category findCategoryUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
 		return categoryBO.findUniqueByHQL(hql, parameters);
 	}
 
-	
+	public void create(SubCategory entity) throws Exception {
+		subCategoryBO.create(entity);
+	}
+
+	public void update(SubCategory entity) throws Exception {
+		subCategoryBO.update(entity);
+	}
+
+	public void removeSubCategory(Serializable key) throws Exception {
+		subCategoryBO.remove(key);
+	}
+
+	public SubCategory findSubCategory(Serializable key) throws Exception {
+		return subCategoryBO.find(key);
+	}
+
+	public SubCategory[] findAllSubCategory() throws Exception {
+		return subCategoryBO.findAll();
+	}
+
+	public Collection<SubCategory> filter(SubCategory entity) {
+		return subCategoryBO.filter(entity);
+	}
+
+	public Collection<SubCategory> findSubCategoryCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
+		return subCategoryBO.findCollectionByHQL(hql, parameters);
+	}
+
+	public SubCategory findSubCategoryUniqueByHQL(String hql,
+			Map<String, Object> parameters) {
+		return subCategoryBO.findUniqueByHQL(hql, parameters);
+	}
+
 }

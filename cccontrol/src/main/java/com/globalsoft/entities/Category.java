@@ -16,8 +16,8 @@ public class Category extends BasicEntity {
 	@Column(name = "nome", unique = true)
 	private String nome;
 	
-	@OneToMany()
-	private List<Subcategory> subcategories;
+	@OneToMany
+	private List<SubCategory> subcategories;
 	
 	public String getNome() {
 		return nome;
@@ -25,14 +25,13 @@ public class Category extends BasicEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public List<Subcategory> getSubcategory() {
+	public List<SubCategory> getSubcategory() {
 		return subcategories;
 	}
-	public void setSubcategory(List<Subcategory> subcategories) {
+	public void setSubcategory(List<SubCategory> subcategories) {
 		this.subcategories = subcategories;
 	}
 	public Boolean validate() throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}		
 	

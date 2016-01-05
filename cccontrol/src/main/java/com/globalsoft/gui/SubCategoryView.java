@@ -3,6 +3,8 @@ package com.globalsoft.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,18 +23,47 @@ import javax.swing.border.EtchedBorder;
 
 import com.globalsoft.business.Facade;
 import com.globalsoft.entities.Category;
+import com.globalsoft.entities.SubCategory;
+import com.globalsoft.util.Util;
 
-public class SubCategory extends JFrame {
+public class SubCategoryView extends JFrame {
 
 	private static final long serialVersionUID = 6424241348272750531L;
 	private JPanel contentPane;
-	private JTextField txtName;
+	private JTextField txtNome;
 	private JTable table;
+	private Category selecionado;
+	private JComboBox<Category> cmbCategoria;
+	
+	private String[] columnNames = {"Nome", "Categoria"};
+
+	public Category getSelecionado() {
+		return selecionado;
+	}
+
+	public void setSelecionado(Category selecionado) {
+		this.selecionado = selecionado;
+	}
+	
+	private void createTable(){
+		try {
+			Util.createTableModel(table, columnNames, Facade.getInstance().findAllSubCategory());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public SubCategory(boolean isSelectFrame) {
+	public SubCategoryView(boolean isSelectFrame) {
+		addWindowFocusListener(new WindowFocusListener() {
+			public void windowGainedFocus(WindowEvent e) {
+				createTable();
+			}
+			public void windowLostFocus(WindowEvent e) {
+			}
+		});
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 435, 542);
@@ -100,11 +131,11 @@ public class SubCategory extends JFrame {
 			panel.add(lblSelecionar);
 		}
 
-		txtName = new JTextField();
-		txtName.setHorizontalAlignment(SwingConstants.CENTER);
-		txtName.setBounds(133, 140, 205, 20);
-		contentPane.add(txtName);
-		txtName.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNome.setBounds(133, 140, 205, 20);
+		contentPane.add(txtNome);
+		txtNome.setColumns(10);
 
 		JLabel lblNomeCategoria = new JLabel("Nome Da SubCategoria");
 		lblNomeCategoria.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -121,6 +152,19 @@ public class SubCategory extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					SubCategory sub = Util.getScreenData(SubCategoryView.this, SubCategory.class);
+					if (sub.getId() == null) {
+						Facade.getInstance().create(sub);
+					} else {
+						Facade.getInstance().update(sub);
+					}
+					Util.showSaveRecordSuccessMessage(SubCategoryView.this);
+					Util.clearScreen(SubCategoryView.this);
+					createTable();					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -132,17 +176,17 @@ public class SubCategory extends JFrame {
 		labelCategoria.setBounds(10, 112, 113, 14);
 		contentPane.add(labelCategoria);
 
-		JComboBox<Category> comboCategorias = new JComboBox<Category>();
-		comboCategorias.setBounds(132, 102, 206, 22);
+		cmbCategoria= new JComboBox<Category>();
+		cmbCategoria.setBounds(132, 102, 206, 22);
 		Category[] categorias;
 		try {
 			categorias = Facade.getInstance().findAllCategory();
 			for (Category c : categorias) {
-				comboCategorias.addItem(c);
+				cmbCategoria.addItem(c);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		contentPane.add(comboCategorias);
+		contentPane.add(cmbCategoria);
 	}
 }

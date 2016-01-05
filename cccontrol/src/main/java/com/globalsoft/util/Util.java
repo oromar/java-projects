@@ -1,5 +1,6 @@
 package com.globalsoft.util;
 
+import java.awt.Component;
 import java.awt.event.KeyAdapter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -19,12 +20,16 @@ import java.util.logging.Logger;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.table.DefaultTableModel;
 
 import com.globalsoft.entities.BasicEntity;
 import com.globalsoft.entities.Entity;
 import com.globalsoft.entities.Supplier;
+import com.globalsoft.gui.SubCategoryView;
 
 public class Util {
 
@@ -242,6 +247,9 @@ public class Util {
 						} else if (f.getType().equals(JTextPane.class)) {
 							JTextPane txt = (JTextPane) f.get(form);
 							field.set(result, txt.getText());
+						} else if (f.getType().equals(JComboBox.class)){
+							JComboBox<T> combo = (JComboBox<T>) f.get(form);
+							field.set(result, combo.getSelectedItem());
 						}
 					}
 				}
@@ -274,4 +282,55 @@ public class Util {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static <T> void createTableModel(JTable table, String[] columnNames, T[] values) {
+		DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+			private static final long serialVersionUID = 3042308105275794952L;
+
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			};
+		};
+		try {
+			String[] line = null;
+			Field field = null;
+			Class<?> superClass = null;
+			if (values != null && values.length > 0) {
+				for (int i = 0; i < values.length; i++) {
+					line = new String[columnNames.length];
+					for (int j = 0; j < columnNames.length; j++) {
+						superClass = values[i].getClass().getSuperclass();
+						try{
+							field = values[i].getClass().getDeclaredField(getFieldName(columnNames[j]));
+						}catch(NoSuchFieldException sfe) { 
+							while (field == null && superClass != null) {
+								field = superClass.getDeclaredField(getFieldName(columnNames[j]));							
+								superClass = superClass.getSuperclass();
+							} 
+						}						
+						if (field != null) {
+							field.setAccessible(true);
+							line[j] = String.valueOf(field.get(values[i]));
+							field = null;
+						}
+					}
+					model.addRow(line);
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		table.setModel(model);
+		table.createDefaultColumnsFromModel();
+	}
+
+	private static String getFieldName(String string) {
+		return string.substring(0, 1).toLowerCase() + string.substring(1);
+	}
+	
+	public static void showSaveRecordSuccessMessage(Component component){
+		JOptionPane.showMessageDialog(component, "Registro Salvo com Sucesso !");
+	}
+	
 }

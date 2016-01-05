@@ -356,7 +356,7 @@ public class Output extends JFrame {
 						txtCodigoProduto.setText(String.valueOf(p.getId()));
 						txtDescricaoProduto.setText(p.getNome());
 						txtUnidadeMedidaProduto.setText(p.getUnidadeMedida());
-						txtQuantidadeEstoque.setText(p.getEmEstoque());
+						txtQuantidadeEstoque.setText(p.getEstoque());
 					}
 				});
 

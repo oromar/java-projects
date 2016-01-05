@@ -22,7 +22,7 @@ import javax.swing.border.EtchedBorder;
 import com.globalsoft.business.Facade;
 import com.globalsoft.entities.Category;
 import com.globalsoft.entities.Product;
-import com.globalsoft.entities.Subcategory;
+import com.globalsoft.entities.SubCategory;
 import com.globalsoft.entities.Supplier;
 import com.globalsoft.util.Util;
 
@@ -31,7 +31,7 @@ public class CadastroProduto extends JFrame {
 	private static final long serialVersionUID = -5862683290614642467L;
 	private JPanel contentPane;
 	private JComboBox<Category> cbCatego;
-	private JComboBox<Subcategory> cbSubcat;
+	private JComboBox<SubCategory> cbSubcat;
 	private JComboBox<Supplier> cmbFornecedor;
 	private JTextField txtCod;
 	private JTextField txtDescription;
@@ -47,7 +47,7 @@ public class CadastroProduto extends JFrame {
 	private JTextField txtSerie;
 	private JTextField txtReferencia;
 	private JTextPane txtObservacao;
-	private JTextField txtEmEstoque;
+	private JTextField txtEstoque;
 
 	private void clearScreen() {
 		txtCod.setText("");
@@ -64,7 +64,7 @@ public class CadastroProduto extends JFrame {
 		txtSerie.setText("");
 		txtReferencia.setText("");
 		txtObservacao.setText("");
-		txtEmEstoque.setText("");
+		txtEstoque.setText("");
 	}
 	
 	private Product getScreenData() {
@@ -85,11 +85,11 @@ public class CadastroProduto extends JFrame {
 		result.setNotaFiscal(txtNotaFiscal.getText());
 		result.setValorUnit(txtValorUnitario.getText());
 		result.setSerie(txtSerie.getText());	
-		result.setSubCategory((Subcategory) cbSubcat.getSelectedItem());
+		result.setSubCategory((SubCategory) cbSubcat.getSelectedItem());
 		result.setUnidadeMedida(txtUnidadeMedida.getText());
 		result.setReferencia(txtReferencia.getText());
 		result.setObsComments(txtObservacao.getText());
-		result.setEmEstoque(txtEmEstoque.getText());
+		result.setEstoque(txtEstoque.getText());
 		
 		return result;
 	}
@@ -111,7 +111,7 @@ public class CadastroProduto extends JFrame {
 		txtUnidadeMedida.setText(product.getUnidadeMedida());
 		txtValorUnitario.setText(product.getValorUnit());
 		txtObservacao.setText(product.getObsComments());
-		txtEmEstoque.setText(product.getEmEstoque()); 
+		txtEstoque.setText(product.getEstoque()); 
 	}
 
 	public CadastroProduto(Product product) {
@@ -333,11 +333,11 @@ public class CadastroProduto extends JFrame {
 		button.setBounds(607, 157, 28, 28);
 		panel.add(button);
 		
-		txtEmEstoque = new JTextField();
-		txtEmEstoque.setText("0");
-		txtEmEstoque.setColumns(10);
-		txtEmEstoque.setBounds(450, 118, 100, 20);
-		panel.add(txtEmEstoque);
+		txtEstoque = new JTextField();
+		txtEstoque.setText("0");
+		txtEstoque.setColumns(10);
+		txtEstoque.setBounds(450, 118, 100, 20);
+		panel.add(txtEstoque);
 		
 		JLabel lblEmEstoque = new JLabel("Em Estoque");
 		lblEmEstoque.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -354,7 +354,7 @@ public class CadastroProduto extends JFrame {
 		cbCatego.setBounds(10, 26, 247, 20);
 		panel_1.add(cbCatego);
 
-		cbSubcat = new JComboBox<Subcategory>();
+		cbSubcat = new JComboBox<SubCategory>();
 		cbSubcat.setBounds(334, 26, 264, 20);
 		panel_1.add(cbSubcat);
 

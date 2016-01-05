@@ -44,7 +44,7 @@ public class Product extends BasicEntity {
 	private String referencia;
 
 	@Column(name = "EmEstoque")
-	private String emEstoque;
+	private String estoque;
 
 	@Column(name = "EstoqueMax")
 	private String estoqueMax;
@@ -57,7 +57,7 @@ public class Product extends BasicEntity {
 
 	@Column(name = "LocalEstoque")
 	private String localEstoque;
-	
+
 	@OneToOne
 	@JoinColumn(name = "supplier")
 	private Supplier supplier;
@@ -67,7 +67,7 @@ public class Product extends BasicEntity {
 
 	@OneToOne
 	@JoinColumn(name = "sub_category")
-	private Subcategory subCategory;
+	private SubCategory subCategory;
 
 	@ManyToMany(mappedBy = "produtos")
 	private Collection<InputMaterials> inputs;
@@ -84,14 +84,12 @@ public class Product extends BasicEntity {
 		this.supplier = supplier;
 	}
 
-	public String getEmEstoque() {
-		return emEstoque;
+	public String getEstoque() {
+		return estoque;
 	}
 
-	// Em estoque
-
-	public void setEmEstoque(String emEstoque) {
-		this.emEstoque = emEstoque;
+	public void setEstoque(String estoque) {
+		this.estoque = estoque;
 	}
 
 	public String getObsComments() {
@@ -110,11 +108,11 @@ public class Product extends BasicEntity {
 		this.supplier = supplier;
 	}
 
-	public Subcategory getSubCategory() {
+	public SubCategory getSubCategory() {
 		return subCategory;
 	}
 
-	public void setSubCategory(Subcategory subCategory) {
+	public void setSubCategory(SubCategory subCategory) {
 		this.subCategory = subCategory;
 	}
 
@@ -238,8 +236,8 @@ public class Product extends BasicEntity {
 		}
 		if (getId() != null) { // verifica se é uma atualização de produto e não
 								// uma inserção
-			if (emEstoque == null || emEstoque.isEmpty()
-					|| !emEstoque.matches(Constants.ONLY_NUMBERS_REGEX)) {
+			if (estoque == null || estoque.isEmpty()
+					|| !estoque.matches(Constants.ONLY_NUMBERS_REGEX)) {
 				throw new Exception(Messages.INVALID_FIELD);
 			}
 			if (estoqueMax.isEmpty()
@@ -253,14 +251,18 @@ public class Product extends BasicEntity {
 		}
 
 		if (Integer.valueOf(estoqueMin) > Integer.valueOf(estoqueMax)) {
-			throw new Exception(Messages.INVALID_FIELD + "Estoque Minimo" );
+			throw new Exception(Messages.INVALID_FIELD + "Estoque Minimo");
 		}
 
 		if (Integer.valueOf(estoqueMin) < 0) {
 			throw new Exception(Messages.INVALID_FIELD + "Estoque Minimo");
 		}
 
-		if (valorUnit == null || valorUnit.isEmpty()) { // tirei a validação de só numero no campo pois os valores podem ser R$ 0,50 || R$ 1,10
+		if (valorUnit == null || valorUnit.isEmpty()) { // tirei a validação de
+														// só numero no campo
+														// pois os valores podem
+														// ser R$ 0,50 || R$
+														// 1,10
 			throw new Exception(Messages.INVALID_FIELD + "Valor Unitário");
 		}
 

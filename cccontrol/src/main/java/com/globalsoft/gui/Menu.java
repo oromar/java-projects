@@ -242,5 +242,22 @@ public class Menu extends JFrame {
 		lblCategorias.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCategorias.setBounds(509, 56, 109, 25);
 		panel.add(lblCategorias);
+		
+		JButton btnSubCategorias = new JButton("");
+		btnSubCategorias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SubCategoryView view = new SubCategoryView(false);
+				view.setLocationRelativeTo(Menu.this);
+				view.setVisible(true);
+			}
+		});
+		btnSubCategorias.setBounds(635, 11, 56, 48);
+		panel.add(btnSubCategorias);
+		
+		JLabel lblSubCategorias = new JLabel("Sub Categorias");
+		lblSubCategorias.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSubCategorias.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSubCategorias.setBounds(609, 56, 109, 25);
+		panel.add(lblSubCategorias);
 	}
 }
