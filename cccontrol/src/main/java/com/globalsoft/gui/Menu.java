@@ -225,5 +225,22 @@ public class Menu extends JFrame {
 		});
 		button.setBounds(433, 11, 56, 48);
 		panel.add(button);
+		
+		JButton btnCategorias = new JButton("");
+		btnCategorias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CategoryView view = new CategoryView(false);
+				view.setLocationRelativeTo(Menu.this);
+				view.setVisible(true);
+			}
+		});
+		btnCategorias.setBounds(535, 11, 56, 48);
+		panel.add(btnCategorias);
+		
+		JLabel lblCategorias = new JLabel("Categorias");
+		lblCategorias.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCategorias.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCategorias.setBounds(509, 56, 109, 25);
+		panel.add(lblCategorias);
 	}
 }

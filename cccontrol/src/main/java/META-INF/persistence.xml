@@ -7,20 +7,21 @@
 		<class>com.globalsoft.entities.CentroCusto</class>
 		
 		<class>com.globalsoft.entities.Client</class>
-		<class>com.globalsoft.entities.Supplier</class>
 		<class>com.globalsoft.entities.InputMaterials</class>
+		<class>com.globalsoft.entities.OrderBuy</class>
 		<class>com.globalsoft.entities.OutputMaterials</class>
 		<class>com.globalsoft.entities.Person</class>
 		<class>com.globalsoft.entities.Product</class>
-		<class>com.globalsoft.entities.Subcategory</class>
-		<class>com.globalsoft.entities.User</class>
+		<class>com.globalsoft.entities.Requester</class>
 		<class>com.globalsoft.entities.Role</class>
-		<class>com.globalsoft.entities.OrderBuy</class>
+		<class>com.globalsoft.entities.Subcategory</class>
+		<class>com.globalsoft.entities.Supplier</class>
+		<class>com.globalsoft.entities.User</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
-			<property name="javax.persistence.jdbc.password" value="google.br"/>
+			<property name="javax.persistence.jdbc.password" value="085471"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true"/>

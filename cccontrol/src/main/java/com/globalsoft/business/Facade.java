@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
+import com.globalsoft.dao.CategoryDAO;
 import com.globalsoft.dao.ClientDAO;
 import com.globalsoft.dao.InputMaterialsDAO;
 import com.globalsoft.dao.OutputMaterialsDAO;
@@ -56,7 +57,7 @@ public class Facade {
 		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
 		inputBO = new InputMaterialsBO(new InputMaterialsDAO());
 		outputBO = new OutputMaterialsBO(new OutputMaterialsDAO());
-		//categoryBO = new CategoryBO(new CategoryBO());
+		categoryBO = new CategoryBO(new CategoryBO(new CategoryDAO()));
 	}
 	
 	
@@ -325,6 +326,39 @@ public class Facade {
 
 	public OutputMaterials findOutputMaterialsUniqueByHQL(String hql, Map<String, Object> parameters) {
 		return outputBO.findUniqueByHQL(hql, parameters);
+	}
+	
+	public void create(Category entity) throws Exception {
+		categoryBO.create(entity);
+	}
+
+	public void update(Category entity) throws Exception {
+		categoryBO.update(entity);
+	}
+
+	public void removeCategory(Serializable key) throws Exception {
+		categoryBO.remove(key);
+	}
+
+	public Category findCategory(Serializable key) throws Exception {
+		return categoryBO.find(key);
+	}
+
+	public Category[] findAllCategory() throws Exception {
+		return categoryBO.findAll();
+	}
+
+	public Collection<Category> filter(Category entity) {
+		return categoryBO.filter(entity);
+	}
+
+	public Collection<Category> findCategoryCollectionByHQL(String hql,
+			Map<String, Object> parameters) {
+		return categoryBO.findCollectionByHQL(hql, parameters);
+	}
+
+	public Category findCategoryUniqueByHQL(String hql, Map<String, Object> parameters) {
+		return categoryBO.findUniqueByHQL(hql, parameters);
 	}
 
 	
