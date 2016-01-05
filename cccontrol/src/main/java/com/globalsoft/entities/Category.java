@@ -35,4 +35,9 @@ public class Category extends BasicEntity {
 		// TODO Auto-generated method stub
 		return null;
 	}		
+	
+	@Override
+	public String toString() {
+		return nome;
+	}
 }

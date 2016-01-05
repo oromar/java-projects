@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -17,6 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
+
+import com.globalsoft.business.Facade;
+import com.globalsoft.entities.Category;
 
 public class SubCategory extends JFrame {
 
@@ -98,17 +102,17 @@ public class SubCategory extends JFrame {
 
 		txtName = new JTextField();
 		txtName.setHorizontalAlignment(SwingConstants.CENTER);
-		txtName.setBounds(131, 111, 205, 20);
+		txtName.setBounds(133, 140, 205, 20);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
 
 		JLabel lblNomeCategoria = new JLabel("Nome Da SubCategoria");
 		lblNomeCategoria.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNomeCategoria.setBounds(10, 102, 123, 34);
+		lblNomeCategoria.setBounds(12, 131, 123, 34);
 		contentPane.add(lblNomeCategoria);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 142, 411, 343);
+		scrollPane.setBounds(10, 176, 411, 309);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -121,7 +125,24 @@ public class SubCategory extends JFrame {
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnAdd.setIcon(new ImageIcon("Icones\\add.png"));
-		btnAdd.setBounds(346, 102, 73, 29);
+		btnAdd.setBounds(348, 131, 73, 29);
 		contentPane.add(btnAdd);
+
+		JLabel labelCategoria = new JLabel("Categoria");
+		labelCategoria.setBounds(10, 112, 113, 14);
+		contentPane.add(labelCategoria);
+
+		JComboBox<Category> comboCategorias = new JComboBox<Category>();
+		comboCategorias.setBounds(132, 102, 206, 22);
+		Category[] categorias;
+		try {
+			categorias = Facade.getInstance().findAllCategory();
+			for (Category c : categorias) {
+				comboCategorias.addItem(c);
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		contentPane.add(comboCategorias);
 	}
 }
