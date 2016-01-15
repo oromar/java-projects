@@ -333,4 +333,16 @@ public class Util {
 		JOptionPane.showMessageDialog(component, "Registro Salvo com Sucesso !");
 	}
 	
+	public static void showDeleteRecordSuccessMessage(Component component){
+		JOptionPane.showMessageDialog(component, "Registro Removido com Sucesso !");
+	}
+	
+	public static Integer getStringAsInteger(String value){
+		return Integer.valueOf(value != null && !value.isEmpty() ? value : "0");
+	}
+	
+	public static Double getStringAsDouble(String value){
+		return Double.valueOf(value != null && !value.isEmpty() ? value : "0");
+	}
+	
 }

@@ -1,8 +1,11 @@
 package com.globalsoft.entities;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -35,14 +38,12 @@ public class OutputMaterials extends BasicEntity {
 	private Requester requester;
 
 	@OneToOne
-	@JoinColumn(name = "product")
-	private Product product;
-	
-	@OneToOne
 	@JoinColumn(name = "centro_custo")
 	private CentroCusto centrocusto;
 
-	
+	@OneToMany
+	private Collection<OutputItem> items;
+
 	public CentroCusto getCentrocusto() {
 		return centrocusto;
 	}
@@ -99,12 +100,12 @@ public class OutputMaterials extends BasicEntity {
 		this.requester = requester;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Collection<OutputItem> getItems() {
+		return items;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setItems(Collection<OutputItem> items) {
+		this.items = items;
 	}
 
 	public Boolean validate() throws Exception {
@@ -114,23 +115,24 @@ public class OutputMaterials extends BasicEntity {
 		} else {
 			requester.validate();
 		}
-		if(product == null){
-			throw new Exception(Messages.INVALID_PRODUCT);
-		}else{
-			product.validate();
-		}
 		if (quantidade == null || quantidade.isEmpty()
 				|| !quantidade.matches(Constants.ONLY_NUMBERS_REGEX)) {
 			throw new Exception(Messages.INVALID_FIELD + "Quantidade");
 		}
 		if (autorizacao == null || autorizacao.isEmpty()) {
-			throw new Exception(Messages.INVALID_FIELD + "Autorização/Supervisor");
+			throw new Exception(Messages.INVALID_FIELD
+					+ "Autorização/Supervisor");
 		}
-		
 		if (centrocusto == null) {
 			throw new Exception(Messages.INVALID_CENTERCOST);
-		}else{
+		} else {
 			centrocusto.validate();
+		}
+		if (items == null || items.isEmpty()) {
+			throw new Exception("Favor adicionar pelo menos um item de Saída!");
+		}
+		for (OutputItem item : items) {
+			item.validate();
 		}
 		return Boolean.TRUE;
 	}

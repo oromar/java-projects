@@ -1,20 +1,24 @@
 package com.globalsoft.gui;
 
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
@@ -22,20 +26,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
 import com.globalsoft.business.Facade;
+import com.globalsoft.entities.OutputItem;
 import com.globalsoft.entities.OutputMaterials;
 import com.globalsoft.entities.Product;
 import com.globalsoft.entities.Requester;
 import com.globalsoft.util.Util;
-
-import javax.swing.JTabbedPane;
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-
-import javax.swing.JList;
-import javax.swing.JTable;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
 
 public class Output extends JFrame {
 
@@ -115,7 +110,14 @@ public class Output extends JFrame {
 						output.setRequester(optR.get());
 					}
 					if (p != null) {
-						output.setProduct(p);
+						OutputItem item = new OutputItem();
+						item.setOutput(output);
+						item.setQuantity(Util.getStringAsInteger(txtQuantidade.getText()));
+						item.setProduct(p);
+						if (output.getItems() == null) {
+							output.setItems(new ArrayList<OutputItem>());
+						}
+						output.getItems().add(item);
 					}
 					Facade.getInstance().create(output);
 					JOptionPane.showMessageDialog(Output.this,
@@ -124,7 +126,6 @@ public class Output extends JFrame {
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(Output.this, e1.getMessage(),
 							"Error", JOptionPane.ERROR_MESSAGE);
-
 				}
 			}
 		});

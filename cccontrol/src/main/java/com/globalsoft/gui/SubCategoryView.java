@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.util.Collection;
+import java.util.Optional;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -85,6 +87,29 @@ public class SubCategoryView extends JFrame {
 		panel.setLayout(null);
 
 		JButton btnDelete = new JButton("");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = -1;
+				index = table.getSelectedRow();
+				if (index > -1) {
+					String value = String.valueOf(table.getValueAt(index, 0));
+					if (value != null && !value.isEmpty()){
+						SubCategory sub = new SubCategory();
+						sub.setNome(value);
+						Optional<SubCategory> opt  = Facade.getInstance().filter(sub).stream().findFirst();
+						if (opt.isPresent()) {
+							try {
+								Facade.getInstance().removeSubCategory(opt.get().getId());
+								Util.showDeleteRecordSuccessMessage(SubCategoryView.this);
+								createTable();
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
 		btnDelete.setIcon(new ImageIcon("Icones\\Delete.png"));
 		btnDelete.setBounds(10, 11, 56, 48);
 		panel.add(btnDelete);

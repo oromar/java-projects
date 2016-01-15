@@ -32,7 +32,10 @@ public class Category extends BasicEntity {
 		this.subcategories = subcategories;
 	}
 	public Boolean validate() throws Exception {
-		return null;
+		if (nome == null) {
+			throw new Exception("Nome não informado!");
+		}		
+		return Boolean.TRUE;
 	}		
 	
 	@Override

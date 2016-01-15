@@ -11,7 +11,7 @@ public enum Constants {
 	public static final String REMOVED_FIELD_NAME = "removed";
 	public static final String ID_FIELD_NAME = "id";
 	public static final String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
-	public static final String ONLY_NUMBERS_REGEX = "[0-9]+";
-	public static final String CPF_REGEX = "[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}";
+	public static final String ONLY_NUMBERS_REGEX = "[\\d]+";
+	public static final String CPF_REGEX = "[\\d]{3}[\\d]{3}[\\d]{3}[\\d]{2}";
 
 }
