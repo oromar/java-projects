@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
 import com.globalsoft.business.Facade;
+import javax.swing.JTabbedPane;
 
 public class Menu extends JFrame {
 
@@ -58,6 +59,7 @@ public class Menu extends JFrame {
 		menuBar.add(mnArquivo);
 
 		JMenuItem mntmFuncionrios = new JMenuItem("Funcion\u00E1rios");
+		mntmFuncionrios.setIcon(new ImageIcon("Icones\\group.png"));
 		mntmFuncionrios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrudUsers tela = new CrudUsers();
@@ -68,8 +70,38 @@ public class Menu extends JFrame {
 		});
 		mnArquivo.add(mntmFuncionrios);
 
-		JMenu mnMovimentao = new JMenu("Movimenta\u00E7\u00E3o");
+		JMenu mnMovimentao = new JMenu("Op\u00E7\u00F5es");
 		menuBar.add(mnMovimentao);
+		
+		JMenuItem mntmCategoria = new JMenuItem("Categorias");
+		mntmCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CategoryView view = new CategoryView(false);
+				view.setLocationRelativeTo(Menu.this);
+				view.setVisible(true);
+			}
+		});
+		mnMovimentao.add(mntmCategoria);
+		
+		JMenuItem mntmSubcategoria = new JMenuItem("Sub Categorias");
+		mntmSubcategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SubCategoryView view = new SubCategoryView(false);
+				view.setLocationRelativeTo(Menu.this);
+				view.setVisible(true);
+			}
+		});
+		mnMovimentao.add(mntmSubcategoria);
+		
+		JMenuItem mntmCentroDeCusto = new JMenuItem("Centro De Custo");
+		mntmCentroDeCusto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CentroDeCusto view = new CentroDeCusto(false);
+				view.setLocationRelativeTo(Menu.this);
+				view.setVisible(true);
+			}
+		});
+		mnMovimentao.add(mntmCentroDeCusto);
 
 		JMenu mnNewMenu = new JMenu("Ajuda");
 		menuBar.add(mnNewMenu);
@@ -226,38 +258,14 @@ public class Menu extends JFrame {
 		button.setBounds(433, 11, 56, 48);
 		panel.add(button);
 		
-		JButton btnCategorias = new JButton("");
-		btnCategorias.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CategoryView view = new CategoryView(false);
-				view.setLocationRelativeTo(Menu.this);
-				view.setVisible(true);
-			}
-		});
-		btnCategorias.setBounds(535, 11, 56, 48);
-		panel.add(btnCategorias);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+		tabbedPane.setBounds(10, 103, 1342, 591);
+		contentPane.add(tabbedPane);
 		
-		JLabel lblCategorias = new JLabel("Categorias");
-		lblCategorias.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCategorias.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCategorias.setBounds(509, 56, 109, 25);
-		panel.add(lblCategorias);
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Status Estoque", new ImageIcon("Icones\\cart.png"), panel_1, null);
 		
-		JButton btnSubCategorias = new JButton("");
-		btnSubCategorias.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SubCategoryView view = new SubCategoryView(false);
-				view.setLocationRelativeTo(Menu.this);
-				view.setVisible(true);
-			}
-		});
-		btnSubCategorias.setBounds(635, 11, 56, 48);
-		panel.add(btnSubCategorias);
-		
-		JLabel lblSubCategorias = new JLabel("Sub Categorias");
-		lblSubCategorias.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSubCategorias.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblSubCategorias.setBounds(609, 56, 109, 25);
-		panel.add(lblSubCategorias);
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("Status Produtos", new ImageIcon("Icones\\lorry.png"), panel_2, null);
 	}
 }
